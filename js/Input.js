@@ -7,12 +7,13 @@ const KEY_LETTER_W = 87;
 const KEY_LETTER_A = 65;
 const KEY_LETTER_S = 83;
 const KEY_LETTER_D = 68;
+const KEY_LETTER_SPACE = 32;
 
 function initInput() {
   document.addEventListener("keydown", keyPressed);
   document.addEventListener("keyup", keyReleased);
   
-  p1.setupControls(KEY_UP_ARROW,KEY_RIGHT_ARROW,KEY_DOWN_ARROW,KEY_LEFT_ARROW);
+  p1.setupControls(KEY_UP_ARROW,KEY_RIGHT_ARROW,KEY_DOWN_ARROW,KEY_LEFT_ARROW, KEY_LETTER_SPACE);
 }
 
 function setKeyHoldState(thisKey, thisPlayer, setTo) {
@@ -27,6 +28,9 @@ function setKeyHoldState(thisKey, thisPlayer, setTo) {
   }
   if(thisKey == thisPlayer.controlKeyForWest) {
     thisPlayer.keyHeld_West = setTo;
+  }
+  if(thisKey == thisPlayer.controlKeyForAttack && setTo == false) {
+    thisPlayer.attack();
   }
 }
 

@@ -13,11 +13,12 @@ function warriorClass() {
   this.keyHeld_West = false;
 
   // key controls used for this
-  this.setupControls = function(northKey,eastKey,southKey,westKey) {
+  this.setupControls = function(northKey,eastKey,southKey,westKey, attackKey) {
     this.controlKeyForNorth = northKey;
     this.controlKeyForEast = eastKey;
     this.controlKeyForSouth = southKey;
     this.controlKeyForWest = westKey;
+    this.controlKeyForAttack = attackKey;
   }
 
   this.init = function(whichGraphic,whichName) {
@@ -100,6 +101,15 @@ function warriorClass() {
     }
   }
   
+  this.attack = function () {
+    for (var i=enemyList.length-1;i>=0; i--) { // backward since we splice from it
+      var disX = Math.abs(enemyList[i].x - this.x);
+      var disY = Math.abs(enemyList[i].y - this.y);
+      if (disX + disY < 50) {
+        enemyList.splice(i,1);
+      }
+    }
+  }
   this.draw = function() {
     drawBitmapCenteredAtLocationWithRotation( this.myBitmap, this.x, this.y, 0.0 );
   }
