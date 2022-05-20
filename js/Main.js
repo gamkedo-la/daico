@@ -2,6 +2,7 @@
 var canvas, canvasContext;
 
 var p1 = new warriorClass();
+var e1 = new enemyClass();
 
 window.onload = function() {
   canvas = document.getElementById('gameCanvas');
@@ -19,15 +20,18 @@ function loadingDoneSoStartGame() {
     }, 1000/framesPerSecond);
   
   p1.init(playerPic, "Blue");
+  e1.init(enemyPic, "Blue");
   initInput();  
 }
 
 function moveEverything() {
   p1.move();
+  e1.move();
 }
 
 function drawEverything() {
   drawRoom();
   
   p1.draw();
+  e1.draw();
 }

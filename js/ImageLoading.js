@@ -1,4 +1,5 @@
 var playerPic=document.createElement("img");
+var enemyPic=document.createElement("img");
 var tilePics = [];
 
 var picsToLoad = 0;
@@ -24,7 +25,7 @@ function loadImages() {
 
   var imageList = [
     {varName:playerPic, theFile:"warrior.png"},
-    
+    {varName:enemyPic, theFile:"enemy.png"},
     {tileType:TILE_GROUND, theFile:"world_ground.png"},
     {tileType:TILE_WALL, theFile:"world_wall.png"},
     {tileType:TILE_GOAL, theFile:"world_goal.png"},
