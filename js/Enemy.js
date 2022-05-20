@@ -1,6 +1,5 @@
 // tuning constants
 const ENEMY_MOVE_SPEED = 3.0;
-
 function enemyClass() {
   // variables to keep track of position
   this.x = 75;
@@ -20,11 +19,7 @@ function enemyClass() {
     this.controlKeyForWest = westKey;
   }
 
-  this.init = function(whichGraphic,whichName) {
-    this.myBitmap = whichGraphic;
-    this.myName = whichName;
-    this.reset();
-  }
+  
   
   this.reset = function() {
     this.keysHeld = 0;
@@ -35,15 +30,17 @@ function enemyClass() {
           var tileCol = i%ROOM_COLS;
           this.homeX = tileCol * TILE_W + 0.5*TILE_W;
           this.homeY = tileRow * TILE_H + 0.5*TILE_H;
+          this.x = this.homeX;
+          this.y = this.homeY;
           roomGrid[i] = TILE_GROUND;
-          break; // found it, so no need to keep searching 
+          return true; // found it, so no need to keep searching 
         } // end of if
       } // end of for
     } // end of if position not saved yet
     
     this.x = this.homeX;
     this.y = this.homeY;
-
+    return false;
   } // end of reset
   
   this.move = function() {
@@ -51,16 +48,16 @@ function enemyClass() {
     var nextY = this.y;
 
     if(this.keyHeld_North) {
-      nextY -= PLAYER_MOVE_SPEED;
+      nextY -= ENEMY_MOVE_SPEED;
     }
     if(this.keyHeld_East) {
-      nextX += PLAYER_MOVE_SPEED;
+      nextX += ENEMY_MOVE_SPEED;
     }
     if(this.keyHeld_South) {
-      nextY += PLAYER_MOVE_SPEED;
+      nextY += ENEMY_MOVE_SPEED;
     }
     if(this.keyHeld_West) {
-      nextX -= PLAYER_MOVE_SPEED;
+      nextX -= ENEMY_MOVE_SPEED;
     }
         
     var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX,nextY);
@@ -101,7 +98,7 @@ function enemyClass() {
   }
   
   this.draw = function() {
-    drawBitmapCenteredAtLocationWithRotation( this.myBitmap, this.x, this.y, 0.0 );
+    drawBitmapCenteredAtLocationWithRotation( enemyPic, this.x, this.y, 0.0 );
   }
 
 } // end of class
