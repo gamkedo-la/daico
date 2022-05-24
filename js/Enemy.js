@@ -44,22 +44,14 @@ function enemyClass() {
   } // end of reset
   
   this.move = function() {
-    var nextX = this.x;
-    var nextY = this.y;
-
-    if(this.keyHeld_North) {
-      nextY -= ENEMY_MOVE_SPEED;
+    if (dist(this.x - p1.x, this.y - p1.y) < 3*TILE_W) {
+      var toPlayer = angTo(p1.x - this.x, p1.y - this.y);
+      this.xv = Math.cos(toPlayer);
+      this.yv = Math.sin(toPlayer);
     }
-    if(this.keyHeld_East) {
-      nextX += ENEMY_MOVE_SPEED;
-    }
-    if(this.keyHeld_South) {
-      nextY += ENEMY_MOVE_SPEED;
-    }
-    if(this.keyHeld_West) {
-      nextX -= ENEMY_MOVE_SPEED;
-    }
-        
+    var nextX = this.x + this.xv;
+    var nextY =  this.y + this.yv;
+    
     var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX,nextY);
     var walkIntoTileType = TILE_WALL;
     

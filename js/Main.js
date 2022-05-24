@@ -40,6 +40,13 @@ function moveEverything() {
   }
 }
 
+function dist(dx, dy) {
+  return Math.sqrt(dx*dx+dy*dy);
+}
+function angTo(dx,dy){
+  return Math.atan2(dy,dx);
+}
+
 function drawEverything() {
   drawRoom();
   
