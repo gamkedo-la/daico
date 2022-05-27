@@ -1,3 +1,6 @@
+var mouseX = 0;
+var mouseY = 0;
+
 // keyboard keycode constants, determined by printing out evt.keyCode from a key handler  
 const KEY_LEFT_ARROW = 37;
 const KEY_UP_ARROW = 38;
@@ -12,8 +15,22 @@ const KEY_LETTER_SPACE = 32;
 function initInput() {
   document.addEventListener("keydown", keyPressed);
   document.addEventListener("keyup", keyReleased);
-  
+  document.addEventListener("mousedown", mouseClick);
+  document.addEventListener("mousemove",calculateMousePos);
+	/*document.addEventListener("mouseup", function() {
+		prevEditedTileIndex = -1;
+		bMouseDown = false;
+	});
+
+		document.addEventListener("wheel", function(evt) {
+			isMouseWheel = true;
+			wheelDir = Math.sign(evt.deltaY);
+		});*/
   p1.setupControls(KEY_UP_ARROW,KEY_RIGHT_ARROW,KEY_DOWN_ARROW,KEY_LEFT_ARROW, KEY_LETTER_SPACE);
+}
+
+function mouseClick() {
+  console.log(Math.floor(mouseX), Math.floor(mouseY));
 }
 
 function setKeyHoldState(thisKey, thisPlayer, setTo) {
@@ -41,4 +58,11 @@ function keyPressed(evt) {
 
 function keyReleased(evt) {
   setKeyHoldState(evt.keyCode, p1, false);
+}
+
+function calculateMousePos(evt) {
+  var rect = canvas.getBoundingClientRect();
+  var root = document.documentElement;
+  mouseX = evt.clientX - rect.left;
+  mouseY = evt.clientY - rect.top;
 }
