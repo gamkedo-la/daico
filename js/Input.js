@@ -1,6 +1,6 @@
 var mouseX = 0;
 var mouseY = 0;
-
+var editorTileIndex = 0;
 // keyboard keycode constants, determined by printing out evt.keyCode from a key handler  
 const KEY_LEFT_ARROW = 37;
 const KEY_UP_ARROW = 38;
@@ -17,6 +17,7 @@ function initInput() {
   document.addEventListener("keyup", keyReleased);
   document.addEventListener("mousedown", mouseClick);
   document.addEventListener("mousemove",calculateMousePos);
+  document.addEventListener("wheel", mouseWheel);
 	/*document.addEventListener("mouseup", function() {
 		prevEditedTileIndex = -1;
 		bMouseDown = false;
@@ -29,12 +30,21 @@ function initInput() {
   p1.setupControls(KEY_UP_ARROW,KEY_RIGHT_ARROW,KEY_DOWN_ARROW,KEY_LEFT_ARROW, KEY_LETTER_SPACE);
 }
 
+function mouseWheel(evt){
+  editorTileIndex +=  Math.sign(evt.deltaY);
+  if (editorTileIndex < 0) {
+    editorTileIndex = 0;
+  }
+  if (editorTileIndex > TILE_LAST) {
+    editorTileIndex = 0;
+  }
+}
 function mouseClick() {
   console.log(Math.floor(mouseX), Math.floor(mouseY));
   var mouseTileIndex = getTileIndexAtPixelCoord(mouseX,mouseY);
   
   if( mouseTileIndex != undefined) {
-    roomGrid[mouseTileIndex] = TILE_WALL;
+    roomGrid[mouseTileIndex] = editorTileIndex;
   }
     
 }
