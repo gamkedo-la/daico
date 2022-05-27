@@ -31,6 +31,12 @@ function initInput() {
 
 function mouseClick() {
   console.log(Math.floor(mouseX), Math.floor(mouseY));
+  var mouseTileIndex = getTileIndexAtPixelCoord(mouseX,mouseY);
+  
+  if( mouseTileIndex != undefined) {
+    roomGrid[mouseTileIndex] = TILE_WALL;
+  }
+    
 }
 
 function setKeyHoldState(thisKey, thisPlayer, setTo) {
