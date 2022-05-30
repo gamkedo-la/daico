@@ -47,30 +47,10 @@ function warriorClass() {
 
   } // end of reset
   
-  this.move = function() {
-    var nextX = this.x;
-    var nextY = this.y;
-
-    if(this.keyHeld_North) {
-      nextY -= PLAYER_MOVE_SPEED;
-    }
-    if(this.keyHeld_East) {
-      nextX += PLAYER_MOVE_SPEED;
-    }
-    if(this.keyHeld_South) {
-      nextY += PLAYER_MOVE_SPEED;
-    }
-    if(this.keyHeld_West) {
-      nextX -= PLAYER_MOVE_SPEED;
-    }
-        
+  this.testMove = function(nextX,nextY) {
     var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX,nextY);
-    var walkIntoTileType = TILE_WALL;
-    
-    if( walkIntoTileIndex != undefined) {
-      walkIntoTileType = roomGrid[walkIntoTileIndex];
-    }
-    
+    var walkIntoTileType = TILE_WALL; // assume wall when tile is missing
+    if (walkIntoTileIndex != undefined) { walkIntoTileType = roomGrid[walkIntoTileIndex]; }
     switch( walkIntoTileType ) {
       case TILE_GROUND:
         this.x = nextX;
@@ -84,14 +64,12 @@ function warriorClass() {
         if(this.keysHeld > 0) {
           this.keysHeld--; // one less key
           document.getElementById("debugText").innerHTML = "Keys: "+this.keysHeld;
-
           roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove door
         }
         break;
       case TILE_KEY:
         this.keysHeld++; // gain key
         document.getElementById("debugText").innerHTML = "Keys: "+this.keysHeld;
-
         roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove key
         break;
       case TILE_WALL:
@@ -99,6 +77,19 @@ function warriorClass() {
         // any other tile type number was found... do nothing, for now
         break;
     }
+  }
+
+  this.move = function() {
+
+    // to allow "wall sliding"
+    // (diagonal movement not getting stuck)
+    // we check horiz and vert movement individually
+    
+    if (this.keyHeld_East) this.testMove(this.x+PLAYER_MOVE_SPEED,this.y);
+    if (this.keyHeld_West) this.testMove(this.x-PLAYER_MOVE_SPEED,this.y);
+    if (this.keyHeld_North) this.testMove(this.x,this.y-PLAYER_MOVE_SPEED);
+    if (this.keyHeld_South) this.testMove(this.x,this.y+PLAYER_MOVE_SPEED);
+        
   }
   
   this.attack = function () {
