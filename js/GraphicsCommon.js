@@ -10,6 +10,11 @@ function colorCircle(centerX, centerY, radius, fillColor) {
   canvasContext.fill();
 }
   
+function colorText(showWords, textX, textY, fontSize, fillColor) {
+	canvasContext.font = font = fontSize + "px Arial";
+	  canvasContext.fillStyle = fillColor;
+	  canvasContext.fillText(showWords, textX, textY);
+  }
 function drawBitmapCenteredAtLocationWithRotation(graphic, atX, atY,withAngle) {
   canvasContext.save(); // allows us to undo translate movement and rotate spin
   canvasContext.translate(atX,atY); // sets the point where our graphic will go

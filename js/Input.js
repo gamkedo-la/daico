@@ -45,7 +45,6 @@ function mouseWheel(evt){
 }
 function mouseClick() {
   if(editorMode == false) {
-    console.log("editor mode is off. press Tab to toggle");
     return;
   }
   console.log(Math.floor(mouseX), Math.floor(mouseY));
@@ -94,7 +93,6 @@ function keyReleased(evt) {
   switch (evt.keyCode) {
     case KEY_TAB: 
       editorMode = !editorMode;
-      console.log(editorMode);
       break;
   }
   setKeyHoldState(evt.keyCode, p1, false);

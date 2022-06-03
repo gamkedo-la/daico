@@ -54,4 +54,10 @@ function drawEverything() {
   for (var i=0;i<enemyList.length; i++) {
     enemyList[i].draw();
   }
+  colorRect(0, canvas.height - 15, canvas.width , 15, 'black');
+  if (editorMode) {
+    colorText("In EDITOR MODE, press Tab to toggle. CTRL to export the edited level in console", 0, canvas.height, 20, 'red');
+  } else {
+    colorText("Press Tab to activate editor", 0, canvas.height, 20, 'red');
+  }
 }
