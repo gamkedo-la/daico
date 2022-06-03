@@ -1,6 +1,8 @@
 var mouseX = 0;
 var mouseY = 0;
 var editorTileIndex = 0;
+var editorMode = true;
+
 // keyboard keycode constants, determined by printing out evt.keyCode from a key handler  
 const KEY_LEFT_ARROW = 37;
 const KEY_UP_ARROW = 38;
@@ -11,6 +13,8 @@ const KEY_LETTER_A = 65;
 const KEY_LETTER_S = 83;
 const KEY_LETTER_D = 68;
 const KEY_LETTER_SPACE = 32;
+const KEY_CTRL = 17;
+const KEY_TAB = 9;
 
 function initInput() {
   document.addEventListener("keydown", keyPressed);
@@ -40,6 +44,10 @@ function mouseWheel(evt){
   }
 }
 function mouseClick() {
+  if(editorMode == false) {
+    console.log("editor mode is off. press Tab to toggle");
+    return;
+  }
   console.log(Math.floor(mouseX), Math.floor(mouseY));
   var mouseTileIndex = getTileIndexAtPixelCoord(mouseX,mouseY);
   
@@ -47,6 +55,13 @@ function mouseClick() {
     roomGrid[mouseTileIndex] = editorTileIndex;
   }
     
+}
+function editorKeyCheck(keyCode) {
+  switch (keyCode) {
+    case KEY_CTRL:
+      exportLevel();
+      break;
+  }
 }
 
 function setKeyHoldState(thisKey, thisPlayer, setTo) {
@@ -73,6 +88,15 @@ function keyPressed(evt) {
 }
 
 function keyReleased(evt) {
+  if (editorMode) {
+    editorKeyCheck(evt.keyCode);
+  }
+  switch (evt.keyCode) {
+    case KEY_TAB: 
+      editorMode = !editorMode;
+      console.log(editorMode);
+      break;
+  }
   setKeyHoldState(evt.keyCode, p1, false);
 }
 
@@ -82,3 +106,8 @@ function calculateMousePos(evt) {
   mouseX = evt.clientX - rect.left;
   mouseY = evt.clientY - rect.top;
 }
+
+function exportLevel(){
+  var currentLevel = JSON.stringify(roomGrid);
+   console.log(currentLevel);
+};
