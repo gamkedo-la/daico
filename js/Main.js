@@ -56,6 +56,7 @@ function drawEverything() {
   }
   colorRect(0, canvas.height - 15, canvas.width , 15, 'black');
   if (editorMode) {
+    drawEditor();
     colorText("In EDITOR MODE, press Tab to toggle. CTRL to export the edited level in console", 0, canvas.height, 20, 'red');
   } else {
     colorText("Press Tab to activate editor", 0, canvas.height, 20, 'red');
