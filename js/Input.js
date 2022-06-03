@@ -47,12 +47,7 @@ function mouseClick() {
   if(editorMode == false) {
     return;
   }
-  console.log(Math.floor(mouseX), Math.floor(mouseY));
-  var mouseTileIndex = getTileIndexAtPixelCoord(mouseX,mouseY);
-  
-  if( mouseTileIndex != undefined) {
-    roomGrid[mouseTileIndex] = editorTileIndex;
-  }
+  editorClick();
     
 }
 function editorKeyCheck(keyCode) {
