@@ -1,9 +1,8 @@
 function MainMenu()
 {
-  this.DrawBackfill = function()
+  this.DrawBackgroundImage = function()
   {
-    canvasContext.fillStyle = 'black';
-    canvasContext.fillRect(0,0, canvas.width,canvas.height);
+    canvasContext.drawImage(mainMenuBackgroundImage, 0,0, canvas.width,canvas.height);
   }
 
   this.titleText = "Daico";
@@ -17,16 +16,17 @@ function MainMenu()
 
   this.instructionText = "Press Enter to Play";
   this.instructionTextWidth = canvasContext.measureText(this.instructionText);
+  this.instructionTextCenteringOffset = 10;
   this.DrawStartInstruction = function()
   {
     canvasContext.fillStyle = 'white';
     canvasContext.font = '30px Helvetica';
-    canvasContext.fillText(this.instructionText, canvas.width/2 - this.instructionTextWidth.width,canvas.height/2);
+    canvasContext.fillText(this.instructionText, canvas.width/2 - this.instructionTextWidth.width - this.instructionTextCenteringOffset,canvas.height/2);
   }
 
   this.Draw = function()
   {
-    this.DrawBackfill();
+    this.DrawBackgroundImage();
     this.DrawTitle();
     this.DrawStartInstruction();
   }

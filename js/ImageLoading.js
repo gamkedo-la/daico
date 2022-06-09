@@ -2,6 +2,7 @@ var playerPic=document.createElement("img");
 var enemyPic=document.createElement("img");
 var heartFull=document.createElement("img");
 var heartEmpty=document.createElement("img");
+var mainMenuBackgroundImage=document.createElement("img");
 var tilePics = [];
 
 var picsToLoad = 0;
@@ -30,6 +31,7 @@ function loadImages() {
     {varName:enemyPic, theFile:"enemy.png"},
     {varName:heartEmpty, theFile:"heartempty.png"},
     {varName:heartFull, theFile:"heartfull.png"},
+    {varName:mainMenuBackgroundImage, theFile:"mainMenuBackgroundImage.png"},
     {tileType:TILE_GROUND, theFile:"world_ground.png"},
     {tileType:TILE_WALL, theFile:"world_wall.png"},
     {tileType:TILE_PLAYER, theFile:"warrior.png"},
