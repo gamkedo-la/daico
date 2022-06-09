@@ -1,5 +1,7 @@
 var playerPic=document.createElement("img");
 var enemyPic=document.createElement("img");
+var heartFull=document.createElement("img");
+var heartEmpty=document.createElement("img");
 var tilePics = [];
 
 var picsToLoad = 0;
@@ -26,13 +28,16 @@ function loadImages() {
   var imageList = [
     {varName:playerPic, theFile:"warrior.png"},
     {varName:enemyPic, theFile:"enemy.png"},
+    {varName:heartEmpty, theFile:"heartempty.png"},
+    {varName:heartFull, theFile:"heartfull.png"},
     {tileType:TILE_GROUND, theFile:"world_ground.png"},
     {tileType:TILE_WALL, theFile:"world_wall.png"},
     {tileType:TILE_PLAYER, theFile:"warrior.png"},
     {tileType:TILE_ENEMY, theFile:"enemy.png"},
     {tileType:TILE_GOAL, theFile:"world_goal.png"},
     {tileType:TILE_KEY, theFile:"world_key.png"},
-    {tileType:TILE_DOOR, theFile:"world_door.png"}
+    {tileType:TILE_DOOR, theFile:"world_door.png"},
+    {tileType:TILE_FULL_HEART, theFile:"heartempty.png"},
     ];
 
   picsToLoad = imageList.length;

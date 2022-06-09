@@ -1,6 +1,8 @@
 // tuning constants
 const PLAYER_MOVE_SPEED = 3.0;
-
+const FRAMES_BETWEEN_HEART_LOSS = 30;
+var heartHeld = 5;
+var hea
 function warriorClass() {
   // variables to keep track of position
   this.x = 75;
@@ -101,6 +103,30 @@ function warriorClass() {
       }
     }
   }
+
+  this.playerHit = function() {
+    if(!editorMode){
+        if(heartLossDelay > 0){
+            return;
+        } else {
+            HearthLossDelay = FRAMES_BETWEEN_HEART_LOSS;
+        }
+
+        if (this.powerUpMode() == false) {
+            hitSound.play();
+            heartHeld--;
+        }
+        if (HeartHeld == 0){
+            alarmSound.play();
+        }
+    }
+
+    if (heartHeld < 0){
+      deathSound.play();
+      gameState = STATE_GAME_OVER;
+      gameIsOver = true;
+  }
+}
   this.draw = function() {
     drawBitmapCenteredAtLocationWithRotation( this.myBitmap, this.x, this.y, 0.0 );
   }

@@ -49,7 +49,7 @@ function angTo(dx,dy){
 
 function drawEverything() {
   drawRoom();
-  
+  drawHealthUI();
   p1.draw();
   for (var i=0;i<enemyList.length; i++) {
     enemyList[i].draw();

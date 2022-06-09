@@ -26,6 +26,8 @@ const TILE_GOAL = 3;
 const TILE_KEY = 4;
 const TILE_DOOR = 5;
 const TILE_ENEMY = 6;
+const TILE_FULL_HEART = 7;
+
 
 const TILE_LAST = TILE_ENEMY;
 function roomTileToIndex(tileCol, tileRow) {

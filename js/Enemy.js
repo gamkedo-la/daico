@@ -43,6 +43,16 @@ function enemyClass() {
     return false;
   } // end of reset
   
+  this.attack = function () {
+    for (var i=enemyList.length-1;i>=0; i--) { // backward since we splice from it
+      var disX = Math.abs(p1.x - this.x);
+      var disY = Math.abs(p1.y - this.y);
+      if (disX + disY < 50) {
+        p1.playerHit();
+      }
+    }
+  }
+
   this.move = function() {
     if (dist(this.x - p1.x, this.y - p1.y) < 3*TILE_W) {
       var toPlayer = angTo(p1.x - this.x, p1.y - this.y);
