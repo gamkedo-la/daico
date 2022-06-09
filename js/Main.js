@@ -4,11 +4,16 @@ var canvas, canvasContext;
 var enemyList = [];
 var p1 = new warriorClass();
 
+var mainMenu;
+var mainMenuActive = true;
+
 
 window.onload = function() {
   canvas = document.getElementById('gameCanvas');
   canvasContext = canvas.getContext('2d');
-  
+
+  mainMenu = new MainMenu();
+
   loadImages();
 }
 
@@ -19,18 +24,18 @@ function loadingDoneSoStartGame() {
       moveEverything();
       drawEverything();
     }, 1000/framesPerSecond);
-  
+
   p1.init(playerPic, "Blue");
   var foundAnotherEnemy;
-  do { 
+  do {
     var e1 = new enemyClass();
     foundAnotherEnemy = e1.reset();
     if (foundAnotherEnemy) {
       enemyList.push(e1);
-    } 
+    }
   } while (foundAnotherEnemy);
- 
-  initInput();  
+
+  initInput();
 }
 
 function moveEverything() {
@@ -48,6 +53,13 @@ function angTo(dx,dy){
 }
 
 function drawEverything() {
+
+  if (mainMenuActive)
+  {
+      mainMenu.Draw();
+      return;
+  }
+
   drawRoom();
   drawHealthUI();
   p1.draw();

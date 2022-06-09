@@ -3,7 +3,7 @@ var mouseY = 0;
 var editorTileIndex = 0;
 var editorMode = true;
 
-// keyboard keycode constants, determined by printing out evt.keyCode from a key handler  
+// keyboard keycode constants, determined by printing out evt.keyCode from a key handler
 const KEY_LEFT_ARROW = 37;
 const KEY_UP_ARROW = 38;
 const KEY_RIGHT_ARROW = 39;
@@ -15,6 +15,7 @@ const KEY_LETTER_D = 68;
 const KEY_LETTER_SPACE = 32;
 const KEY_CTRL = 17;
 const KEY_TAB = 9;
+const KEY_ENTER = 13;
 
 function initInput() {
   document.addEventListener("keydown", keyPressed);
@@ -48,7 +49,7 @@ function mouseClick() {
     return;
   }
   editorClick();
-    
+
 }
 function editorKeyCheck(keyCode) {
   switch (keyCode) {
@@ -77,6 +78,15 @@ function setKeyHoldState(thisKey, thisPlayer, setTo) {
 }
 
 function keyPressed(evt) {
+  if (mainMenuActive)
+  {
+    if (evt.keyCode == KEY_ENTER)
+    {
+      mainMenuActive = false;
+    }
+    return;
+  }
+
   setKeyHoldState(evt.keyCode, p1, true);
   evt.preventDefault(); // without this, arrow keys scroll the browser!
 }
@@ -86,7 +96,7 @@ function keyReleased(evt) {
     editorKeyCheck(evt.keyCode);
   }
   switch (evt.keyCode) {
-    case KEY_TAB: 
+    case KEY_TAB:
       editorMode = !editorMode;
       break;
   }
