@@ -119,6 +119,7 @@ function warriorClass() {
         if (HeartHeld == 0){
             alarmSound.play();
         }
+        console.log("HITT");
     }
 
     if (heartHeld < 0){

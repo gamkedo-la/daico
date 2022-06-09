@@ -26,7 +26,9 @@ const TILE_GOAL = 3;
 const TILE_KEY = 4;
 const TILE_DOOR = 5;
 const TILE_ENEMY = 6;
-const TILE_FULL_HEART = 7;
+const TILE_STONED_ANGEL = 7;
+const TILE_LIVING_ANGEL = 8;
+const TILE_FULL_HEART = 9;
 
 
 const TILE_LAST = TILE_ENEMY;

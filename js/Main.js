@@ -3,6 +3,8 @@ var canvas, canvasContext;
 
 var enemyList = [];
 var p1 = new warriorClass();
+var angel = new angelClass();
+
 
 var mainMenu;
 var mainMenuActive = true;
@@ -39,6 +41,7 @@ function loadingDoneSoStartGame() {
 }
 
 function moveEverything() {
+  angel.move();
   p1.move();
   for (var i=0;i<enemyList.length; i++) {
     enemyList[i].move();
@@ -63,6 +66,7 @@ function drawEverything() {
   drawRoom();
   drawHealthUI();
   p1.draw();
+  angel.draw();
   for (var i=0;i<enemyList.length; i++) {
     enemyList[i].draw();
   }
