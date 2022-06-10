@@ -44,10 +44,14 @@ function angelClass() {
   } // end of reset
   
   this.move = function() {
-    if (dist(this.x - p1.x, this.y - p1.y) < 3*TILE_W) {
+    var distance = dist(this.x - p1.x, this.y - p1.y) ;
+    if (distance < 3*TILE_W && distance > TILE_W) {
       var toPlayer = angTo(p1.x - this.x, p1.y - this.y);
       this.xv = Math.cos(toPlayer);
       this.yv = Math.sin(toPlayer);
+    } else {
+      this.xv = 0;
+      this.yv = 0;
     }
     var nextX = this.x + this.xv;
     var nextY =  this.y + this.yv;
