@@ -47,8 +47,8 @@ function angelClass() {
     var distance = dist(this.x - p1.x, this.y - p1.y) ;
     if (distance < 3*TILE_W && distance > TILE_W) {
       var toPlayer = angTo(p1.x - this.x, p1.y - this.y);
-      this.xv = Math.cos(toPlayer);
-      this.yv = Math.sin(toPlayer);
+      this.xv = Math.cos(toPlayer) * ANGEL_MOVE_SPEED;
+      this.yv = Math.sin(toPlayer)* ANGEL_MOVE_SPEED;
     } else {
       this.xv = 0;
       this.yv = 0;
