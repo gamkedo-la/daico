@@ -65,6 +65,10 @@ function tileTypeHasTransparency(checkTileType) {
           checkTileType == TILE_DOOR);
 }
 
+function tileTypeAtPixel(pixelX, pixelY){
+  var tileIndex = getTileIndexAtPixelCoord(pixelX,pixelY);
+  return roomGrid[tileIndex];
+} 
 function drawRoom() {
   var tileIndex = 0;
   var tileLeftEdgeX = 0;
@@ -92,6 +96,18 @@ function drawRoom() {
   } // end of for eachRow   
 } // end of drawRoom()
 
+function tileTypeBlocksEnemy(type) {
+  if(type == TILE_GROUND || type == TILE_KEY){
+    return false;
+  }
+  return true;
+}
 function isWallBetweenPoints(p1X,p1Y,p2X,p2Y){
+  var wasBlocked = false;
+  var tileHere = tileTypeAtPixel(p1X,p1Y); 
+  if(tileTypeBlocksEnemy(tileHere)) {
+    return true;
+  } 
+  //todo check points between the ends
   return false;
 }
