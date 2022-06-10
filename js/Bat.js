@@ -1,7 +1,7 @@
 function Bat()
 {
   this.arrayOfImages = [batOpenImage,batClosedImage];
-  this.currentImageIndex = 0;
+  this.currentImageIndex = getRandomInt(0, 1);
   this.cumulativeDeltaTime = 0;
 
   this.width = 25;
