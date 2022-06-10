@@ -29,9 +29,13 @@ const TILE_ENEMY = 6;
 const TILE_STONED_ANGEL = 7;
 const TILE_LIVING_ANGEL = 8;
 const TILE_FULL_HEART = 9;
-
-
 const TILE_LAST = TILE_ENEMY;
+
+var raycastP1X = 50;
+var raycastP1Y = 50;
+var raycastP2X = 150;
+var raycastP2Y = 150;
+
 function roomTileToIndex(tileCol, tileRow) {
   return (tileCol + ROOM_COLS*tileRow);
 }
@@ -85,5 +89,9 @@ function drawRoom() {
     
     tileTopEdgeY += TILE_H; // jump horizontal draw position down by one full tile height
     
-  } // end of for eachRow    
+  } // end of for eachRow   
 } // end of drawRoom()
+
+function isWallBetweenPoints(p1X,p1Y,p2X,p2Y){
+  return false;
+}

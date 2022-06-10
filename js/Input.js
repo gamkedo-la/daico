@@ -16,6 +16,8 @@ const KEY_LETTER_SPACE = 32;
 const KEY_CTRL = 17;
 const KEY_TAB = 9;
 const KEY_ENTER = 13;
+const KEY_LEFT_BRACKET = 219;
+const KEY_RIGHT_BRACKET = 221;
 
 function initInput() {
   document.addEventListener("keydown", keyPressed);
@@ -53,10 +55,19 @@ function mouseClick() {
 }
 function editorKeyCheck(keyCode) {
   switch (keyCode) {
+    case KEY_LEFT_BRACKET:
+      raycastP1X = mouseX;
+      raycastP1Y = mouseY;
+      break;
+    case KEY_RIGHT_BRACKET:
+      raycastP2X = mouseX;
+      raycastP2Y = mouseY;
+      break;
     case KEY_CTRL:
       exportLevel();
       break;
   }
+  
 }
 
 function setKeyHoldState(thisKey, thisPlayer, setTo) {
