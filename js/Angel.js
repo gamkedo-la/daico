@@ -22,7 +22,6 @@ function angelClass() {
   
   
   this.reset = function() {
-    this.keysHeld = 0;
     if(this.homeX == undefined) {
       for(var i=0; i<roomGrid.length; i++) {
         if( roomGrid[i] == TILE_STONED_ANGEL) {
@@ -64,28 +63,12 @@ function angelClass() {
     }
     
     switch( walkIntoTileType ) {
+      case TILE_KEY:
       case TILE_GROUND:
         this.x = nextX;
         this.y = nextY;
         break;
-      case TILE_GOAL:
-        document.getElementById("debugText").innerHTML = this.myName + " won";
-        this.reset();
-        break;
       case TILE_DOOR:
-        if(this.keysHeld > 0) {
-          this.keysHeld--; // one less key
-          document.getElementById("debugText").innerHTML = "Keys: "+this.keysHeld;
-
-          roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove door
-        }
-        break;
-      case TILE_KEY:
-        this.keysHeld++; // gain key
-        document.getElementById("debugText").innerHTML = "Keys: "+this.keysHeld;
-
-        roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove key
-        break;
       case TILE_WALL:
       default:
         // any other tile type number was found... do nothing, for now
