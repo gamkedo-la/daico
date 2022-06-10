@@ -10,12 +10,23 @@ var angel = new angelClass();
 var mainMenu;
 var mainMenuActive = true;
 
+//for deltaTime
+let now;
+let previousNow;
+const TIME_SCALE = 100;
+
+let testBat;
+let batManager;
+
 
 window.onload = function() {
   canvas = document.getElementById('gameCanvas');
   canvasContext = canvas.getContext('2d');
 
   mainMenu = new MainMenu();
+
+  //for deltaTime
+  previousNow = performance.now();
 
   loadImages();
 }
@@ -41,15 +52,36 @@ function loadingDoneSoStartGame() {
   } while (foundAnotherEnemy);
 
   initInput();
+
+  batManager = new BatManager();
+  batManager.Initialize();
 }
 
+
+
 function moveEverything() {
+<<<<<<< Updated upstream
   angel.move();
+=======
+  //for deltaTime
+  now = performance.now();
+  deltaTime = now-previousNow;
+  previousNow = now;
+
+  if (mainMenuActive)
+  {
+    batManager.UpdateBatImageIndices();
+    batManager.MoveBats();
+  }
+
+>>>>>>> Stashed changes
   p1.move();
   for (var i=0;i<enemyList.length; i++) {
     enemyList[i].move();
   }
 }
+
+
 
 function dist(dx, dy) {
   return Math.sqrt(dx*dx+dy*dy);
@@ -58,11 +90,14 @@ function angTo(dx,dy){
   return Math.atan2(dy,dx);
 }
 
+
+
 function drawEverything() {
 
   if (mainMenuActive)
   {
       mainMenu.Draw();
+      batManager.DrawBats();
       return;
   }
 
@@ -77,6 +112,7 @@ function drawEverything() {
   for (var i=0;i<characterDrawOrder.length; i++) {
     characterDrawOrder[i].draw();
   }
+
   colorRect(0, canvas.height - 15, canvas.width , 15, 'black');
   if (editorMode) {
     editorDraw();
