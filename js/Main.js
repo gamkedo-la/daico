@@ -1,5 +1,6 @@
 // save the canvas for dimensions, and its 2d context for drawing to it
 var canvas, canvasContext;
+var characterDrawOrder = [];
 
 var enemyList = [];
 var p1 = new warriorClass();
@@ -28,12 +29,14 @@ function loadingDoneSoStartGame() {
     }, 1000/framesPerSecond);
 
   p1.init(playerPic, "Blue");
+  characterDrawOrder = [p1,angel];
   var foundAnotherEnemy;
   do {
     var e1 = new enemyClass();
     foundAnotherEnemy = e1.reset();
     if (foundAnotherEnemy) {
       enemyList.push(e1);
+      characterDrawOrder.push(e1);
     }
   } while (foundAnotherEnemy);
 
@@ -65,10 +68,14 @@ function drawEverything() {
 
   drawRoom();
   drawHealthUI();
-  p1.draw();
+  /*p1.draw();
   angel.draw();
   for (var i=0;i<enemyList.length; i++) {
     enemyList[i].draw();
+  }*/
+  characterDrawOrder.sort(sortDrawY);
+  for (var i=0;i<characterDrawOrder.length; i++) {
+    characterDrawOrder[i].draw();
   }
   colorRect(0, canvas.height - 15, canvas.width , 15, 'black');
   if (editorMode) {
@@ -78,3 +85,7 @@ function drawEverything() {
     colorText("Press Tab to activate editor", 0, canvas.height, 20, 'red');
   }
 }
+
+function sortDrawY(a,b) {
+  return a.y - b.y;
+} 

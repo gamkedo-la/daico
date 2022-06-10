@@ -94,7 +94,8 @@ function angelClass() {
   }
   
   this.draw = function() {
-    drawBitmapCenteredAtLocationWithRotation( angelPic, this.x, this.y, 0.0 );
+    var footOffset = 22;//feet at the same postion as the player and the enemy is. 
+    drawBitmapCenteredAtLocationWithRotation( angelPic, this.x, this.y - footOffset, 0.0 );
   }
 
 } // end of class
