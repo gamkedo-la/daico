@@ -3,34 +3,38 @@ var audioFormat;
 function setFormat() {
   var audio = new Audio();
   if (audio.canPlayType("audio/ogg")) {
-      audioFormat = ".mp3";
- } else if (audio.canPlayType("audio/mp3")){
-     audioFormat = ".ogg";
+    audioFormat = ".mp3";
+  } else if (audio.canPlayType("audio/mp3")){
+    audioFormat = ".ogg";
   }
 }
 
-function BackgroundMusicClass(ilenameWithPath) {
+function BackgroundMusicClass(filenameWithPath) {
 
   var musicSound = null;
-    
-  this.loopSong = function(filenameWithPath) {
+  console.log(filenameWithPath);
+
+  //this.loopSong = function(filenameWithPath) {
     setFormat(); // calling this to ensure that audioFormat is set before needed
-    
+    console.log("audio format = " + audioFormat);
     if(musicSound != null) {
       musicSound.pause();
       musicSound = null;
     }
+    console.log(filenameWithPath + audioFormat);
     musicSound = new Audio(filenameWithPath+audioFormat);
     musicSound.loop = true;
     musicSound.play();
-  }
+  //}
   
   this.startOrStopMusic = function() {
     if(musicSound.paused) {
       musicSound.play();
+      console.log("Play Music");
       showCredits = false;
     } else {
       musicSound.pause();
+      console.log("Mute Music");
     }
   }
 }

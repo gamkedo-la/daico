@@ -18,6 +18,7 @@ const KEY_TAB = 9;
 const KEY_ENTER = 13;
 const KEY_LEFT_BRACKET = 219;
 const KEY_RIGHT_BRACKET = 221;
+const KEY_LETTER_M = 77;
 
 function initInput() {
   document.addEventListener("keydown", keyPressed);
@@ -94,9 +95,19 @@ function keyPressed(evt) {
     if (evt.keyCode == KEY_ENTER)
     {
       mainMenuActive = false;
+
+      BackgroundMusicClass("audio/DAICO_MUSIC");
     }
     return;
   }
+
+  switch (evt.keyCode) {
+    case KEY_LETTER_M:
+      // M key to mute music
+      startOrStopMusic();
+      
+      break;
+    }
 
   setKeyHoldState(evt.keyCode, p1, true);
   evt.preventDefault(); // without this, arrow keys scroll the browser!
