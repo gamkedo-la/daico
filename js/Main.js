@@ -60,9 +60,9 @@ function loadingDoneSoStartGame() {
 
 
 function moveEverything() {
-<<<<<<< Updated upstream
+
   angel.move();
-=======
+
   //for deltaTime
   now = performance.now();
   deltaTime = now-previousNow;
@@ -74,7 +74,6 @@ function moveEverything() {
     batManager.MoveBats();
   }
 
->>>>>>> Stashed changes
   p1.move();
   for (var i=0;i<enemyList.length; i++) {
     enemyList[i].move();
@@ -127,9 +126,9 @@ function drawEverything() {
   } else {
     raycastColor = "lime";
   }
-  colorLine(raycastP1X, raycastP1Y, raycastP2X, raycastP2Y, raycastColor); 
+  colorLine(raycastP1X, raycastP1Y, raycastP2X, raycastP2Y, raycastColor);
 }
 
 function sortDrawY(a,b) {
   return a.y - b.y;
-} 
+}
