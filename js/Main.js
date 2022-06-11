@@ -15,9 +15,9 @@ let now;
 let previousNow;
 const TIME_SCALE = 100;
 
-let testBat;
 let batManager;
 
+let ratManager;
 
 window.onload = function() {
   canvas = document.getElementById('gameCanvas');
@@ -55,6 +55,9 @@ function loadingDoneSoStartGame() {
 
   batManager = new BatManager();
   batManager.Initialize();
+
+  ratManager = new RatManager();
+  ratManager.Initialize();
 }
 
 
@@ -72,6 +75,7 @@ function moveEverything() {
   {
     batManager.UpdateBatImageIndices();
     batManager.MoveBats();
+    ratManager.MoveRats();
   }
 
   p1.move();
@@ -97,6 +101,7 @@ function drawEverything() {
   {
       mainMenu.Draw();
       batManager.DrawBats();
+      ratManager.DrawRats();
       return;
   }
 

@@ -7,6 +7,7 @@ var heartEmpty=document.createElement("img");
 var mainMenuBackgroundImage=document.createElement("img");
 var batOpenImage=document.createElement("img");
 var batClosedImage=document.createElement("img");
+var ratPlaceholderImage=document.createElement("img");
 var tilePics = [];
 
 var picsToLoad = 0;
@@ -40,6 +41,7 @@ function loadImages() {
     {varName:mainMenuBackgroundImage, theFile:"mainMenuBackgroundImage.png"},
     {varName:batOpenImage, theFile:"bat_open.png"},
     {varName:batClosedImage, theFile:"bat_closed.png"},
+    {varName:ratPlaceholderImage, theFile:"rat_placeholder_image.png"},
     {tileType:TILE_GROUND, theFile:"world_ground.png"},
     {tileType:TILE_WALL, theFile:"world_wall.png"},
     {tileType:TILE_PLAYER, theFile:"warrior.png"},
