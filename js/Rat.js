@@ -31,8 +31,8 @@ function Rat()
     this.destinationX = getRandomArbitrary(TILE_W,canvas.width - TILE_W - this.width);
     this.destinationY = getRandomArbitrary(TILE_H,canvas.height - TILE_H - this.height);
 
-    console.log("this.destinationX: " + this.destinationX);
-    console.log("this.destinationY: " + this.destinationY);
+    // console.log("this.destinationX: " + this.destinationX);
+    // console.log("this.destinationY: " + this.destinationY);
   }
 
   this.DefineSpeed = function()
@@ -53,7 +53,7 @@ function Rat()
 
   this.Move = function()
   {
-    console.log("Math.abs(this.destinationX - this.x): " + Math.abs(this.destinationX - this.x));
+    // console.log("Math.abs(this.destinationX - this.x): " + Math.abs(this.destinationX - this.x));
     if ( Math.abs(this.destinationX - this.x) < 1)
     {
       this.SetDestinationPoint();
@@ -81,7 +81,7 @@ function RatManager()
   {
     let newRat = new Rat();
     newRat.Initialize();
-    console.log(newRat.destinationX + " " + newRat.destinationY);
+    // console.log(newRat.destinationX + " " + newRat.destinationY);
     this.arrayOfRats.push(newRat);
   }
 

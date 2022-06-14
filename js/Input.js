@@ -19,6 +19,7 @@ const KEY_ENTER = 13;
 const KEY_LEFT_BRACKET = 219;
 const KEY_RIGHT_BRACKET = 221;
 const KEY_LETTER_M = 77;
+var mainMenuMusic;
 
 function initInput() {
   document.addEventListener("keydown", keyPressed);
@@ -90,12 +91,18 @@ function setKeyHoldState(thisKey, thisPlayer, setTo) {
 }
 
 function keyPressed(evt) {
+  if (splashMenuActive)
+  {
+    splashMenuActive = false;
+    mainMenuActive = true;
+    mainMenuMusic = BackgroundMusicClass("audio/main-menu");
+  }
   if (mainMenuActive)
   {
     if (evt.keyCode == KEY_ENTER)
     {
       mainMenuActive = false;
-
+      mainMenuMusic.startOrStopMusic();
       BackgroundMusicClass("audio/DAICO_MUSIC");
     }
     return;

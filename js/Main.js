@@ -8,7 +8,10 @@ var angel = new angelClass();
 
 
 var mainMenu;
-var mainMenuActive = true;
+var mainMenuActive = false;
+
+var splashMenu;
+var splashMenuActive = true;
 
 //for deltaTime
 let now;
@@ -24,6 +27,7 @@ window.onload = function() {
   canvasContext = canvas.getContext('2d');
 
   mainMenu = new MainMenu();
+  splashMenu = new Splash();
 
   //for deltaTime
   previousNow = performance.now();
@@ -96,6 +100,10 @@ function angTo(dx,dy){
 
 
 function drawEverything() {
+  if(splashMenuActive){
+    splashMenu.Draw();
+    return;
+  }
 
   if (mainMenuActive)
   {

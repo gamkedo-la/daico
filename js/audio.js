@@ -6,6 +6,8 @@ function setFormat() {
     audioFormat = ".mp3";
   } else if (audio.canPlayType("audio/mp3")){
     audioFormat = ".ogg";
+  } else if (audio.canPlayType("audio/wav")){
+    audioFormat = ".wav";
   }
 }
 
@@ -37,6 +39,7 @@ function BackgroundMusicClass(filenameWithPath) {
       console.log("Mute Music");
     }
   }
+  return this;
 }
 
 function SoundOverlapsClass(filenameWithPath) { // accepting argument for constructor
