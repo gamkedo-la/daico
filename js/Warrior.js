@@ -82,11 +82,13 @@ function warriorClass() {
   }
 
   this.move = function() {
-
     // to allow "wall sliding"
     // (diagonal movement not getting stuck)
     // we check horiz and vert movement individually
     
+    //raycastP2X = this.x;
+    //raycastP2Y = this.y;
+
     if (this.keyHeld_East) this.testMove(this.x+PLAYER_MOVE_SPEED,this.y);
     if (this.keyHeld_West) this.testMove(this.x-PLAYER_MOVE_SPEED,this.y);
     if (this.keyHeld_North) this.testMove(this.x,this.y-PLAYER_MOVE_SPEED);

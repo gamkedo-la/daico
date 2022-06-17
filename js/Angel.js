@@ -1,9 +1,11 @@
 // tuning constants
 const ANGEL_MOVE_SPEED = 3.0;
+const ANGEL_WONDER_SPEED = 1.05;
+
 function angelClass() {
   // variables to keep track of position
-  this.x = 75;
-  this.y = 75;
+  this.x = 150;
+  this.y = 150;
 
   // keyboard hold state variables, to use keys more like buttons
   this.keyHeld_North = false;
@@ -43,14 +45,25 @@ function angelClass() {
   } // end of reset
   
   this.move = function() {
-    var distance = dist(this.x - p1.x, this.y - p1.y) ;
-    if (distance < 3*TILE_W && distance > TILE_W) {
-      var toPlayer = angTo(p1.x - this.x, p1.y - this.y);
-      this.xv = Math.cos(toPlayer) * ANGEL_MOVE_SPEED;
-      this.yv = Math.sin(toPlayer)* ANGEL_MOVE_SPEED;
+    //raycastP1X = this.x;
+    //raycastP1Y = this.y;
+    var lineBlocked = isWallBetweenPoints(this.x, this.y, p1.x, p1.y);
+    if (lineBlocked) {
+      if (Math.random() < 0.02) { //percentage of frame angle changes movement
+        var randDir = Math.random() * 2.0 * Math.PI; 
+        this.xv = Math.cos(randDir) * ANGEL_WONDER_SPEED;
+        this.yv = Math.sin(randDir)* ANGEL_WONDER_SPEED;
+      }
     } else {
-      this.xv = 0;
-      this.yv = 0;
+      var distance = dist(this.x - p1.x, this.y - p1.y) ;
+      if (distance < 3*TILE_W && distance > TILE_W) {
+        var toPlayer = angTo(p1.x - this.x, p1.y - this.y);
+        this.xv = Math.cos(toPlayer) * ANGEL_MOVE_SPEED;
+        this.yv = Math.sin(toPlayer)* ANGEL_MOVE_SPEED;
+      } else {
+        this.xv = 0;
+        this.yv = 0;
+      }
     }
     var nextX = this.x + this.xv;
     var nextY =  this.y + this.yv;

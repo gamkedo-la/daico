@@ -132,14 +132,14 @@ function drawEverything() {
   } else {
     colorText("Press Tab to activate editor", 0, canvas.height, 20, 'red');
   }
-  var raycastColor;
+  /*var raycastColor;
   var lineBlocked = isWallBetweenPoints(raycastP1X, raycastP1Y, raycastP2X, raycastP2Y);
   if (lineBlocked) {
     raycastColor = "red";
   } else {
     raycastColor = "lime";
   }
-  colorLine(raycastP1X, raycastP1Y, raycastP2X, raycastP2Y, raycastColor);
+  colorLine(raycastP1X, raycastP1Y, raycastP2X, raycastP2Y, raycastColor);*/
 }
 
 function sortDrawY(a,b) {
