@@ -99,12 +99,18 @@ function warriorClass() {
       var disX = Math.abs(enemyList[i].x - this.x);
       var disY = Math.abs(enemyList[i].y - this.y);
       if (disX + disY < 50) {
+        for (var ii=characterDrawOrder.length;ii>=0; ii--) {
+          if (characterDrawOrder[ii] == enemyList[i]) {
+            characterDrawOrder.splice(ii,1);
+          }
+        }
         enemyList.splice(i,1);
       }
     }
   }
 
   this.playerHit = function() {
+    console.log("HITT");
     if(!editorMode){
         if(heartLossDelay > 0){
             return;
@@ -119,13 +125,12 @@ function warriorClass() {
         if (HeartHeld == 0){
             alarmSound.play();
         }
-        console.log("HITT");
-    }
 
     if (heartHeld < 0){
       deathSound.play();
       gameState = STATE_GAME_OVER;
       gameIsOver = true;
+    }
   }
 }
   this.draw = function() {
