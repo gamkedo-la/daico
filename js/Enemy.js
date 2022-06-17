@@ -83,6 +83,21 @@ function enemyClass() {
     if( walkIntoTileIndex != undefined) {
       walkIntoTileType = roomGrid[walkIntoTileIndex];
     }
+    var testSlide = getTileIndexAtPixelCoord(nextX,this.y);
+    if(tileTypeBlocksEnemy(walkIntoTileType)) { // bumping wall? 
+      if(tileTypeBlocksEnemy(roomGrid[testSlide]) == false) { // slide horizental?
+        nextY = this.y;
+        walkIntoTileType = roomGrid[testSlide];
+      } else {
+        testSlide = getTileIndexAtPixelCoord(this.x, nextY); // slide vertical
+        if(tileTypeBlocksEnemy(roomGrid[testSlide]) == false) {
+          nextX = this.x; 
+          walkIntoTileType = roomGrid[testSlide];
+        }
+      }
+
+    }
+  
     
     switch( walkIntoTileType ) {
       case TILE_KEY:
