@@ -103,11 +103,18 @@ function tileTypeBlocksEnemy(type) {
   return true;
 }
 function isWallBetweenPoints(p1X,p1Y,p2X,p2Y){
-  var wasBlocked = false;
-  var tileHere = tileTypeAtPixel(p1X,p1Y); 
-  if(tileTypeBlocksEnemy(tileHere)) {
-    return true;
-  } 
+  var testX = p1X;
+  var testY = p1Y;
+  
+  for(var perc=0; perc <= 1.0; perc+= 0.05) {
+    testX = p1X * (1.0 - perc) + p2X * perc;
+    testY = p1Y * (1.0 - perc) + p2Y * perc;
+    var tileHere = tileTypeAtPixel(testX,testY);
+    if(tileTypeBlocksEnemy(tileHere)) {
+      return true;
+    }
+  }
+  
   //todo check points between the ends
   return false;
 }
