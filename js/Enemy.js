@@ -4,7 +4,8 @@ function enemyClass() {
   // variables to keep track of position
   this.x = 75;
   this.y = 75;
-
+  this.lastSeenPlayerX = 0;
+  this.lastSeenPlayerY = 0;
   // keyboard hold state variables, to use keys more like buttons
   this.keyHeld_North = false;
   this.keyHeld_East = false;
@@ -54,9 +55,24 @@ function enemyClass() {
 
   this.move = function() {
     if (dist(this.x - p1.x, this.y - p1.y) < 3*TILE_W) {
-      var toPlayer = angTo(p1.x - this.x, p1.y - this.y);
-      this.xv = Math.cos(toPlayer);
-      this.yv = Math.sin(toPlayer);
+      var lineBlocked = isWallBetweenPoints(this.x, this.y, p1.x, p1.y);
+      if(lineBlocked) {
+        if (dist(this.x - this.lastSeenPlayerX, this.y - this.lastSeenPlayerY) > 10) {
+          var toLast = angTo(this.lastSeenPlayerX - this.x, this.lastSeenPlayerY - this.y);
+          this.xv = Math.cos(toLast);
+          this.yv = Math.sin(toLast);
+        } else {
+          this.xv = 0;
+          this.yv = 0;
+        }
+  
+      } else { 
+        this.lastSeenPlayerX = p1.x;
+        this.lastSeenPlayerY = p1.y;
+        var toPlayer = angTo(p1.x - this.x, p1.y - this.y);
+        this.xv = Math.cos(toPlayer);
+        this.yv = Math.sin(toPlayer);
+      }
     }
     var nextX = this.x + this.xv;
     var nextY =  this.y + this.yv;
