@@ -6,7 +6,6 @@ var enemyList = [];
 var p1 = new warriorClass();
 var angel = new angelClass();
 
-
 var mainMenu;
 var mainMenuActive = false;
 
@@ -69,7 +68,6 @@ function loadingDoneSoStartGame() {
 function moveEverything() {
 
   angel.move();
-
   //for deltaTime
   now = performance.now();
   deltaTime = now-previousNow;
@@ -86,6 +84,10 @@ function moveEverything() {
   for (var i=0;i<enemyList.length; i++) {
     enemyList[i].move();
   }
+
+    for(var i = 0; i < enemyList.length; i++){
+      p1.collisionCheck(enemyList[i]);
+    }
 }
 
 

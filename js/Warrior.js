@@ -2,7 +2,9 @@
 const PLAYER_MOVE_SPEED = 3.0;
 const FRAMES_BETWEEN_HEART_LOSS = 30;
 var heartHeld = 5;
-var hea
+var playerLeftSide = p1.x - p1.width/2;
+var playerTopSide = p1.y - p1.height/2;
+
 function warriorClass() {
   // variables to keep track of position
   this.x = 75;
@@ -111,6 +113,15 @@ function warriorClass() {
     }
   }
 
+  this.collisionCheck = function() {
+    console.log(playerLeftSide);
+    if( this.x > playerLeftSide &&
+      this.x < playerLeftSide + playerWidth &&
+      this.y > playerTopSide &&
+      this.y < playerTopSide + playerHeight){
+      p1.playerHit();
+    }
+  }
   this.playerHit = function() {
     console.log("HITT");
     if(!editorMode){
