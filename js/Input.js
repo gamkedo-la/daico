@@ -19,6 +19,7 @@ const KEY_ENTER = 13;
 const KEY_LEFT_BRACKET = 219;
 const KEY_RIGHT_BRACKET = 221;
 const KEY_LETTER_M = 77;
+const KEY_LETTER_P = 80;
 var mainMenuMusic;
 
 function initInput() {
@@ -113,6 +114,13 @@ function keyPressed(evt) {
       // M key to mute music
       startOrStopMusic();
       
+      break;
+
+    case KEY_LETTER_P:
+      // P key to pause game
+      isGamePaused = !isGamePaused;
+      console.log("Game is paused");
+
       break;
     }
 
