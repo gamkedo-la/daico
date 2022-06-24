@@ -2,7 +2,8 @@
 const ROOM_COLS = 16;
 const ROOM_ROWS = 12;
 
-var roomGrid =
+var roomGrid = [];
+var roomDungeon =
     [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
       1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 5, 0, 1, 1, 1, 1,
       1, 0, 4, 0, 4, 0, 1, 6, 2, 0, 1, 0, 1, 4, 4, 1,
@@ -15,7 +16,20 @@ var roomGrid =
       1, 0, 5, 0, 5, 0, 5, 0, 3, 0, 1, 1, 1, 1, 1, 1,
       1, 6, 1, 0, 1, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1,
       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
-
+var roomLava =
+    [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+      1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 5, 0, 1, 1, 1, 1,
+      1, 0, 4, 0, 4, 0, 1, 6, 2, 0, 1, 0, 1, 4, 4, 1,
+      1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, 5, 1, 1,
+      1, 1, 1, 5, 1, 1, 1, 0, 4, 0, 1, 0, 0, 0, 1, 1,
+      1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 4, 0, 1, 1,
+      1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1,
+      1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 4, 0, 1, 1,
+      1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1,
+      1, 0, 0, 0, 0, 0, 0, 0, 3, 0, 1, 1, 1, 1, 1, 1,
+      1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1,
+      1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+      
 const TILE_W = 50;
 const TILE_H = 50;
 
@@ -36,6 +50,22 @@ var raycastP1Y = 50;
 var raycastP2X = 150;
 var raycastP2Y = 150;
 
+function loadLevel(whichLevel) {
+  roomGrid = JSON.parse(JSON.stringify(whichLevel));
+
+  p1.init(playerPic, "Blue");
+  characterDrawOrder = [p1,angel];
+  var foundAnotherEnemy;
+  do {
+    var e1 = new enemyClass();
+    foundAnotherEnemy = e1.reset();
+    if (foundAnotherEnemy) {
+      enemyList.push(e1);
+      characterDrawOrder.push(e1);
+    }
+  } while (foundAnotherEnemy);
+
+}
 function roomTileToIndex(tileCol, tileRow) {
   return (tileCol + ROOM_COLS*tileRow);
 }

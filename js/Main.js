@@ -39,6 +39,7 @@ window.onload = function() {
 }
 
 function loadingDoneSoStartGame() {
+  loadLevel(roomDungeon);
   // these next few lines set up our game logic and render to happen 30 times per second
   var framesPerSecond = 30;
   setInterval(function() {
@@ -48,18 +49,7 @@ function loadingDoneSoStartGame() {
       drawEverything();
     }, 1000/framesPerSecond);
 
-  p1.init(playerPic, "Blue");
-  characterDrawOrder = [p1,angel];
-  var foundAnotherEnemy;
-  do {
-    var e1 = new enemyClass();
-    foundAnotherEnemy = e1.reset();
-    if (foundAnotherEnemy) {
-      enemyList.push(e1);
-      characterDrawOrder.push(e1);
-    }
-  } while (foundAnotherEnemy);
-
+  
   initInput();
 
   batManager = new BatManager();
