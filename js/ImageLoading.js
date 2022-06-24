@@ -49,6 +49,7 @@ function loadImages() {
     {tileType:TILE_GOAL, theFile:"world_goal.png"},
     {tileType:TILE_KEY, theFile:"world_key.png"},
     {tileType:TILE_DOOR, theFile:"world_door.png"},
+    {tileType:TILE_MAGIC_DOOR, theFile:"magic_door.png"},
     {tileType:TILE_FULL_HEART, theFile:"heartempty.png"},
     {tileType:TILE_LIVING_ANGEL, theFile:"living_angel.png"},
     {tileType:TILE_STONED_ANGEL, theFile:"stoned_angel.png"},

@@ -74,6 +74,9 @@ function warriorClass() {
           roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove door
         }
         break;
+      case TILE_MAGIC_DOOR:
+       loadLevel(roomLava);
+          break;
       case TILE_KEY:
         this.keysHeld++; // gain key
         document.getElementById("debugText").innerHTML = "Keys: "+this.keysHeld;
