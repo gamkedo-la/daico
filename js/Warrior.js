@@ -36,7 +36,7 @@ function warriorClass() {
   
   this.reset = function() {
     this.keysHeld = 0;
-    if(this.homeX == undefined) {
+    //if(this.homeX == undefined) {
       for(var i=0; i<roomGrid.length; i++) {
         if( roomGrid[i] == TILE_PLAYER) {
           var tileRow = Math.floor(i/ROOM_COLS);
@@ -47,7 +47,7 @@ function warriorClass() {
           break; // found it, so no need to keep searching 
         } // end of if
       } // end of for
-    } // end of if position not saved yet
+    //} // end of if position not saved yet
     
     this.x = this.homeX;
     this.y = this.homeY;
