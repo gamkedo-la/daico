@@ -94,6 +94,11 @@ function warriorClass() {
     //raycastP2X = this.x;
     //raycastP2Y = this.y;
 
+    playerLeftSide = this.x - playerWidth/2;
+    playerTopSide = this.y - playerWidth/2;
+    if (heartLossDelay > 0) {
+      heartLossDelay--;
+    }
     if (this.keyHeld_East) this.testMove(this.x+PLAYER_MOVE_SPEED,this.y);
     if (this.keyHeld_West) this.testMove(this.x-PLAYER_MOVE_SPEED,this.y);
     if (this.keyHeld_North) this.testMove(this.x,this.y-PLAYER_MOVE_SPEED);
@@ -124,20 +129,20 @@ function warriorClass() {
       against.playerCollide();
     }
   }
+  
   this.playerHit = function() {
-    console.log(heartLossDelay);
     //if(!editorMode){
         if(heartLossDelay > 0){
             return;
         } else {
-            hearthLossDelay = FRAMES_BETWEEN_HEART_LOSS;
+            heartLossDelay = FRAMES_BETWEEN_HEART_LOSS;
         }
 
         if (heartHeld >= 0) {
             //hitSound.play();
             heartHeld--;
         }
-        if (HeartHeld == 1){
+        if (heartHeld == 1){
             //alarmSound.play();
         }
 
