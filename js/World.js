@@ -29,7 +29,9 @@ var roomLava =
       1, 0, 0, 0, 0, 0, 0, 0, 3, 0, 1, 1, 1, 1, 1, 1,
       1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1,
       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
-      
+
+var roomList = [roomDungeon, roomLava];
+var roomIndex = 0;
 const TILE_W = 50;
 const TILE_H = 50;
 
@@ -53,18 +55,22 @@ var raycastP2Y = 150;
 
 function loadLevel(whichLevel) {
   roomGrid = JSON.parse(JSON.stringify(whichLevel));
-
-  p1.init(playerPic, "Blue");
-  characterDrawOrder = [p1,angel];
-  var foundAnotherEnemy;
-  do {
-    var e1 = new enemyClass();
-    foundAnotherEnemy = e1.reset();
-    if (foundAnotherEnemy) {
-      enemyList.push(e1);
-      characterDrawOrder.push(e1);
-    }
-  } while (foundAnotherEnemy);
+  if (editorMode == false) {
+    p1.init(playerPic, "Blue");
+    characterDrawOrder = [p1,angel];
+    var foundAnotherEnemy;
+    do {
+      var e1 = new enemyClass();
+      foundAnotherEnemy = e1.reset();
+      if (foundAnotherEnemy) {
+        enemyList.push(e1);
+        characterDrawOrder.push(e1);
+      }
+    } while (foundAnotherEnemy);
+  } else {
+    characterDrawOrder = [];
+  }
+  
 
 }
 function roomTileToIndex(tileCol, tileRow) {

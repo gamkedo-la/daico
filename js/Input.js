@@ -135,6 +135,15 @@ function keyReleased(evt) {
   switch (evt.keyCode) {
     case KEY_TAB:
       editorMode = !editorMode;
+      if (editorMode == false) {
+        roomList[roomIndex] = JSON.parse(JSON.stringify(roomGrid));
+        loadLevel(roomList[roomIndex]);
+      } else {
+        roomGrid =  JSON.parse(JSON.stringify(roomList[roomIndex]));
+        enemyList = [];
+        loadLevel(roomList[roomIndex]);
+        //player should also be removed
+      }
       break;
   }
   setKeyHoldState(evt.keyCode, p1, false);

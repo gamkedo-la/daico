@@ -75,7 +75,8 @@ function warriorClass() {
         }
         break;
       case TILE_MAGIC_DOOR:
-       loadLevel(roomLava);
+        roomIndex = 1;
+       loadLevel(roomList[roomIndex]);
           break;
       case TILE_KEY:
         this.keysHeld++; // gain key
