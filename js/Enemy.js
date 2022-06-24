@@ -103,6 +103,10 @@ function enemyClass() {
     }
   }
   
+  this.playerCollide = function() {
+    p1.playerHit();
+  }
+
   this.draw = function() {
     drawBitmapCenteredAtLocationWithRotation( enemyPic, this.x, this.y, 0.0 );
   }

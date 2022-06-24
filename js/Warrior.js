@@ -1,9 +1,12 @@
 // tuning constants
 const PLAYER_MOVE_SPEED = 3.0;
 const FRAMES_BETWEEN_HEART_LOSS = 30;
+heartLossDelay = 0;
 var heartHeld = 5;
-var playerLeftSide = p1.x - p1.width/2;
-var playerTopSide = p1.y - p1.height/2;
+var playerWidth = 30;
+var playerHeight = 30;
+var playerLeftSide = 75 - playerWidth/2;
+var playerTopSide = 75 - playerWidth/2;
 
 function warriorClass() {
   // variables to keep track of position
@@ -48,7 +51,7 @@ function warriorClass() {
     
     this.x = this.homeX;
     this.y = this.homeY;
-
+    heartLossDelay = 2 * FRAMES_BETWEEN_HEART_LOSS;
   } // end of reset
   
   this.testMove = function(nextX,nextY) {
@@ -113,38 +116,37 @@ function warriorClass() {
     }
   }
 
-  this.collisionCheck = function() {
-    console.log(playerLeftSide);
-    if( this.x > playerLeftSide &&
-      this.x < playerLeftSide + playerWidth &&
-      this.y > playerTopSide &&
-      this.y < playerTopSide + playerHeight){
-      p1.playerHit();
+  this.collisionCheck = function(against) {
+    if( against.x > playerLeftSide &&
+      against.x < playerLeftSide + playerWidth &&
+      against.y > playerTopSide &&
+      against.y < playerTopSide + playerHeight){
+      against.playerCollide();
     }
   }
   this.playerHit = function() {
-    console.log("HITT");
-    if(!editorMode){
+    console.log(heartLossDelay);
+    //if(!editorMode){
         if(heartLossDelay > 0){
             return;
         } else {
-            HearthLossDelay = FRAMES_BETWEEN_HEART_LOSS;
+            hearthLossDelay = FRAMES_BETWEEN_HEART_LOSS;
         }
 
-        if (this.powerUpMode() == false) {
-            hitSound.play();
+        if (heartHeld >= 0) {
+            //hitSound.play();
             heartHeld--;
         }
-        if (HeartHeld == 0){
-            alarmSound.play();
+        if (HeartHeld == 1){
+            //alarmSound.play();
         }
 
     if (heartHeld < 0){
-      deathSound.play();
-      gameState = STATE_GAME_OVER;
+      //deathSound.play();
+      //gameState = STATE_GAME_OVER;
       gameIsOver = true;
     }
-  }
+  //}
 }
   this.draw = function() {
     drawBitmapCenteredAtLocationWithRotation( this.myBitmap, this.x, this.y, 0.0 );
