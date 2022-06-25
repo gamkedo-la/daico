@@ -96,9 +96,8 @@ function keyPressed(evt) {
   {
     splashMenuActive = false;
     mainMenuActive = true;
-    mainMenuMusic = BackgroundMusicClass("audio/main-menu");
-  }
-  if (mainMenuActive)
+    mainMenuMusic = BackgroundMusicClass("audio/menudir");
+  } else if (mainMenuActive)
   {
     if (evt.keyCode == KEY_ENTER)
     {
