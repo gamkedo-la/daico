@@ -46,7 +46,12 @@ const TILE_STONED_ANGEL = 7;
 const TILE_LIVING_ANGEL = 8;
 const TILE_FULL_HEART = 9;
 const TILE_MAGIC_DOOR = 10;
-const TILE_LAST = TILE_MAGIC_DOOR;
+const TILE_GROUND_2 = 11;
+const TILE_GROUND_3 = 12;
+const TILE_GROUND_4 = 13;
+const TILE_GROUND_5 = 14;
+const TILE_GROUND_6 = 15;
+const TILE_LAST = TILE_GROUND_6;
 
 var raycastP1X = 50;
 var raycastP1Y = 50;
