@@ -32,7 +32,7 @@ function loadImageForTileCode(tileCode, fileName) {
 function loadImages() {
 
   var imageList = [
-    {varName:playerPic, theFile:"warrior.png"},
+    {varName:playerPic, theFile:"main_chara.png"},
     {varName:angelPic, theFile:"living_angel.png"},
     {varName:stonedAngelPic, theFile:"stoned_angel.png"},
     {varName:enemyPic, theFile:"enemy.png"},
@@ -49,7 +49,7 @@ function loadImages() {
     {tileType:TILE_GROUND_5, theFile:"dungeon_floor_5.png"},
     {tileType:TILE_GROUND_6, theFile:"dungeon_floor_6.png"},
     {tileType:TILE_WALL, theFile:"dungeon_wall.png"},
-    {tileType:TILE_PLAYER, theFile:"warrior.png"},
+    {tileType:TILE_PLAYER, theFile:"main_chara.png"},
     {tileType:TILE_ENEMY, theFile:"enemy.png"},
     {tileType:TILE_GOAL, theFile:"world_goal.png"},
     {tileType:TILE_KEY, theFile:"world_key.png"},

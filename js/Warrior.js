@@ -1,6 +1,8 @@
 // tuning constants
 const PLAYER_MOVE_SPEED = 3.0;
 const FRAMES_BETWEEN_HEART_LOSS = 30;
+const PLAYER_SPRITE_FRAME_W = 50;
+const PLAYER_SPRITE_FRAME_H = 50;
 heartLossDelay = 0;
 var heartHeld = 5;
 var playerWidth = 30;
@@ -12,6 +14,8 @@ function warriorClass() {
   // variables to keep track of position
   this.x = 75;
   this.y = 75;
+ this.animFrame =0;
+ this.animDelay = 3;
 
   // keyboard hold state variables, to use keys more like buttons
   this.keyHeld_North = false;
@@ -114,6 +118,13 @@ function warriorClass() {
   }
 
   this.move = function() {
+    if (this.animDelay-- < 0) {
+      this.animDelay = 3;
+      this.animFrame++;
+      if (this.animFrame >= 4) {
+        this.animFrame = 0;
+      } 
+    }
     // to allow "wall sliding"
     // (diagonal movement not getting stuck)
     // we check horiz and vert movement individually
@@ -181,7 +192,13 @@ function warriorClass() {
   //}
 }
   this.draw = function() {
-    drawBitmapCenteredAtLocationWithRotation( this.myBitmap, this.x, this.y, 0.0 );
+    //drawBitmapCenteredAtLocationWithRotation( this.myBitmap, this.x, this.y, 0.0 );
+
+    canvasContext.drawImage(this.myBitmap, 
+      PLAYER_SPRITE_FRAME_W*this.animFrame,PLAYER_SPRITE_FRAME_H*1, // corner of sprite. multiple sprite frames of W and H will be different frames.
+      PLAYER_SPRITE_FRAME_W, PLAYER_SPRITE_FRAME_H,
+      this.x - PLAYER_SPRITE_FRAME_W/2,  this.y - PLAYER_SPRITE_FRAME_H/2,
+      PLAYER_SPRITE_FRAME_W, PLAYER_SPRITE_FRAME_H);
   }
 
 } // end of class
