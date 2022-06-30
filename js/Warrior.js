@@ -102,7 +102,8 @@ function warriorClass() {
       case TILE_STONED_ANGEL:
         if(this.itemsHeld >= 3) {
           this.itemsHeld = 0; // one more item
-          roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove door
+          roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove stoned angel
+          roomGrid[walkIntoTileIndex] = TILE_LIVING_ANGEL;
         }  
           break;       
       case TILE_WALL:

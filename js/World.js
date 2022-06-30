@@ -62,6 +62,11 @@ var raycastP2X = 150;
 var raycastP2Y = 150;
 
 function loadLevel(whichLevel) {
+  if (editorMode) {
+    canvas.width = 1000;
+  } else {
+    canvas.width = 800;
+  }
   roomGrid = JSON.parse(JSON.stringify(whichLevel));
   if (editorMode == false) {
     p1.init(playerPic, "Blue");

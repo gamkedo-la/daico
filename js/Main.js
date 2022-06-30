@@ -23,7 +23,7 @@ let batManager;
 let ratManager;
 
 var isGamePaused = false;
-
+var editorMode = false;
 window.onload = function() {
   canvas = document.getElementById('gameCanvas');
   canvasContext = canvas.getContext('2d');
