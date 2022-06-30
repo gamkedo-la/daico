@@ -36,6 +36,7 @@ function warriorClass() {
   
   this.reset = function() {
     this.keysHeld = 0;
+    this.itemsHeld = 0;
     //if(this.homeX == undefined) {
       for(var i=0; i<roomGrid.length; i++) {
         if( roomGrid[i] == TILE_PLAYER) {
@@ -83,6 +84,27 @@ function warriorClass() {
         document.getElementById("debugText").innerHTML = "Keys: "+this.keysHeld;
         roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove key
         break;
+      case TILE_POTION:
+        if(this.itemsHeld <= 3) {
+          this.itemsHeld++; // one more item
+          roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove door
+        }
+      case TILE_ROCK:
+        if(this.itemsHeld <= 3) {
+          this.itemsHeld++; // one more item
+          roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove door
+        }
+      case TILE_DIAMOND:
+        if(this.itemsHeld <= 3) {
+          this.itemsHeld++; // one more item
+          roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove door
+        }
+      case TILE_STONED_ANGEL:
+        if(this.itemsHeld >= 3) {
+          this.itemsHeld = 0; // one more item
+          roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove door
+        }  
+          break;       
       case TILE_WALL:
       default:
         // any other tile type number was found... do nothing, for now

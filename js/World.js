@@ -13,7 +13,7 @@ var roomDungeon =
       1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1,
       1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 4, 0, 1, 1,
       1, 6, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1,
-      1, 0, 5, 0, 5, 0, 5, 0, 3, 0, 1, 1, 1, 1, 1, 1,
+      1, 0, 5, 0, 5, 0, 5,16,17,18, 1, 1, 1, 1, 1, 1,
       1, 6, 1, 0, 1, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1,
       1, 1, 1, 1, 1, 1, 1, 1, 1,10, 1, 1, 1, 1, 1, 1];
 var roomLava =
@@ -51,7 +51,10 @@ const TILE_GROUND_3 = 12;
 const TILE_GROUND_4 = 13;
 const TILE_GROUND_5 = 14;
 const TILE_GROUND_6 = 15;
-const TILE_LAST = TILE_GROUND_6;
+const TILE_DIAMOND = 16;
+const TILE_ROCK = 17;
+const TILE_POTION = 18;
+const TILE_LAST = TILE_POTION;
 
 var raycastP1X = 50;
 var raycastP1Y = 50;
@@ -104,7 +107,10 @@ function getTileIndexAtPixelCoord(pixelX,pixelY) {
 function tileTypeHasTransparency(checkTileType) {
   return (checkTileType == TILE_GOAL ||
           checkTileType == TILE_KEY ||
-          checkTileType == TILE_DOOR);
+          checkTileType == TILE_DOOR ||
+          checkTileType == TILE_POTION ||
+          checkTileType == TILE_ROCK ||
+          checkTileType == TILE_DIAMOND);
 }
 
 function tileTypeAtPixel(pixelX, pixelY){

@@ -58,7 +58,9 @@ function loadImages() {
     {tileType:TILE_FULL_HEART, theFile:"heartempty.png"},
     {tileType:TILE_LIVING_ANGEL, theFile:"living_angel.png"},
     {tileType:TILE_STONED_ANGEL, theFile:"stoned_angel.png"},
-
+    {tileType:TILE_DIAMOND, theFile:"diamond.png"},
+    {tileType:TILE_ROCK, theFile:"rock.png"},
+    {tileType:TILE_POTION, theFile:"potion.png"},
 
     ];
 
