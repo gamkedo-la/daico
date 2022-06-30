@@ -24,9 +24,9 @@ function angelClass() {
   
   
   this.reset = function() {
-    if(this.homeX == undefined) {
+    //if(this.homeX == undefined) {
       for(var i=0; i<roomGrid.length; i++) {
-        if( roomGrid[i] == TILE_STONED_ANGEL) {
+        if( roomGrid[i] == TILE_STONED_ANGEL || roomGrid[i] == TILE_LIVING_ANGEL) {
           var tileRow = Math.floor(i/ROOM_COLS);
           var tileCol = i%ROOM_COLS;
           this.homeX = tileCol * TILE_W + 0.5*TILE_W;
@@ -37,7 +37,7 @@ function angelClass() {
           return true; // found it, so no need to keep searching 
         } // end of if
       } // end of for
-    } // end of if position not saved yet
+    //} // end of if position not saved yet
     
     this.x = this.homeX;
     this.y = this.homeY;

@@ -6,7 +6,7 @@ var roomGrid = [];
 var roomDungeon =
     [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
       1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 5, 0, 1, 1, 1, 1,
-      1, 0, 4, 0, 4, 0, 1, 6, 2, 0, 1, 0, 1, 4, 4, 1,
+      1, 8, 4, 0, 4, 0, 1, 6, 2, 0, 1, 0, 1, 4, 4, 1,
       1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, 5, 1, 1,
       1, 1, 1, 5, 1, 1, 1, 0, 4, 0, 1, 0, 0, 0, 1, 1,
       1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 4, 0, 1, 1,
@@ -70,6 +70,7 @@ function loadLevel(whichLevel) {
   roomGrid = JSON.parse(JSON.stringify(whichLevel));
   if (editorMode == false) {
     p1.init(playerPic, "Blue");
+    angel.reset();
     characterDrawOrder = [p1,angel];
     var foundAnotherEnemy;
     do {
