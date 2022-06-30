@@ -1,16 +1,32 @@
+var mouseOverTileChoice = -1;
 function editorDraw() {
-    colorRect(canvas.width-TILE_W-2,0,TILE_W,(TILE_LAST + 1)*TILE_H+2, 'black');
+    var editorRows = ROOM_ROWS;
+    var editorCols = Math.ceil(tilePics.length/editorRows); 
+    var tileX = canvas.width - editorCols * TILE_W;
+    var tileY = 0;
+    var selectMargin = 5;
+
+    colorRect(tileX-selectMargin,0,TILE_W * editorCols + selectMargin,canvas.height, 'black');
+    mouseOverTileChoice = -1;
     for (var i=0; i<=TILE_LAST;i++) {
-        canvasContext.drawImage(tilePics[i], canvas.width-TILE_W ,i*TILE_H ); 
+        canvasContext.drawImage(tilePics[i], tileX, tileY); 
         if (i==editorTileIndex) {
-            colorRect(canvas.width-TILE_W-5, i*TILE_H, 5, TILE_H, "red");
+            colorRect(tileX-selectMargin, tileY, selectMargin, TILE_H, "red");
+        }
+        if (mouseX >= tileX && mouseX < tileX + TILE_W && mouseY >= tileY && mouseY < tileY + TILE_H) {
+            mouseOverTileChoice = i;
+        } 
+        tileY += TILE_H;
+        if (tileY >= canvas.height) { // using pixels instead of editor rows
+            tileY = 0;
+            tileX += TILE_W;
         }
     }
 } 
 
 function editorClick(){
-    if (mouseX > canvas.width - TILE_W && mouseY < (TILE_LAST + 1)*TILE_H) {
-        editorTileIndex = Math.floor(mouseY/TILE_H);
+    if (mouseX > ROOM_COLS * TILE_W && mouseOverTileChoice != -1) {
+        editorTileIndex = mouseOverTileChoice;
         return;
     }
     //console.log(Math.floor(mouseX), Math.floor(mouseY));
