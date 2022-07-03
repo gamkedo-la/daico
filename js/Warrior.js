@@ -23,6 +23,8 @@ function warriorClass() {
   this.keyHeld_South = false;
   this.keyHeld_West = false;
 
+  this.facingLeft = false;
+
   // key controls used for this
   this.setupControls = function(northKey,eastKey,southKey,westKey, attackKey) {
     this.controlKeyForNorth = northKey;
@@ -137,8 +139,12 @@ function warriorClass() {
     if (heartLossDelay > 0) {
       heartLossDelay--;
     }
+    this.facingLeft = false;
     if (this.keyHeld_East) this.testMove(this.x+PLAYER_MOVE_SPEED,this.y);
-    if (this.keyHeld_West) this.testMove(this.x-PLAYER_MOVE_SPEED,this.y);
+    if (this.keyHeld_West) {
+      this.testMove(this.x-PLAYER_MOVE_SPEED,this.y);
+      this.facingLeft = true;
+    }
     if (this.keyHeld_North) this.testMove(this.x,this.y-PLAYER_MOVE_SPEED);
     if (this.keyHeld_South) this.testMove(this.x,this.y+PLAYER_MOVE_SPEED);
         
@@ -194,11 +200,22 @@ function warriorClass() {
   this.draw = function() {
     //drawBitmapCenteredAtLocationWithRotation( this.myBitmap, this.x, this.y, 0.0 );
 
-    canvasContext.drawImage(this.myBitmap, 
-      PLAYER_SPRITE_FRAME_W*this.animFrame,PLAYER_SPRITE_FRAME_H*1, // corner of sprite. multiple sprite frames of W and H will be different frames.
-      PLAYER_SPRITE_FRAME_W, PLAYER_SPRITE_FRAME_H,
-      this.x - PLAYER_SPRITE_FRAME_W/2,  this.y - PLAYER_SPRITE_FRAME_H/2,
-      PLAYER_SPRITE_FRAME_W, PLAYER_SPRITE_FRAME_H);
+    if (this.facingLeft) {
+      canvasContext.save();
+      canvasContext.scale(-1, 1);
+      canvasContext.drawImage(this.myBitmap,
+        PLAYER_SPRITE_FRAME_W*this.animFrame,PLAYER_SPRITE_FRAME_H*1, // corner of sprite. multiple sprite frames of W and H will be different frames.
+        PLAYER_SPRITE_FRAME_W, PLAYER_SPRITE_FRAME_H,
+        -(this.x - PLAYER_SPRITE_FRAME_W/2),  this.y - PLAYER_SPRITE_FRAME_H/2, // corner of sprite. multiple sprite frames of W and H will be different frames.
+        -PLAYER_SPRITE_FRAME_W, PLAYER_SPRITE_FRAME_H);       
+      canvasContext.restore();
+    } else {
+      canvasContext.drawImage(this.myBitmap, 
+        PLAYER_SPRITE_FRAME_W*this.animFrame,PLAYER_SPRITE_FRAME_H*1, // corner of sprite. multiple sprite frames of W and H will be different frames.
+        PLAYER_SPRITE_FRAME_W, PLAYER_SPRITE_FRAME_H,
+        (this.x - PLAYER_SPRITE_FRAME_W/2),  this.y - PLAYER_SPRITE_FRAME_H/2,
+        PLAYER_SPRITE_FRAME_W, PLAYER_SPRITE_FRAME_H);  
+    }
   }
 
 } // end of class
