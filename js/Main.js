@@ -109,9 +109,8 @@ function drawEverything() {
       ratManager.DrawRats();
       return;
   }
-
+  //cameraPan();
   drawRoom();
-  drawHealthUI();
   /*p1.draw();
   angel.draw();
   for (var i=0;i<enemyList.length; i++) {
@@ -121,7 +120,8 @@ function drawEverything() {
   for (var i=0;i<characterDrawOrder.length; i++) {
     characterDrawOrder[i].draw();
   }
-
+  //endCameraPan();
+  drawHealthUI();
   colorRect(0, canvas.height - 15, canvas.width , 15, 'black');
   if (editorMode) {
     editorDraw();
