@@ -3,6 +3,7 @@ var angelPic=document.createElement("img");
 var stonedAngelPic=document.createElement("img");
 var enemyPic=document.createElement("img");
 var heartFull=document.createElement("img");
+var heartHalfFull=document.createElement("img");
 var heartEmpty=document.createElement("img");
 var mainMenuBackgroundImage=document.createElement("img");
 var batOpenImage=document.createElement("img");
@@ -36,8 +37,9 @@ function loadImages() {
     {varName:angelPic, theFile:"living_angel.png"},
     {varName:stonedAngelPic, theFile:"stoned_angel.png"},
     {varName:enemyPic, theFile:"enemy.png"},
-    {varName:heartEmpty, theFile:"heartempty.png"},
     {varName:heartFull, theFile:"heartfull.png"},
+    {varName:heartHalfFull, theFile:"heart_half_full.png"},
+    {varName:heartEmpty, theFile:"heartempty.png"},
     {varName:mainMenuBackgroundImage, theFile:"mainMenuBackgroundImage.png"},
     {varName:batOpenImage, theFile:"bat_open.png"},
     {varName:batClosedImage, theFile:"bat_closed.png"},
@@ -55,7 +57,7 @@ function loadImages() {
     {tileType:TILE_KEY, theFile:"world_key.png"},
     {tileType:TILE_DOOR, theFile:"world_door.png"},
     {tileType:TILE_MAGIC_DOOR, theFile:"magic_door.png"},
-    {tileType:TILE_FULL_HEART, theFile:"heartempty.png"},
+    {tileType:TILE_FULL_HEART, theFile:"heartempty.png"}, // TODO: Is this right?
     {tileType:TILE_LIVING_ANGEL, theFile:"living_angel.png"},
     {tileType:TILE_STONED_ANGEL, theFile:"stoned_angel.png"},
     {tileType:TILE_DIAMOND, theFile:"diamond.png"},
