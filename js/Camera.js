@@ -30,8 +30,8 @@ function cameraPan() {
 
     
 	canvasContext.save();
-    canvasContext.translate(Math.floor(-cameraPanX), Math.floor(-cameraPanY));
 	if (!editorMode) {
+		canvasContext.translate(Math.floor(-cameraPanX), Math.floor(-cameraPanY));
 		canvasContext.translate(Math.floor(p1.x), Math.floor(p1.y));
 		canvasContext.scale(zoomLevel, zoomLevel);
 		canvasContext.translate(Math.floor(-p1.x), Math.floor(-p1.y));

@@ -109,7 +109,7 @@ function drawEverything() {
       ratManager.DrawRats();
       return;
   }
-  //cameraPan();
+  cameraPan();
   drawRoom();
   /*p1.draw();
   angel.draw();
@@ -120,7 +120,7 @@ function drawEverything() {
   for (var i=0;i<characterDrawOrder.length; i++) {
     characterDrawOrder[i].draw();
   }
-  //endCameraPan();
+  endCameraPan();
   drawHealthUI();
   colorRect(0, canvas.height - 15, canvas.width , 15, 'black');
   if (editorMode) {
