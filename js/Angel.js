@@ -3,6 +3,7 @@ const ANGEL_MOVE_SPEED = 3.0;
 const ANGEL_WONDER_SPEED = 1.05;
 
 function angelClass() {
+  this.isStone = true;
   // variables to keep track of position
   this.x = 150;
   this.y = 150;
@@ -48,6 +49,7 @@ function angelClass() {
     //raycastP1X = this.x;
     //raycastP1Y = this.y;
     var lineBlocked = isWallBetweenPoints(this.x, this.y, p1.x, p1.y);
+    var distance = 0;
     if (lineBlocked) {
       if (Math.random() < 0.02) { //percentage of frame angle changes movement
         var randDir = Math.random() * 2.0 * Math.PI; 
@@ -55,7 +57,7 @@ function angelClass() {
         this.yv = Math.sin(randDir)* ANGEL_WONDER_SPEED;
       }
     } else {
-      var distance = dist(this.x - p1.x, this.y - p1.y) ;
+       distance = dist(this.x - p1.x, this.y - p1.y) ;
       if (distance < 3*TILE_W && distance > TILE_W) {
         var toPlayer = angTo(p1.x - this.x, p1.y - this.y);
         this.xv = Math.cos(toPlayer) * ANGEL_MOVE_SPEED;
@@ -64,6 +66,14 @@ function angelClass() {
         this.xv = 0;
         this.yv = 0;
       }
+    }
+    if (this.isStone){
+      if (lineBlocked == false && distance < TILE_W){
+        if (p1.angelBump()) {
+          this.isStone = false;// starts moving next frame
+        }
+      }
+      return;
     }
     var nextX = this.x + this.xv;
     var nextY =  this.y + this.yv;
@@ -91,7 +101,13 @@ function angelClass() {
   
   this.draw = function() {
     var footOffset = 22;//feet at the same postion as the player and the enemy is. 
-    drawBitmapCenteredAtLocationWithRotation( angelPic, this.x, this.y - footOffset, 0.0 );
+    var usePic;
+    if (this.isStone) {
+      usePic = stonedAngelPic;
+    } else {
+      usePic = angelPic;
+    }
+    drawBitmapCenteredAtLocationWithRotation( usePic, this.x, this.y - footOffset, 0.0 );
   }
 
 } // end of class

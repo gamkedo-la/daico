@@ -109,10 +109,7 @@ function warriorClass() {
         }
         break;
       case TILE_STONED_ANGEL:
-        if(this.itemsHeld >= 3) {
-          this.itemsHeld = 0; // one more item
-          roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove stoned angel
-        }
+       
           break;       
       case TILE_WALL:
       default:
@@ -120,7 +117,14 @@ function warriorClass() {
         break;
     }
   }
-
+  this.angelBump = function() {
+    if(this.itemsHeld >= 3) {
+      console.log(this.itemsHeld);
+      this.itemsHeld = 0; // one more item
+      return true;
+    } 
+    return false;
+  }
   this.move = function() {
     if (this.animDelay-- < 0) {
       this.animDelay = 3;
