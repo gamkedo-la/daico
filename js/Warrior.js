@@ -95,22 +95,24 @@ function warriorClass() {
           this.itemsHeld++; // one more item
           roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove door
         }
+        break;
       case TILE_ROCK:
         if(this.itemsHeld <= 3) {
           this.itemsHeld++; // one more item
           roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove door
         }
+        break;
       case TILE_DIAMOND:
         if(this.itemsHeld <= 3) {
           this.itemsHeld++; // one more item
           roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove door
         }
+        break;
       case TILE_STONED_ANGEL:
         if(this.itemsHeld >= 3) {
           this.itemsHeld = 0; // one more item
           roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove stoned angel
-          roomGrid[walkIntoTileIndex] = TILE_LIVING_ANGEL;
-        }  
+        }
           break;       
       case TILE_WALL:
       default:
