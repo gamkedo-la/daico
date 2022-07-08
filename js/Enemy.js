@@ -63,6 +63,14 @@ function enemyClass() {
         var toPlayer = angTo(p1.x - this.x, p1.y - this.y);
         this.xv = Math.cos(toPlayer);
         this.yv = Math.sin(toPlayer);
+        var attackChance = Math.random();
+        if (attackChance < ATTACK_ODDS) {
+          var newSlash = new clawClass();
+          newSlash.x = this.x + this.xv * ATTACK_RANGE;
+          newSlash.y = this.y + this.yv * ATTACK_RANGE;
+          newSlash.ang = toPlayer;
+          enemyAttackList.push(newSlash);
+        }
       }
     }
     var nextX = this.x + this.xv;

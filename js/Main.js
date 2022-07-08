@@ -3,6 +3,7 @@ var canvas, canvasContext;
 var characterDrawOrder = [];
 
 var enemyList = [];
+var enemyAttackList = [];
 var p1 = new warriorClass();
 var angel = new angelClass();
 
@@ -83,6 +84,19 @@ function moveEverything() {
     for(var i = 0; i < enemyList.length; i++){
       p1.collisionCheck(enemyList[i]);
     }
+
+    for (var i=enemyAttackList.length-1; i>=0; i--) {
+      enemyAttackList[i].move();
+      if (enemyAttackList[i].readyToRemove()) {
+        enemyAttackList.splice(i, 1);
+      }
+    }
+
+    for(var i = 0; i < enemyAttackList.length; i++){
+      p1.collisionCheck(enemyAttackList[i]);
+    }
+
+
 }
 
 
@@ -119,6 +133,9 @@ function drawEverything() {
   characterDrawOrder.sort(sortDrawY);
   for (var i=0;i<characterDrawOrder.length; i++) {
     characterDrawOrder[i].draw();
+  }
+  for (var i=0;i<enemyAttackList.length; i++) {
+    enemyAttackList[i].draw();
   }
   endCameraPan();
   drawHealthUI();

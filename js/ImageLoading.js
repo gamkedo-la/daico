@@ -9,6 +9,7 @@ var mainMenuBackgroundImage=document.createElement("img");
 var batOpenImage=document.createElement("img");
 var batClosedImage=document.createElement("img");
 var ratPlaceholderImage=document.createElement("img");
+var claw=document.createElement("img");
 var tilePics = [];
 
 var picsToLoad = 0;
@@ -34,6 +35,7 @@ function loadImages() {
 
   var imageList = [
     {varName:playerPic, theFile:"main_chara.png"},
+    {varName:claw, theFile:"projectile.png"},
     {varName:angelPic, theFile:"living_angel.png"},
     {varName:stonedAngelPic, theFile:"stoned_angel.png"},
     {varName:enemyPic, theFile:"enemy.png"},
