@@ -23,10 +23,13 @@ function colorText(showWords, textX, textY, fontSize, fillColor) {
 	  canvasContext.fillStyle = fillColor;
 	  canvasContext.fillText(showWords, textX, textY);
   }
-function drawBitmapCenteredAtLocationWithRotation(graphic, atX, atY,withAngle) {
+function drawBitmapCenteredAtLocationWithRotation(graphic,atX,atY,withAngle,alpha) {
+  if (!graphic) return;
   canvasContext.save(); // allows us to undo translate movement and rotate spin
   canvasContext.translate(atX,atY); // sets the point where our graphic will go
   canvasContext.rotate(withAngle); // sets the rotation
+  if (alpha!=undefined) canvasContext.globalAlpha = alpha;
   canvasContext.drawImage(graphic,-graphic.width/2,-graphic.height/2); // center, draw
+  if (alpha!=undefined) canvasContext.globalAlpha = 1;
   canvasContext.restore(); // undo the translation movement and rotation since save()
 }

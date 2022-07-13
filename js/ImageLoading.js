@@ -10,8 +10,12 @@ var batOpenImage=document.createElement("img");
 var batClosedImage=document.createElement("img");
 var ratPlaceholderImage=document.createElement("img");
 var claw=document.createElement("img");
-var tilePics = [];
+var smokePic=document.createElement("img");
+var bloodPic=document.createElement("img");
+var sparklePic=document.createElement("img");
+var footprintPic=document.createElement("img");
 
+var tilePics = [];
 var picsToLoad = 0;
 
 function countLoadedImageAndLaunchIfReady() {
@@ -45,7 +49,10 @@ function loadImages() {
     {varName:mainMenuBackgroundImage, theFile:"mainMenuBackgroundImage.png"},
     {varName:batOpenImage, theFile:"bat_open.png"},
     {varName:batClosedImage, theFile:"bat_closed.png"},
-    {varName:ratPlaceholderImage, theFile:"rat_placeholder_image.png"},
+    {varName:smokePic, theFile:"smoke.png"},
+    {varName:bloodPic, theFile:"blood.png"},
+    {varName:sparklePic, theFile:"sparkle.png"},
+    {varName:footprintPic, theFile:"footprints.png"},
     {tileType:TILE_GROUND, theFile:"dungeon_floor.png"},
     {tileType:TILE_GROUND_2, theFile:"dungeon_floor_2.png"},
     {tileType:TILE_GROUND_3, theFile:"dungeon_floor_3.png"},

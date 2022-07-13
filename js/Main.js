@@ -41,6 +41,7 @@ window.onload = function() {
 
 function loadingDoneSoStartGame() {
   loadLevel(roomDungeon);
+  
   // these next few lines set up our game logic and render to happen 30 times per second
   var framesPerSecond = 30;
   setInterval(function() {
@@ -68,6 +69,8 @@ function moveEverything() {
   now = performance.now();
   deltaTime = now-previousNow;
   previousNow = now;
+
+  particles.update();
 
   if (mainMenuActive)
   {
@@ -125,6 +128,9 @@ function drawEverything() {
   }
   cameraPan();
   drawRoom();
+
+  particles.draw();
+
   /*p1.draw();
   angel.draw();
   for (var i=0;i<enemyList.length; i++) {

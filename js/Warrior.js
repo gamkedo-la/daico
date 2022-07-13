@@ -3,6 +3,7 @@ const PLAYER_MOVE_SPEED = 3.0;
 const FRAMES_BETWEEN_HEART_LOSS = 30;
 const PLAYER_SPRITE_FRAME_W = 50;
 const PLAYER_SPRITE_FRAME_H = 50;
+const FRAMES_PER_FOOTPRINT = 8;
 heartLossDelay = 0;
 var heartHeld = 5;
 var playerWidth = 30;
@@ -69,16 +70,19 @@ function warriorClass() {
       case TILE_GROUND:
         this.x = nextX;
         this.y = nextY;
+        if (this.footprintDelay>0) { this.footprintDelay--; } else { footprint_fx(this.x,this.y); this.footprintDelay = FRAMES_PER_FOOTPRINT; }
         break;
       case TILE_GOAL:
         document.getElementById("debugText").innerHTML = this.myName + " won";
         this.reset();
+        goal_fx(this.x,this.y);
         break;
       case TILE_DOOR:
         if(this.keysHeld > 0) {
           this.keysHeld--; // one less key
           document.getElementById("debugText").innerHTML = "Keys: "+this.keysHeld;
           roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove door
+          door_fx(this.x,this.y);
         }
         break;
       case TILE_MAGIC_DOOR:
@@ -93,30 +97,34 @@ function warriorClass() {
         this.keysHeld++; // gain key
         document.getElementById("debugText").innerHTML = "Keys: "+this.keysHeld;
         roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove key
+        key_fx(this.x,this.y);
         break;
       case TILE_POTION:
         if(this.itemsHeld <= 3) {
           this.itemsHeld++; // one more item
           roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove door
+          potion_fx(this.x,this.y);
         }
         break;
       case TILE_ROCK:
         if(this.itemsHeld <= 3) {
           this.itemsHeld++; // one more item
           roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove door
+          rock_fx(this.x,this.y);
         }
         break;
       case TILE_DIAMOND:
         if(this.itemsHeld <= 3) {
           this.itemsHeld++; // one more item
           roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove door
+          diamond_fx(this.x,this.y);
         }
         break;
       case TILE_STONED_ANGEL:
-       
           break;       
       case TILE_WALL:
       default:
+        bump_wall_fx(this.x,this.y);
         // any other tile type number was found... do nothing, for now
         break;
     }
@@ -125,6 +133,7 @@ function warriorClass() {
     if(this.itemsHeld >= 3) {
       console.log(this.itemsHeld);
       this.itemsHeld = 0; // one more item
+      angel_fx(this.x,this.y);
       return true;
     } 
     return false;
@@ -185,6 +194,10 @@ function warriorClass() {
   }
   
   this.playerHit = function() {
+
+    // removed particles because this function fires every frame in the main menu
+    //damage_fx(this.x,this.y); 
+
     //if(!editorMode){
         if(heartLossDelay > 0){
             return;
