@@ -108,13 +108,12 @@ function damage_fx(x, y) {
     var num = 8;
     for (var i = 0; i < num; i++) {
         let life = randomInt(333,777);
-        let size = 1;
         let rotspd = Math.random()*0.3-0.15;
         let ang = 0;
         let velx = Math.random()*7-1.5;
         let vely = Math.random()*-3;
         let alpha = 0.5;
-        particles.add(x,y,bloodPic,life,size,rotspd,ang,velx,vely,alpha);
+        particles.add(x,y,bloodPic,life,rotspd,ang,velx,vely,alpha);
     }
 }
 
@@ -122,13 +121,12 @@ function goal_fx(x, y) {
     //console.log("goal_fx");
     for (var i = 0; i < 32; i++) {
         let life = randomInt(1000,2000);
-        let size = 1;
         let rotspd = Math.random()*4-2;
         let ang = 0;
-        let velx = Math.random()*2-1.5;
-        let vely = Math.random()*-8;
+        let velx = Math.random()*4-2;
+        let vely = Math.random()*4-2;
         let alpha = 1.0;
-        particles.add(x,y,sparklePic,life,size,rotspd,ang,velx,vely,alpha);
+        particles.add(x,y,sparklePic,life,rotspd,ang,velx,vely,alpha);
     }
 }
 
@@ -136,29 +134,40 @@ function key_fx(x, y) {
     //console.log("key_fx");
     for (var i = 0; i < 32; i++) {
         let life = randomInt(555,999);
-        let size = 1;
         let rotspd = Math.random()*4-2;
         let ang = 0;
-        let velx = Math.random()*6-3;
+        let velx = Math.random()*8-4;
         let vely = Math.random()*8-4;
         let alpha = 1.0;
-        particles.add(x,y,sparklePic,life,size,rotspd,ang,velx,vely,alpha);
+        particles.add(x,y,sparklePic,life,rotspd,ang,velx,vely,alpha);
+    }
+}
+
+function potion_fx(x, y) {
+    //console.log("key_fx");
+    for (var i = 0; i < 32; i++) {
+        let life = randomInt(555,999);
+        let rotspd = Math.random()*4-2;
+        let ang = 0;
+        let velx = Math.random()*8-4;
+        let vely = Math.random()*8-4;
+        let alpha = 1.0;
+        particles.add(x,y,sparklePic,life,rotspd,ang,velx,vely,alpha);
     }
 }
 
 function door_fx(x, y) {
     //console.log("door_fx");
     for (var i = 0; i < 64; i++) {
-        let life = randomInt(1500,2500);
-        let size = 10;
+        let life = randomInt(500,1500);
         let rotspd = Math.random()*4-2;
         let ang = 0;
         let velx = Math.random()*2-1;
         let vely = Math.random()*2-1;
-        let ofsx = Math.random()*100-50;
-        let ofsy = Math.random()*100-50;
+        let ofsx = Math.random()*50-25;
+        let ofsy = Math.random()*50-25;
         let alpha = 0.5;
-        particles.add(x+ofsx,y+ofsy,smokePic,life,size,rotspd,ang,velx,vely,alpha);
+        particles.add(x+ofsx,y+ofsy,smokePic,life,rotspd,ang,velx,vely,alpha);
     }
 }
 
@@ -166,13 +175,12 @@ function rock_fx(x,y) {
     //console.log("rock_fx");
     for (var i = 0; i < 32; i++) {
         let life = randomInt(555,999);
-        let size = 1;
         let rotspd = Math.random()*4-2;
         let ang = 0;
-        let velx = Math.random()*6-3;
+        let velx = Math.random()*8-4;
         let vely = Math.random()*8-4;
         let alpha = 1.0;
-        particles.add(x,y,sparklePic,life,size,rotspd,ang,velx,vely,alpha);
+        particles.add(x,y,smokePic,life,rotspd,ang,velx,vely,alpha);
     }
 }
 
@@ -180,13 +188,12 @@ function diamond_fx(x,y) {
     //console.log("diamond_fx");
     for (var i = 0; i < 32; i++) {
         let life = randomInt(555,999);
-        let size = 1;
         let rotspd = Math.random()*4-2;
         let ang = 0;
-        let velx = Math.random()*6-3;
+        let velx = Math.random()*8-4;
         let vely = Math.random()*8-4;
         let alpha = 1.0;
-        particles.add(x,y,sparklePic,life,size,rotspd,ang,velx,vely,alpha);
+        particles.add(x,y,sparklePic,life,rotspd,ang,velx,vely,alpha);
     }
 }
 
@@ -194,26 +201,24 @@ function angel_fx(x,y) {
     //console.log("angel_fx");
     for (var i = 0; i < 32; i++) {
         let life = randomInt(555,999);
-        let size = 1;
         let rotspd = Math.random()*4-2;
         let ang = 0;
-        let velx = Math.random()*6-3;
+        let velx = Math.random()*8-4;
         let vely = Math.random()*8-4;
         let alpha = 1.0;
-        particles.add(x,y,sparklePic,life,size,rotspd,ang,velx,vely,alpha);
+        particles.add(x,y,sparklePic,life,rotspd,ang,velx,vely,alpha);
     }
 }
 
 function bump_wall_fx(x, y) {
     //console.log("bump_wall_fx");
-    for (var i = 0; i < 32; i++) {
+    for (var i = 0; i < 2; i++) {
         let life = randomInt(555,999);
-        let size = 1;
         let rotspd = Math.random()*4-2;
         let ang = 0;
-        let velx = Math.random()*6-3;
-        let vely = Math.random()*8-4;
-        let alpha = 1.0;
-        particles.add(x,y,sparklePic,life,size,rotspd,ang,velx,vely,alpha);
+        let velx = Math.random()*4-2;
+        let vely = Math.random()*4-2;
+        let alpha = 0.25;
+        particles.add(x,y,sparklePic,life,rotspd,ang,velx,vely,alpha);
     }
 }
