@@ -85,6 +85,10 @@ function warriorClass() {
         roomIndex = 1;
        loadLevel(roomList[roomIndex]);
           break;
+      case TILE_MAGIC_DOOR2:
+        roomIndex = 2;
+       loadLevel(roomList[roomIndex]);
+          break;
       case TILE_KEY:
         this.keysHeld++; // gain key
         document.getElementById("debugText").innerHTML = "Keys: "+this.keysHeld;

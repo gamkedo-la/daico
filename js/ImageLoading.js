@@ -59,6 +59,7 @@ function loadImages() {
     {tileType:TILE_KEY, theFile:"world_key.png"},
     {tileType:TILE_DOOR, theFile:"world_door.png"},
     {tileType:TILE_MAGIC_DOOR, theFile:"magic_door.png"},
+    {tileType:TILE_MAGIC_DOOR2, theFile:"magic_door2.png"},
     {tileType:TILE_FULL_HEART, theFile:"heartempty.png"}, // TODO: Is this right?
     {tileType:TILE_LIVING_ANGEL, theFile:"living_angel.png"},
     {tileType:TILE_STONED_ANGEL, theFile:"stoned_angel.png"},
