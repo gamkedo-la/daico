@@ -138,18 +138,7 @@ function warriorClass() {
     } 
     return false;
   }
-  this.move = function() {
-    // if (this.animDelay-- < 0) {
-    //   this.animDelay = 3;
-    //   this.animFrame++;
-    //   if (this.animFrame >= 4) {
-    //     this.animFrame = 0;
-    //   } 
-    // }
-    // to allow "wall sliding"
-    // (diagonal movement not getting stuck)
-    // we check horiz and vert movement individually
-    
+  this.move = function() {    
     //raycastP2X = this.x;
     //raycastP2Y = this.y;
 
@@ -158,20 +147,29 @@ function warriorClass() {
     if (heartLossDelay > 0) {
       heartLossDelay--;
     }
-    
+
+    // to allow "wall sliding"
+    // (diagonal movement not getting stuck)
+    // we check horiz and vert movement individually
     let isWalking = false;
     if (this.keyHeld_East) {
       this.testMove(this.x+PLAYER_MOVE_SPEED,this.y);
       this.facingLeft = false;
       isWalking = true;
-    } else if (this.keyHeld_West) {
+    }
+    
+    if (this.keyHeld_West) {
       this.testMove(this.x-PLAYER_MOVE_SPEED,this.y);
       this.facingLeft = true;
       isWalking = true;
-    } else if (this.keyHeld_North) {
+    }
+    
+    if (this.keyHeld_North) {
       this.testMove(this.x,this.y-PLAYER_MOVE_SPEED);
       isWalking = true;
-    } else if (this.keyHeld_South) {
+    }
+    
+    if (this.keyHeld_South) {
       this.testMove(this.x,this.y+PLAYER_MOVE_SPEED);
       isWalking = true;
     }
