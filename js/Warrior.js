@@ -158,9 +158,11 @@ function warriorClass() {
     if (heartLossDelay > 0) {
       heartLossDelay--;
     }
-    this.facingLeft = false;
-    if (this.keyHeld_East) this.testMove(this.x+PLAYER_MOVE_SPEED,this.y);
-    if (this.keyHeld_West) {
+    
+    if (this.keyHeld_East) {
+      this.testMove(this.x+PLAYER_MOVE_SPEED,this.y);
+      this.facingLeft = false;
+    } else if (this.keyHeld_West) {
       this.testMove(this.x-PLAYER_MOVE_SPEED,this.y);
       this.facingLeft = true;
     }
