@@ -24,3 +24,24 @@ function drawHealthUI() {
         }
     }
 }
+
+function GameOverScreen() {
+    this.gameOverBoxWidth = 500;
+    this.gameOverBoxHeight = 200;
+    this.draw = function() {
+        canvasContext.globalAlpha = 0.3;
+        colorRect(  canvas.width/2 - gameOverBoxWidth/2, 
+            canvas.height/2 - gameOverBoxHeight/2, 
+            gameOverBoxWidth,
+            gameOverBoxHeight, 
+            'lavender');
+        canvasContext.globalAlpha = 1.0;
+        canvasContext.textAlign = "center";
+        canvasContext.font = "30px Verdana";
+        canvasContext.fillStyle = 'orange';
+        colorText("LETS TRY AGAIN",canvas.width/2, canvas.height/2 , 18, "green");
+        colorText("PRESS R TO RESPAWN",canvas.width/2, canvas.height/2 + 40, 34, "cyan");
+    }
+   
+  }
+

@@ -13,6 +13,7 @@ var mainMenuActive = false;
 var splashMenu;
 var splashMenuActive = true;
 var pauseScreen;
+var gameIsOver = false;
 
 //for deltaTime
 let now;
@@ -32,6 +33,7 @@ window.onload = function() {
   mainMenu = new MainMenu();
   splashMenu = new Splash();
   pauseScreen = new PauseScreen();
+  gameIsOver = new GameOverScreen();
 
   //for deltaTime
   previousNow = performance.now();
@@ -79,6 +81,10 @@ function moveEverything() {
     ratManager.MoveRats();
   }
 
+  if (gameIsOver)
+  {
+    //GameOverScreen.draw();
+  }
   p1.move();
   for (var i=0;i<enemyList.length; i++) {
     enemyList[i].move();
