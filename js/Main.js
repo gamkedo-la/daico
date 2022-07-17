@@ -13,7 +13,7 @@ var mainMenuActive = false;
 var splashMenu;
 var splashMenuActive = true;
 var pauseScreen;
-var gameIsOver = false;
+var gameIsOver;
 
 //for deltaTime
 let now;
@@ -33,7 +33,7 @@ window.onload = function() {
   mainMenu = new MainMenu();
   splashMenu = new Splash();
   pauseScreen = new PauseScreen();
-  gameIsOver = new GameOverScreen();
+  gameOverScreen = new GameOverScreen();
 
   //for deltaTime
   previousNow = performance.now();
@@ -47,7 +47,7 @@ function loadingDoneSoStartGame() {
   // these next few lines set up our game logic and render to happen 30 times per second
   var framesPerSecond = 30;
   setInterval(function() {
-      if (!isGamePaused) {
+      if (!isGamePaused || !gameIsOver) {
         moveEverything();
       }
       drawEverything();
@@ -83,7 +83,8 @@ function moveEverything() {
 
   if (gameIsOver)
   {
-    //GameOverScreen.draw();
+    gameOverScreen.draw();
+
   }
   p1.move();
   for (var i=0;i<enemyList.length; i++) {

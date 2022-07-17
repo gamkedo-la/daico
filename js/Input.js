@@ -20,6 +20,7 @@ const KEY_LEFT_BRACKET = 219;
 const KEY_RIGHT_BRACKET = 221;
 const KEY_LETTER_M = 77;
 const KEY_LETTER_P = 80;
+const KEY_LETTER_R = 82;
 var mainMenuMusic;
 
 function initInput() {
@@ -119,8 +120,20 @@ function keyPressed(evt) {
       // P key to pause game
       isGamePaused = !isGamePaused;
       console.log("Game is paused");
-
       break;
+
+    case KEY_LETTER_R:
+        if(gameIsOver) {
+          gameIsOver = !gameIsOver;
+          p1.reset();
+          for (var i=0;i<enemyList.length; i++) {
+            enemyList[i].reset();
+          }
+          
+          angel.reset();
+          heartHeld = 4;
+        }
+        break;
     }
 
   setKeyHoldState(evt.keyCode, p1, true);

@@ -30,10 +30,10 @@ function GameOverScreen() {
     this.gameOverBoxHeight = 200;
     this.draw = function() {
         canvasContext.globalAlpha = 0.3;
-        colorRect(  canvas.width/2 - gameOverBoxWidth/2, 
-            canvas.height/2 - gameOverBoxHeight/2, 
-            gameOverBoxWidth,
-            gameOverBoxHeight, 
+        colorRect(  canvas.width/2 - this.gameOverBoxWidth/2, 
+            canvas.height/2 - this.gameOverBoxHeight/2, 
+            this.gameOverBoxWidth,
+            this.gameOverBoxHeight, 
             'lavender');
         canvasContext.globalAlpha = 1.0;
         canvasContext.textAlign = "center";
@@ -41,7 +41,7 @@ function GameOverScreen() {
         canvasContext.fillStyle = 'orange';
         colorText("LETS TRY AGAIN",canvas.width/2, canvas.height/2 , 18, "green");
         colorText("PRESS R TO RESPAWN",canvas.width/2, canvas.height/2 + 40, 34, "cyan");
-    }
+         }
    
   }
 
