@@ -47,7 +47,7 @@ function loadingDoneSoStartGame() {
   // these next few lines set up our game logic and render to happen 30 times per second
   var framesPerSecond = 30;
   setInterval(function() {
-      if (!isGamePaused || !gameIsOver) {
+      if (!isGamePaused && !gameIsOver) {
         moveEverything();
       }
       drawEverything();
@@ -81,11 +81,6 @@ function moveEverything() {
     ratManager.MoveRats();
   }
 
-  if (gameIsOver)
-  {
-    gameOverScreen.draw();
-
-  }
   p1.move();
   for (var i=0;i<enemyList.length; i++) {
     enemyList[i].move();
@@ -170,6 +165,9 @@ function drawEverything() {
 
   if (isGamePaused) {
     pauseScreen.draw();
+  }
+  if (gameIsOver)
+  {gameOverScreen.draw();
   }
 }
 
