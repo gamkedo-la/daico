@@ -50,6 +50,7 @@ function loadingDoneSoStartGame() {
       if (!isGamePaused && !gameIsOver) {
         moveEverything();
       }
+      particles.update(); // fade particles out even when paused
       drawEverything();
     }, 1000/framesPerSecond);
 
@@ -71,8 +72,6 @@ function moveEverything() {
   now = performance.now();
   deltaTime = now-previousNow;
   previousNow = now;
-
-  particles.update();
 
   if (mainMenuActive)
   {
