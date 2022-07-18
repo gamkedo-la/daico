@@ -222,3 +222,45 @@ function bump_wall_fx(x, y) {
         particles.add(x,y,sparklePic,life,rotspd,ang,velx,vely,alpha);
     }
 }
+
+function tile_particles(tileTypeHere,tileLeftEdgeX,tileTopEdgeY) {
+    
+    // centered in tile
+    // let x = tileLeftEdgeX + TILE_W/2;
+    // let y = tileTopEdgeY + TILE_H/2;
+    
+    // randomly spawn anywhere inside the tile area
+    let x = tileLeftEdgeX + Math.random()*TILE_W;
+    let y = tileTopEdgeY + Math.random()*TILE_H;
+    
+    let life = randomInt(777,2222);
+    let rotspd = Math.random()*2-1;
+    let ang = Math.random()*4;
+    let velx = Math.random()*1-0.5;
+    let vely = Math.random()*1-0.5;
+    let alpha = 0.3;
+
+    switch(tileTypeHere) {
+        case TILE_GOAL: 
+            particles.add(x,y,sparklePic,life,rotspd,ang,velx,vely,alpha);
+            break;
+        case TILE_KEY: 
+            particles.add(x,y,sparklePic,life,rotspd,ang,velx,vely,alpha);
+            break;
+        case TILE_FULL_HEART:
+            particles.add(x,y,redMist,life,rotspd,ang,velx,vely,alpha);
+            break;
+        case TILE_MAGIC_DOOR: 
+            particles.add(x,y,glowPic,life,rotspd,ang,velx,vely,alpha);
+            break;
+        case TILE_DIAMOND:
+            particles.add(x,y,blueMist,life,rotspd,ang,velx,vely,alpha);
+            break;
+        case TILE_POTION:
+            particles.add(x,y,bubblePic,life,rotspd,ang,velx,vely,alpha);
+            break;
+        case TILE_MAGIC_DOOR2:
+            particles.add(x,y,glowPic,life,rotspd,ang,velx,vely,alpha);
+            break;
+    }
+}

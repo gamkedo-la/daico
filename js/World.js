@@ -151,7 +151,13 @@ function drawRoom() {
       if( tileTypeHasTransparency(tileTypeHere) ) {
         canvasContext.drawImage(tilePics[TILE_GROUND], tileLeftEdgeX, tileTopEdgeY);
       }
+      
+      // some tiles may emit particle fx
+      tile_particles(tileTypeHere,tileLeftEdgeX,tileTopEdgeY);
+
+      // draw the tile
       canvasContext.drawImage(tilePics[tileTypeHere], tileLeftEdgeX, tileTopEdgeY);
+
       
       tileIndex++; // increment which index we're going to next check for in the room
       tileLeftEdgeX += TILE_W; // jump horizontal draw position to next tile over by tile width

@@ -14,6 +14,15 @@ var smokePic=document.createElement("img");
 var bloodPic=document.createElement("img");
 var sparklePic=document.createElement("img");
 var footprintPic=document.createElement("img");
+var bubblePic=document.createElement("img");
+var glowPic=document.createElement("img");
+var redMist=document.createElement("img");
+var blueMist=document.createElement("img");
+var greenMist=document.createElement("img");
+var blackMist=document.createElement("img");
+var whiteMist=document.createElement("img");
+
+
 
 var tilePics = [];
 var picsToLoad = 0;
@@ -53,6 +62,13 @@ function loadImages() {
     {varName:bloodPic, theFile:"blood.png"},
     {varName:sparklePic, theFile:"sparkle.png"},
     {varName:footprintPic, theFile:"footprints.png"},
+    {varName:bubblePic, theFile:"bubble.png"},
+    {varName:glowPic, theFile:"glow.png"},
+    {varName:redMist, theFile:"red_mist.png"},
+    {varName:blueMist, theFile:"blue_mist.png"},
+    {varName:greenMist, theFile:"green_mist.png"},
+    {varName:blackMist, theFile:"black_mist.png"},
+    {varName:whiteMist, theFile:"white_mist.png"},
     {tileType:TILE_GROUND, theFile:"dungeon_floor.png"},
     {tileType:TILE_GROUND_2, theFile:"dungeon_floor_2.png"},
     {tileType:TILE_GROUND_3, theFile:"dungeon_floor_3.png"},
