@@ -6,6 +6,7 @@ function clawClass(){
     this.y = 10;
     this.ang = 0;
     this.framesLeft = ATTACK_DURATION;
+    this.damage = 0.5;
 
     this.move = function () {
         this.framesLeft--;
@@ -21,7 +22,7 @@ function clawClass(){
     }
 
     this.playerCollide = function() {
-        p1.playerHit();
+        p1.playerHit(this.damage);
       }
     
 }

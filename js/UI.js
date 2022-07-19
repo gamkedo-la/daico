@@ -1,26 +1,39 @@
 function drawHealthUI() {
     var pos = 0;
     var showHeartNum;
+    var hasHalfHeart = false;
     if(heartHeld < 4) {
         showHeartNum = heartHeld;
     } else {
         showHeartNum = 4;
     }
 
+    if(Math.floor(heartHeld) < heartHeld) {
+        hasHalfHeart = true
+    }
+
     const heartsToDraw = Math.max(showHeartNum, 4)
     for (let i = 0; i < heartsToDraw; i++) {
-        if (i < showHeartNum) {
+        if (i < Math.floor(showHeartNum)) {
             canvasContext.drawImage(
                 heartFull,
                 pos + i * 26, 0,
                 heartEmpty.width, heartEmpty.height
             );
         } else {
-            canvasContext.drawImage(
-                heartEmpty,
-                pos + i * 26, 0,
-                heartEmpty.width, heartEmpty.height
-            );
+            if(hasHalfHeart && i < showHeartNum) {
+                canvasContext.drawImage(
+                    heartHalfFull,
+                    pos + i * 26, 0,
+                    heartEmpty.width, heartEmpty.height
+                );
+            } else {
+                canvasContext.drawImage(
+                    heartEmpty,
+                    pos + i * 26, 0,
+                    heartEmpty.width, heartEmpty.height
+                );    
+            }
         }
     }
 }

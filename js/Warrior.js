@@ -208,7 +208,7 @@ function warriorClass() {
     }
   }
   
-  this.playerHit = function() {
+  this.playerHit = function(damage) {
 
     // removed particles because this function fires every frame in the main menu
     //damage_fx(this.x,this.y); 
@@ -222,7 +222,7 @@ function warriorClass() {
 
         if (heartHeld >= 0) {
             //hitSound.play();
-            heartHeld--;
+            damage ? heartHeld -= damage : heartHeld--;
         }
         if (heartHeld == 1){
             //alarmSound.play();

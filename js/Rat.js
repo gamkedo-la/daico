@@ -14,6 +14,7 @@ function Rat()
   this.yVelocity = undefined;
 
   this.speed = undefined;
+  this.damage = 1;
 
   this.Draw = function()
   {

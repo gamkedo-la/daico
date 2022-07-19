@@ -14,6 +14,8 @@ function Bat()
   this.percentTraversedOnBezier = 0;
   this.speed = getRandomArbitrary(0.001,0.005);
 
+  this.damage = 1;
+
   this.defineStartingXYCoordinatesAndBezierPoints = function()
   {
     let coinFlipResult = Math.random();

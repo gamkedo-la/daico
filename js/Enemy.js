@@ -12,6 +12,8 @@ function enemyClass() {
   this.keyHeld_South = false;
   this.keyHeld_West = false;
 
+  this.damage = 1;
+
   // key controls used for this
   this.setupControls = function(northKey,eastKey,southKey,westKey) {
     this.controlKeyForNorth = northKey;
@@ -112,7 +114,7 @@ function enemyClass() {
   }
   
   this.playerCollide = function() {
-    p1.playerHit();
+    p1.playerHit(this.damage);
   }
 
   this.draw = function() {
