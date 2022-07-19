@@ -67,7 +67,8 @@ const TILE_DIAMOND = 16;
 const TILE_ROCK = 17;
 const TILE_POTION = 18;
 const TILE_MAGIC_DOOR2 = 19;
-const TILE_LAST = TILE_POTION;
+const TILE_BOSS = 20;
+const TILE_LAST = TILE_BOSS;
 
 var raycastP1X = 50;
 var raycastP1Y = 50;

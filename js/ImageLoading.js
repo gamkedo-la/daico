@@ -2,6 +2,7 @@ var playerPic=document.createElement("img");
 var angelPic=document.createElement("img");
 var stonedAngelPic=document.createElement("img");
 var enemyPic=document.createElement("img");
+var bossPic=document.createElement("img");
 var heartFull=document.createElement("img");
 var heartHalfFull=document.createElement("img");
 var heartEmpty=document.createElement("img");
@@ -52,6 +53,7 @@ function loadImages() {
     {varName:angelPic, theFile:"living_angel.png"},
     {varName:stonedAngelPic, theFile:"stoned_angel.png"},
     {varName:enemyPic, theFile:"enemy.png"},
+    {varName:bossPic, theFile:"enemy.png"},
     {varName:heartFull, theFile:"heartfull.png"},
     {varName:heartHalfFull, theFile:"heart_half_full.png"},
     {varName:heartEmpty, theFile:"heartempty.png"},
@@ -78,6 +80,7 @@ function loadImages() {
     {tileType:TILE_WALL, theFile:"dungeon_wall.png"},
     {tileType:TILE_PLAYER, theFile:"main_chara.png"},
     {tileType:TILE_ENEMY, theFile:"enemy.png"},
+    {tileType:TILE_BOSS, theFile:"boss.png"},
     {tileType:TILE_GOAL, theFile:"world_goal.png"},
     {tileType:TILE_KEY, theFile:"world_key.png"},
     {tileType:TILE_DOOR, theFile:"world_door.png"},
