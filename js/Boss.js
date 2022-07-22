@@ -71,7 +71,23 @@ function bossClass() {
           newSlash.x = this.x + this.xv * ATTACK_RANGE;
           newSlash.y = this.y + this.yv * ATTACK_RANGE;
           newSlash.ang = toPlayer;
-          bossAttackList.push(newSlash);
+          newSlash.isBossAttack = true;
+          enemyAttackList.push(newSlash);
+
+          var spreadAngle = 30*Math.PI/180;
+          newSlash = new clawClass();
+          newSlash.x = this.x + this.xv * ATTACK_RANGE;
+          newSlash.y = this.y + this.yv * ATTACK_RANGE;
+          newSlash.ang = toPlayer-spreadAngle;
+          newSlash.isBossAttack = true;
+          enemyAttackList.push(newSlash);
+
+          newSlash = new clawClass();
+          newSlash.x = this.x + this.xv * ATTACK_RANGE;
+          newSlash.y = this.y + this.yv * ATTACK_RANGE;
+          newSlash.ang = toPlayer+spreadAngle;
+          newSlash.isBossAttack = true;
+          enemyAttackList.push(newSlash);
         }
       }
     }

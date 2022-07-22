@@ -4,7 +4,6 @@ var characterDrawOrder = [];
 
 var enemyList = [];
 var enemyAttackList = [];
-var bossAttackList = [];
 var p1 = new warriorClass();
 var angel = new angelClass();
 var boss = new bossClass();
