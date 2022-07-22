@@ -53,7 +53,7 @@ function loadImages() {
     {varName:angelPic, theFile:"living_angel.png"},
     {varName:stonedAngelPic, theFile:"stoned_angel.png"},
     {varName:enemyPic, theFile:"enemy.png"},
-    {varName:bossPic, theFile:"enemy.png"},
+    {varName:bossPic, theFile:"boss.png"},
     {varName:heartFull, theFile:"heartfull.png"},
     {varName:heartHalfFull, theFile:"heart_half_full.png"},
     {varName:heartEmpty, theFile:"heartempty.png"},

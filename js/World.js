@@ -10,7 +10,7 @@ var roomDungeon =
       1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, 5, 1, 1,
       1, 1, 1, 5, 1, 1, 1, 0, 4, 0, 1, 0, 0, 0, 1, 1,
       1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 4, 0, 1, 1,
-      1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1,
+      1, 0, 0, 0,20, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1,
       1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 4, 0, 1, 1,
       1, 6, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1,
       1, 0, 5, 0, 5, 0, 5,16,17,18, 1, 1, 1, 1, 1, 1,
@@ -85,7 +85,8 @@ function loadLevel(whichLevel) {
   if (editorMode == false) {
     p1.init(playerPic, "Blue");
     angel.reset();
-    characterDrawOrder = [p1,angel];
+    boss.reset();
+    characterDrawOrder = [p1,angel,boss];
     var foundAnotherEnemy;
     do {
       var e1 = new enemyClass();
@@ -171,6 +172,12 @@ function drawRoom() {
 } // end of drawRoom()
 
 function tileTypeBlocksEnemy(type) {
+  if(type == TILE_GROUND || type == TILE_KEY){
+    return false;
+  }
+  return true;
+}
+function tileTypeBlocksBoss(type) {
   if(type == TILE_GROUND || type == TILE_KEY){
     return false;
   }

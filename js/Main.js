@@ -4,8 +4,10 @@ var characterDrawOrder = [];
 
 var enemyList = [];
 var enemyAttackList = [];
+var bossAttackList = [];
 var p1 = new warriorClass();
 var angel = new angelClass();
+var boss = new bossClass();
 
 var mainMenu;
 var mainMenuActive = false;
@@ -68,6 +70,7 @@ function loadingDoneSoStartGame() {
 
 function moveEverything() {
   angel.move();
+  boss.move();
   //for deltaTime
   now = performance.now();
   deltaTime = now-previousNow;
