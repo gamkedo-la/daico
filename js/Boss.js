@@ -1,5 +1,6 @@
 // tuning constants
 const BOSS_MOVE_SPEED = 3.0;
+const BOSS_ATTACK_SPREAD = 30;
 function bossClass() {
   // variables to keep track of position
   this.x = 75;
@@ -68,25 +69,25 @@ function bossClass() {
         var attackChance = Math.random();
         if (attackChance < ATTACK_ODDS) {
           var newSlash = new clawClass();
-          newSlash.x = this.x + this.xv * ATTACK_RANGE;
-          newSlash.y = this.y + this.yv * ATTACK_RANGE;
+          newSlash.x = this.x + this.xv;
+          newSlash.y = this.y + this.yv;
           newSlash.ang = toPlayer;
-          newSlash.isBossAttack = true;
+          newSlash.makeBossAttack();
           enemyAttackList.push(newSlash);
 
-          var spreadAngle = 30*Math.PI/180;
+          var spreadAngle = BOSS_ATTACK_SPREAD*Math.PI/180;
           newSlash = new clawClass();
-          newSlash.x = this.x + this.xv * ATTACK_RANGE;
-          newSlash.y = this.y + this.yv * ATTACK_RANGE;
+          newSlash.x = this.x + this.xv;
+          newSlash.y = this.y + this.yv;
           newSlash.ang = toPlayer-spreadAngle;
-          newSlash.isBossAttack = true;
+          newSlash.makeBossAttack();
           enemyAttackList.push(newSlash);
 
           newSlash = new clawClass();
-          newSlash.x = this.x + this.xv * ATTACK_RANGE;
-          newSlash.y = this.y + this.yv * ATTACK_RANGE;
+          newSlash.x = this.x + this.xv;
+          newSlash.y = this.y + this.yv;
           newSlash.ang = toPlayer+spreadAngle;
-          newSlash.isBossAttack = true;
+          newSlash.makeBossAttack();
           enemyAttackList.push(newSlash);
         }
       }
