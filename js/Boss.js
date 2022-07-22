@@ -68,27 +68,18 @@ function bossClass() {
         this.yv = Math.sin(toPlayer);
         var attackChance = Math.random();
         if (attackChance < ATTACK_ODDS) {
-          var newSlash = new clawClass();
-          newSlash.x = this.x + this.xv;
-          newSlash.y = this.y + this.yv;
-          newSlash.ang = toPlayer;
-          newSlash.makeBossAttack();
-          enemyAttackList.push(newSlash);
-
+          var newSlash;
+          var spreadCount = 5;
           var spreadAngle = BOSS_ATTACK_SPREAD*Math.PI/180;
-          newSlash = new clawClass();
-          newSlash.x = this.x + this.xv;
-          newSlash.y = this.y + this.yv;
-          newSlash.ang = toPlayer-spreadAngle;
-          newSlash.makeBossAttack();
-          enemyAttackList.push(newSlash);
-
-          newSlash = new clawClass();
-          newSlash.x = this.x + this.xv;
-          newSlash.y = this.y + this.yv;
-          newSlash.ang = toPlayer+spreadAngle;
-          newSlash.makeBossAttack();
-          enemyAttackList.push(newSlash);
+          var anglePerShot = spreadAngle * 2 / spreadCount;
+          for(var i=0; i<spreadCount ; i++) {
+            newSlash = new clawClass();
+            newSlash.x = this.x + this.xv;
+            newSlash.y = this.y + this.yv;
+            newSlash.ang = toPlayer-spreadAngle + i * anglePerShot;
+            newSlash.makeBossAttack();
+            enemyAttackList.push(newSlash);
+          }
         }
       }
     }

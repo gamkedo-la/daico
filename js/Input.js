@@ -55,7 +55,6 @@ function mouseClick() {
     return;
   }
   editorClick();
-
 }
 function editorKeyCheck(keyCode) {
   switch (keyCode) {

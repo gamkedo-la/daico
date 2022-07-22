@@ -1,9 +1,11 @@
 // tuning constants
 const PLAYER_MOVE_SPEED = 3.0;
+const PLAYER_DODGE_DIST = 70.0;
 const FRAMES_BETWEEN_HEART_LOSS = 30;
 const PLAYER_SPRITE_FRAME_W = 50;
 const PLAYER_SPRITE_FRAME_H = 50;
 const FRAMES_PER_FOOTPRINT = 8;
+const FRAMES_FOR_DODGE = 10;
 heartLossDelay = 0;
 var heartHeld = 5;
 var playerWidth = 30;
@@ -23,7 +25,10 @@ function warriorClass() {
   this.keyHeld_East = false;
   this.keyHeld_South = false;
   this.keyHeld_West = false;
-
+  this.framesSinceKeyReleaseNorth = 0;
+  this.framesSinceKeyReleaseEast = 0;
+  this.framesSinceKeyReleaseWest = 0;
+  this.framesSinceKeyReleaseSouth = 0;
   this.facingLeft = false;
 
   // key controls used for this
@@ -152,26 +157,52 @@ function warriorClass() {
     // (diagonal movement not getting stuck)
     // we check horiz and vert movement individually
     let isWalking = false;
+    let moveDist = PLAYER_MOVE_SPEED;
     if (this.keyHeld_East) {
-      this.testMove(this.x+PLAYER_MOVE_SPEED,this.y);
+      if(this.framesSinceKeyReleaseEast >=1 && this.framesSinceKeyReleaseEast < FRAMES_FOR_DODGE){
+        moveDist = PLAYER_DODGE_DIST;
+      }
+      this.testMove(this.x+moveDist,this.y);
       this.facingLeft = false;
       isWalking = true;
+      this.framesSinceKeyReleaseEast = 0;
+    } else {
+      this.framesSinceKeyReleaseEast++;
     }
+
     
     if (this.keyHeld_West) {
-      this.testMove(this.x-PLAYER_MOVE_SPEED,this.y);
+      if(this.framesSinceKeyReleaseWest >=1 && this.framesSinceKeyReleaseWest < FRAMES_FOR_DODGE){
+        moveDist = PLAYER_DODGE_DIST;
+      }
+      this.testMove(this.x-moveDist,this.y);
       this.facingLeft = true;
       isWalking = true;
+      this.framesSinceKeyReleaseWest = 0;
+    }else {
+      this.framesSinceKeyReleaseWest++;
     }
     
     if (this.keyHeld_North) {
-      this.testMove(this.x,this.y-PLAYER_MOVE_SPEED);
+      if(this.framesSinceKeyReleaseNorth >=1 && this.framesSinceKeyReleaseNorth < FRAMES_FOR_DODGE){
+        moveDist = PLAYER_DODGE_DIST;
+      }
+      this.testMove(this.x,this.y-moveDist);
       isWalking = true;
+      this.framesSinceKeyReleaseNorth = 0;
+    }else {
+      this.framesSinceKeyReleaseNorth++;
     }
     
     if (this.keyHeld_South) {
-      this.testMove(this.x,this.y+PLAYER_MOVE_SPEED);
+      if(this.framesSinceKeyReleaseSouth >=1 && this.framesSinceKeyReleaseSouth < FRAMES_FOR_DODGE){
+        moveDist = PLAYER_DODGE_DIST;
+      }
+      this.testMove(this.x,this.y+moveDist);
       isWalking = true;
+      this.framesSinceKeyReleaseSouth = 0;
+    }else {
+      this.framesSinceKeyReleaseSouth++;
     }
 
     if (isWalking && this.animDelay-- < 0) {
