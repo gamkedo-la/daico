@@ -22,6 +22,7 @@ var blueMist=document.createElement("img");
 var greenMist=document.createElement("img");
 var blackMist=document.createElement("img");
 var whiteMist=document.createElement("img");
+var attackFxPic=document.createElement("img");
 
 
 
@@ -71,6 +72,7 @@ function loadImages() {
     {varName:greenMist, theFile:"green_mist.png"},
     {varName:blackMist, theFile:"black_mist.png"},
     {varName:whiteMist, theFile:"white_mist.png"},
+    {varName:attackFxPic, theFile:"attack_fx.png"},
     {tileType:TILE_GROUND, theFile:"dungeon_floor.png"},
     {tileType:TILE_GROUND_2, theFile:"dungeon_floor_2.png"},
     {tileType:TILE_GROUND_3, theFile:"dungeon_floor_3.png"},

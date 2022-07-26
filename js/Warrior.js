@@ -220,6 +220,7 @@ function warriorClass() {
   }
   
   this.attack = function () {
+    attack_fx(this.x,this.y,this.facingLeft);
     for (var i=enemyList.length-1;i>=0; i--) { // backward since we splice from it
       var disX = Math.abs(enemyList[i].x - this.x);
       var disY = Math.abs(enemyList[i].y - this.y);
@@ -227,6 +228,7 @@ function warriorClass() {
         for (var ii=characterDrawOrder.length;ii>=0; ii--) {
           if (characterDrawOrder[ii] == enemyList[i]) {
             characterDrawOrder.splice(ii,1);
+            enemy_hit_fx(enemyList[i].x,enemyList[i].y);
           }
         }
         enemyList.splice(i,1);

@@ -38,7 +38,7 @@ function initInput() {
 			isMouseWheel = true;
 			wheelDir = Math.sign(evt.deltaY);
 		});*/
-  p1.setupControls(KEY_UP_ARROW,KEY_RIGHT_ARROW,KEY_DOWN_ARROW,KEY_LEFT_ARROW, KEY_LETTER_SPACE);
+  p1.setupControls(KEY_UP_ARROW,KEY_RIGHT_ARROW,KEY_DOWN_ARROW,KEY_LEFT_ARROW,KEY_LETTER_SPACE);
 }
 
 function mouseWheel(evt){

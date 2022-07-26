@@ -61,7 +61,7 @@ function SimpleParticles() {
                     p.velX *= 0.94; // slow down
                     p.velY *= 0.94;
                     p.alpha = (1 - lifePercent) * p.maxalpha; // fade
-                    p.angle = Math.PI * 2 * lifePercent * p.rotSpd;
+                    if (p.rotSpd) p.angle = Math.PI * 2 * lifePercent * p.rotSpd;
                     if (timestamp >= p.death) p.inactive = true;
                 }
             });
@@ -103,8 +103,24 @@ function footprint_fx(x,y) {
     particles.add(x,y+18,footprintPic,life,rotspd,ang,velx,vely,alpha);
 }
 
+// for when the player gets hit
 function damage_fx(x, y) {
     //console.log("damage_fx");
+    var num = 8;
+    for (var i = 0; i < num; i++) {
+        let life = randomInt(333,777);
+        let rotspd = Math.random()*0.3-0.15;
+        let ang = 0;
+        let velx = Math.random()*7-1.5;
+        let vely = Math.random()*-3;
+        let alpha = 0.5;
+        particles.add(x,y,bloodPic,life,rotspd,ang,velx,vely,alpha);
+    }
+}
+
+// for when an enemy gets hit
+function enemy_hit_fx(x, y) {
+    console.log("enemy_hit_fx");
     var num = 8;
     for (var i = 0; i < num; i++) {
         let life = randomInt(333,777);
@@ -181,6 +197,24 @@ function rock_fx(x,y) {
         let vely = Math.random()*8-4;
         let alpha = 1.0;
         particles.add(x,y,smokePic,life,rotspd,ang,velx,vely,alpha);
+    }
+}
+
+// for when the player swings their sword
+function attack_fx(x,y,facingLeft) {
+    //console.log("attack_fx facing "+(facingLeft?"left":"right"));
+    let dir = 1;
+    if (facingLeft) dir = -1;
+    for (var i = 0; i < 6; i++) {
+        let life = randomInt(333,666);
+        let rotspd = Math.random()*4-2;
+        let ang = 0;
+        let velx = Math.random()*6*dir;
+        let vely = Math.random()*4-2;
+        let alpha = 0.5;
+        particles.add(x+8*dir,y+8,smokePic,life,rotspd,ang,velx,vely,alpha); // dust
+        let turnAround = Math.PI;
+        particles.add(x+8*dir,y+8,attackFxPic,333,0,facingLeft?turnAround:0,3*dir,0,0.2); //  a woosh )))
     }
 }
 
