@@ -6,23 +6,8 @@ function enemyClass() {
   this.y = 75;
   this.lastSeenPlayerX = 0;
   this.lastSeenPlayerY = 0;
-  // keyboard hold state variables, to use keys more like buttons
-  this.keyHeld_North = false;
-  this.keyHeld_East = false;
-  this.keyHeld_South = false;
-  this.keyHeld_West = false;
-
+ 
   this.damage = 1;
-
-  // key controls used for this
-  this.setupControls = function(northKey,eastKey,southKey,westKey) {
-    this.controlKeyForNorth = northKey;
-    this.controlKeyForEast = eastKey;
-    this.controlKeyForSouth = southKey;
-    this.controlKeyForWest = westKey;
-  }
-
-  
   
   this.resetOnTile = function(whichTile) {
     if(this.homeX == undefined) {
@@ -49,6 +34,20 @@ function enemyClass() {
     return this.resetOnTile(TILE_ENEMY);
   }
 
+  this.AISeeingPlayer = function() {
+    var toPlayer = angTo(p1.x - this.x, p1.y - this.y);
+    this.xv = Math.cos(toPlayer);
+    this.yv = Math.sin(toPlayer);
+    var attackChance = Math.random();
+    if (attackChance < ATTACK_ODDS) {
+      var newSlash = new clawClass();
+      newSlash.x = this.x + this.xv * ATTACK_RANGE;
+      newSlash.y = this.y + this.yv * ATTACK_RANGE;
+      newSlash.ang = toPlayer;
+      enemyAttackList.push(newSlash);
+    }
+  }
+
   this.move = function() {
     if (dist(this.x - p1.x, this.y - p1.y) < 3*TILE_W) {
       var lineBlocked = isWallBetweenPoints(this.x, this.y, p1.x, p1.y);
@@ -65,17 +64,7 @@ function enemyClass() {
       } else { 
         this.lastSeenPlayerX = p1.x;
         this.lastSeenPlayerY = p1.y;
-        var toPlayer = angTo(p1.x - this.x, p1.y - this.y);
-        this.xv = Math.cos(toPlayer);
-        this.yv = Math.sin(toPlayer);
-        var attackChance = Math.random();
-        if (attackChance < ATTACK_ODDS) {
-          var newSlash = new clawClass();
-          newSlash.x = this.x + this.xv * ATTACK_RANGE;
-          newSlash.y = this.y + this.yv * ATTACK_RANGE;
-          newSlash.ang = toPlayer;
-          enemyAttackList.push(newSlash);
-        }
+        this.AISeeingPlayer();
       }
     }
     var nextX = this.x + this.xv;
@@ -120,9 +109,12 @@ function enemyClass() {
     p1.playerHit(this.damage);
   }
 
-  this.draw = function() {
-    var feetOffsetFromCenter = VERTICAL_OFFSET_OF_FEET - enemyPic.height/2;
-    drawBitmapCenteredAtLocationWithRotation( enemyPic, this.x, this.y - feetOffsetFromCenter, 0.0 );
+  this.drawWithSprite = function(whichSprite) {
+    var feetOffsetFromCenter = VERTICAL_OFFSET_OF_FEET - whichSprite.height/2;
+    drawBitmapCenteredAtLocationWithRotation(whichSprite, this.x, this.y - feetOffsetFromCenter, 0.0 );
   }
 
+  this.draw = function() {
+    this.drawWithSprite(enemyPic);
+  }
 } // end of class

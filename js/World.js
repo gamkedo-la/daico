@@ -177,12 +177,7 @@ function tileTypeBlocksEnemy(type) {
   }
   return true;
 }
-function tileTypeBlocksBoss(type) {
-  if(type == TILE_GROUND || type == TILE_KEY){
-    return false;
-  }
-  return true;
-}
+
 function isWallBetweenPoints(p1X,p1Y,p2X,p2Y){
   var testX = p1X;
   var testY = p1Y;
