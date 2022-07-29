@@ -190,7 +190,24 @@ function isWallBetweenPoints(p1X,p1Y,p2X,p2Y){
       return true;
     }
   }
-  
-  //todo check points between the ends
   return false;
+}
+
+function whereIsWallBetweenPoints(p1X,p1Y,p2X,p2Y){
+  var testX = p1X;
+  var testY = p1Y;
+  var lastSafeX = testX;
+  var lastSafeY = testY;
+  
+  for(var perc=0; perc <= 1.0; perc+= 0.05) {
+    testX = p1X * (1.0 - perc) + p2X * perc;
+    testY = p1Y * (1.0 - perc) + p2Y * perc;
+    var tileHere = tileTypeAtPixel(testX,testY);
+    if(tileTypeBlocksEnemy(tileHere)) {
+      return {x:lastSafeX, y:lastSafeY};
+    }
+    lastSafeX = testX;
+    lastSafeY = testY;
+  }
+  return {x:lastSafeX, y:lastSafeY};
 }

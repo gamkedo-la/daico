@@ -1,6 +1,6 @@
 // tuning constants
 const PLAYER_MOVE_SPEED = 3.0;
-const PLAYER_DODGE_DIST = 70.0;
+const PLAYER_DODGE_DIST = 150.0;
 const FRAMES_BETWEEN_HEART_LOSS = 30;
 const PLAYER_SPRITE_FRAME_W = 50;
 const PLAYER_SPRITE_FRAME_H = 50;
@@ -68,10 +68,9 @@ function warriorClass() {
   } // end of reset
   
   this.testMove = function(nextX,nextY) {
-    var lineBlocked = isWallBetweenPoints(this.x, this.y, nextX, nextY);
-    if(lineBlocked) {
-      return;
-    }
+    var lineBlockedAt = whereIsWallBetweenPoints(this.x, this.y, nextX, nextY);
+    nextX = lineBlockedAt.x;
+    nextY = lineBlockedAt.y;
     var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX,nextY);
     var walkIntoTileType = TILE_WALL; // assume wall when tile is missing
     if (walkIntoTileIndex != undefined) { walkIntoTileType = roomGrid[walkIntoTileIndex]; }
