@@ -1,52 +1,13 @@
+bossClass.prototype = new enemyClass();
 // tuning constants
 const BOSS_MOVE_SPEED = 3.0;
 const BOSS_ATTACK_SPREAD = 30;
+
 function bossClass() {
-  // variables to keep track of position
-  this.x = 75;
-  this.y = 75;
-  this.lastSeenPlayerX = 0;
-  this.lastSeenPlayerY = 0;
-  // keyboard hold state variables, to use keys more like buttons
-  this.keyHeld_North = false;
-  this.keyHeld_East = false;
-  this.keyHeld_South = false;
-  this.keyHeld_West = false;
-
-  this.damage = 1;
-
-  // key controls used for this
-  this.setupControls = function(northKey,eastKey,southKey,westKey) {
-    this.controlKeyForNorth = northKey;
-    this.controlKeyForEast = eastKey;
-    this.controlKeyForSouth = southKey;
-    this.controlKeyForWest = westKey;
-  }
-
-  
-  
   this.reset = function() {
-    if(this.homeX == undefined) {
-      for(var i=0; i<roomGrid.length; i++) {
-        if( roomGrid[i] == TILE_BOSS) {
-          var tileRow = Math.floor(i/ROOM_COLS);
-          var tileCol = i%ROOM_COLS;
-          this.homeX = tileCol * TILE_W + 0.5*TILE_W;
-          this.homeY = tileRow * TILE_H + 0.5*TILE_H;
-          this.x = this.homeX;
-          this.y = this.homeY;
-          roomGrid[i] = TILE_GROUND;
-          return true; // found it, so no need to keep searching 
-        } // end of if
-      } // end of for
-    } // end of if position not saved yet
-    
-    this.x = this.homeX;
-    this.y = this.homeY;
-    return false;
+    return this.resetOnTile(TILE_BOSS);
   } // end of reset
   
-
   this.move = function() {
     if (dist(this.x - p1.x, this.y - p1.y) < 3*TILE_W) {
       var lineBlocked = isWallBetweenPoints(this.x, this.y, p1.x, p1.y);

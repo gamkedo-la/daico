@@ -24,10 +24,10 @@ function enemyClass() {
 
   
   
-  this.reset = function() {
+  this.resetOnTile = function(whichTile) {
     if(this.homeX == undefined) {
       for(var i=0; i<roomGrid.length; i++) {
-        if( roomGrid[i] == TILE_ENEMY) {
+        if( roomGrid[i] == whichTile) {
           var tileRow = Math.floor(i/ROOM_COLS);
           var tileCol = i%ROOM_COLS;
           this.homeX = tileCol * TILE_W + 0.5*TILE_W;
@@ -45,6 +45,9 @@ function enemyClass() {
     return false;
   } // end of reset
   
+  this.reset = function() {
+    return this.resetOnTile(TILE_ENEMY);
+  }
 
   this.move = function() {
     if (dist(this.x - p1.x, this.y - p1.y) < 3*TILE_W) {
