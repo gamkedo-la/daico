@@ -126,7 +126,8 @@ function bossClass() {
   }
 
   this.draw = function() {
-    drawBitmapCenteredAtLocationWithRotation( bossPic, this.x, this.y, 0.0 );
+    var feetOffsetFromCenter = VERTICAL_OFFSET_OF_FEET - bossPic.height/2;
+    drawBitmapCenteredAtLocationWithRotation( bossPic, this.x, this.y - feetOffsetFromCenter, 0.0 );
   }
 
 } // end of class

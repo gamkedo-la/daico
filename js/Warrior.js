@@ -274,22 +274,21 @@ function warriorClass() {
 }
   this.draw = function() {
     //drawBitmapCenteredAtLocationWithRotation( this.myBitmap, this.x, this.y, 0.0 );
-
     if (this.facingLeft) {
       canvasContext.save();
       canvasContext.scale(-1, 1);
       canvasContext.drawImage(this.myBitmap,
         PLAYER_SPRITE_FRAME_W*this.animFrame,PLAYER_SPRITE_FRAME_H*1, // corner of sprite. multiple sprite frames of W and H will be different frames.
         PLAYER_SPRITE_FRAME_W, PLAYER_SPRITE_FRAME_H,
-        -(this.x - PLAYER_SPRITE_FRAME_W/2),  this.y - PLAYER_SPRITE_FRAME_H/2, // corner of sprite. multiple sprite frames of W and H will be different frames.
+        -(this.x - PLAYER_SPRITE_FRAME_W/2),  this.y  - VERTICAL_OFFSET_OF_FEET, // corner of sprite. multiple sprite frames of W and H will be different frames.
         -PLAYER_SPRITE_FRAME_W, PLAYER_SPRITE_FRAME_H);       
       canvasContext.restore();
     } else {
       canvasContext.drawImage(this.myBitmap, 
         PLAYER_SPRITE_FRAME_W*this.animFrame,PLAYER_SPRITE_FRAME_H*1, // corner of sprite. multiple sprite frames of W and H will be different frames.
         PLAYER_SPRITE_FRAME_W, PLAYER_SPRITE_FRAME_H,
-        (this.x - PLAYER_SPRITE_FRAME_W/2),  this.y - PLAYER_SPRITE_FRAME_H/2,
-        PLAYER_SPRITE_FRAME_W, PLAYER_SPRITE_FRAME_H);  
+        (this.x - PLAYER_SPRITE_FRAME_W/2),  this.y - VERTICAL_OFFSET_OF_FEET,
+        PLAYER_SPRITE_FRAME_W, PLAYER_SPRITE_FRAME_H);
     }
   }
 
