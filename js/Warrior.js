@@ -69,10 +69,16 @@ function warriorClass() {
   
   this.testMove = function(nextX,nextY) {
     var lineBlockedAt = whereIsWallBetweenPoints(this.x, this.y, nextX, nextY);
-    nextX = lineBlockedAt.x;
-    nextY = lineBlockedAt.y;
     var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX,nextY);
     var walkIntoTileType = TILE_WALL; // assume wall when tile is missing
+    if (walkIntoTileIndex != undefined) { walkIntoTileType = roomGrid[walkIntoTileIndex]; }
+    if(tileTypeBlocksPlayer(walkIntoTileType)) {
+      nextX = lineBlockedAt.x;
+      nextY = lineBlockedAt.y;
+    }
+    
+    walkIntoTileIndex = getTileIndexAtPixelCoord(nextX,nextY);
+    walkIntoTileType = TILE_WALL; // assume wall when tile is missing
     if (walkIntoTileIndex != undefined) { walkIntoTileType = roomGrid[walkIntoTileIndex]; }
     switch( walkIntoTileType ) {
       case TILE_GROUND:

@@ -190,10 +190,19 @@ function drawRoom() {
 } // end of drawRoom()
 
 function tileTypeBlocksEnemy(type) {
-  if(type == TILE_GROUND || type == TILE_KEY){
+  if(type == TILE_GROUND || type == TILE_KEY || type == TILE_DOOR || type == TILE_LIVING_ANGEL || type == TILE_STONED_ANGEL ||
+    type == TILE_DIAMOND || type == TILE_ROCK || type == TILE_POTION){
     return false;
   }
   return true;
+}
+
+
+function tileTypeBlocksPlayer(type) {
+  if (type == TILE_DOOR){
+    return false;
+  } 
+ return tileTypeBlocksEnemy(type);
 }
 
 function isWallBetweenPoints(p1X,p1Y,p2X,p2Y){
