@@ -95,7 +95,7 @@ function warriorClass() {
         if(this.keysHeld > 0) {
           this.keysHeld--; // one less key
           document.getElementById("debugText").innerHTML = "Keys: "+this.keysHeld;
-          roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove door
+          removeTileAndUpdateMinimap(walkIntoTileIndex);
           door_fx(this.x,this.y);
         }
         break;
@@ -110,27 +110,27 @@ function warriorClass() {
       case TILE_KEY:
         this.keysHeld++; // gain key
         document.getElementById("debugText").innerHTML = "Keys: "+this.keysHeld;
-        roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove key
+        removeTileAndUpdateMinimap(walkIntoTileIndex);
         key_fx(this.x,this.y);
         break;
       case TILE_POTION:
         if(this.itemsHeld <= 3) {
           this.itemsHeld++; // one more item
-          roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove door
+          removeTileAndUpdateMinimap(walkIntoTileIndex);
           potion_fx(this.x,this.y);
         }
         break;
       case TILE_ROCK:
         if(this.itemsHeld <= 3) {
           this.itemsHeld++; // one more item
-          roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove door
+          removeTileAndUpdateMinimap(walkIntoTileIndex);
           rock_fx(this.x,this.y);
         }
         break;
       case TILE_DIAMOND:
         if(this.itemsHeld <= 3) {
           this.itemsHeld++; // one more item
-          roomGrid[walkIntoTileIndex] = TILE_GROUND; // remove door
+          removeTileAndUpdateMinimap(walkIntoTileIndex);
           diamond_fx(this.x,this.y);
         }
         break;

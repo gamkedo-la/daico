@@ -190,9 +190,15 @@ function drawRoom() {
   } // end of for eachRow   
 } // end of drawRoom()
 
-
+function tileTypePickUp(type){
+  if(type == TILE_KEY || type == TILE_DOOR || type == TILE_LIVING_ANGEL || type == TILE_STONED_ANGEL ||
+    type == TILE_DIAMOND || type == TILE_ROCK || type == TILE_POTION){
+    return true;
+  }
+  return false;
+}
 function tileTypeBlocksEnemy(type) {
-  if(type == TILE_GROUND || type == TILE_KEY || type == TILE_DOOR || type == TILE_LIVING_ANGEL || type == TILE_STONED_ANGEL ||
+  if(type == TILE_GROUND || type == TILE_KEY || type == TILE_LIVING_ANGEL || type == TILE_STONED_ANGEL ||
     type == TILE_DIAMOND || type == TILE_ROCK || type == TILE_POTION){
     return false;
   }
