@@ -5,7 +5,12 @@ function drawMiniMap (x, y) {
 	var screenCols = Math.floor(canvas.width/TILE_W) + 2;
 	var screenRows = Math.floor(canvas.height/TILE_H) + 2;
 	canvasContext.drawImage(miniMapCanvas, x,y);
-
+    for (var i=0;i<characterDrawOrder.length; i++) {
+        var mapX = x +  Math.floor(characterDrawOrder[i].x / TILE_W) * MINIMAP_TILE_SIZE;
+        var mapY = y + Math.floor(characterDrawOrder[i].y / TILE_H) * MINIMAP_TILE_SIZE;
+        colorRect(mapX, mapY, MINIMAP_TILE_SIZE, MINIMAP_TILE_SIZE, 'red');
+        
+    }
 	//mapRectOutline(x+tileCol*MINIMAP_TILE_SIZE, y+tileRow*MINIMAP_TILE_SIZE, screenCols*MINIMAP_TILE_SIZE, screenRows*MINIMAP_TILE_SIZE, "red");
 } 
 function removeTileAndUpdateMinimap(index) {
