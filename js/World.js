@@ -89,8 +89,8 @@ function loadLevel(whichLevel) {
   miniMapCanvas.width = MINIMAP_TILE_SIZE*ROOM_COLS;
   miniMapCanvas.height = MINIMAP_TILE_SIZE*ROOM_ROWS;
   miniMapCanvasContext = miniMapCanvas.getContext('2d');
-  updateMiniMap();
   roomGrid = JSON.parse(JSON.stringify(whichLevel));
+  
   if (editorMode == false) {
     p1.init(playerPic, "Blue");
     angel.reset();
@@ -108,7 +108,7 @@ function loadLevel(whichLevel) {
   } else {
     characterDrawOrder = [];
   }
-  
+  updateMiniMap();
 
 }
 function roomTileToIndex(tileCol, tileRow) {
@@ -149,7 +149,8 @@ function tileTypeHasWallCollision(checkTileType) {
     checkTileType == TILE_DOOR ||
     checkTileType == TILE_POTION ||
     checkTileType == TILE_ROCK ||
-    checkTileType == TILE_DIAMOND);
+    checkTileType == TILE_DIAMOND ||
+    checkTileType == TILE_WALL);
 }
 
 function tileTypeAtPixel(pixelX, pixelY){
@@ -188,6 +189,7 @@ function drawRoom() {
     
   } // end of for eachRow   
 } // end of drawRoom()
+
 
 function tileTypeBlocksEnemy(type) {
   if(type == TILE_GROUND || type == TILE_KEY || type == TILE_DOOR || type == TILE_LIVING_ANGEL || type == TILE_STONED_ANGEL ||
