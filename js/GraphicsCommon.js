@@ -33,3 +33,12 @@ function drawBitmapCenteredAtLocationWithRotation(graphic,atX,atY,withAngle,alph
   if (alpha!=undefined) canvasContext.globalAlpha = 1;
   canvasContext.restore(); // undo the translation movement and rotation since save()
 }
+
+function mapRectOutline(topLeftX, topLeftY, boxWidth, boxHeight, strokeColor) {
+	canvasContext.strokeStyle = strokeColor;
+	canvasContext.strokeRect(topLeftX+2, topLeftY+2, boxWidth-4, boxHeight-4);
+}
+function mapRect(topLeftX, topLeftY, boxWidth, boxHeight, fillColor) {
+	miniMapCanvasContext.fillStyle = fillColor;
+	miniMapCanvasContext.fillRect(topLeftX, topLeftY, boxWidth, boxHeight);
+}

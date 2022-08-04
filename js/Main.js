@@ -1,5 +1,10 @@
 const VERTICAL_OFFSET_OF_FEET = PLAYER_SPRITE_FRAME_H * 0.8;
 // save the canvas for dimensions, and its 2d context for drawing to it
+const minimapX = 40;
+const minimapY = 40;
+
+
+var showMinimap = true;
 var canvas, canvasContext;
 var characterDrawOrder = [];
 
@@ -32,6 +37,10 @@ window.onload = function() {
   canvas = document.getElementById('gameCanvas');
   canvasContext = canvas.getContext('2d');
 
+  miniMapCanvas = document.createElement('canvas');
+  miniMapCanvas.width = MINIMAP_TILE_SIZE*ROOM_COLS;
+  miniMapCanvas.height = MINIMAP_TILE_SIZE*ROOM_ROWS;
+  miniMapCanvasContext = miniMapCanvas.getContext('2d');
   mainMenu = new MainMenu();
   splashMenu = new Splash();
   pauseScreen = new PauseScreen();
@@ -149,6 +158,9 @@ function drawEverything() {
   }
   endCameraPan();
   drawHealthUI();
+  if (showMinimap == true) {
+    drawMiniMap(minimapX,minimapY);
+  }
   colorRect(0, canvas.height - 15, canvas.width , 15, 'black');
   if (editorMode) {
     editorDraw();

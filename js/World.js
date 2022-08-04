@@ -86,6 +86,10 @@ function loadLevel(whichLevel) {
   } else {
     canvas.width = 800;
   }
+  miniMapCanvas.width = MINIMAP_TILE_SIZE*ROOM_COLS;
+  miniMapCanvas.height = MINIMAP_TILE_SIZE*ROOM_ROWS;
+  miniMapCanvasContext = miniMapCanvas.getContext('2d');
+  updateMiniMap();
   roomGrid = JSON.parse(JSON.stringify(whichLevel));
   if (editorMode == false) {
     p1.init(playerPic, "Blue");
@@ -137,6 +141,15 @@ function tileTypeHasTransparency(checkTileType) {
           checkTileType == TILE_POTION ||
           checkTileType == TILE_ROCK ||
           checkTileType == TILE_DIAMOND);
+}
+
+function tileTypeHasWallCollision(checkTileType) {
+	return (checkTileType == TILE_GOAL ||
+    checkTileType == TILE_KEY ||
+    checkTileType == TILE_DOOR ||
+    checkTileType == TILE_POTION ||
+    checkTileType == TILE_ROCK ||
+    checkTileType == TILE_DIAMOND);
 }
 
 function tileTypeAtPixel(pixelX, pixelY){
