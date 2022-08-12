@@ -130,7 +130,7 @@ function getTileIndexAtPixelCoord(pixelX,pixelY) {
   // first check whether the tile coords fall within valid bounds
   if(tileCol < 0 || tileCol >= ROOM_COLS ||
      tileRow < 0 || tileRow >= ROOM_ROWS) {
-     document.getElementById("debugText").innerHTML = "out of bounds:"+pixelX+","+pixelY;
+     //document.getElementById("debugText").innerHTML = "out of bounds:"+pixelX+","+pixelY;
      return undefined;
   }
   
@@ -211,9 +211,10 @@ function tileTypeBlocksEnemy(type) {
 
 
 function tileTypeBlocksPlayer(type) {
-  if (type == TILE_DOOR){
+  if (type == TILE_DOOR || type == TILE_MAGIC_DOOR || type == TILE_MAGIC_DOOR2){
     return false;
-  } 
+  }
+
  return tileTypeBlocksEnemy(type);
 }
 
@@ -232,6 +233,7 @@ function isWallBetweenPoints(p1X,p1Y,p2X,p2Y){
   return false;
 }
 
+
 function whereIsWallBetweenPoints(p1X,p1Y,p2X,p2Y){
   var testX = p1X;
   var testY = p1Y;
@@ -243,10 +245,10 @@ function whereIsWallBetweenPoints(p1X,p1Y,p2X,p2Y){
     testY = p1Y * (1.0 - perc) + p2Y * perc;
     var tileHere = tileTypeAtPixel(testX,testY);
     if(tileTypeBlocksEnemy(tileHere)) {
-      return {x:lastSafeX, y:lastSafeY};
+      return {x:lastSafeX, y:lastSafeY, tileKind:tileHere};
     }
     lastSafeX = testX;
     lastSafeY = testY;
   }
-  return {x:lastSafeX, y:lastSafeY};
+  return {x:lastSafeX, y:lastSafeY, tileKind:TILE_WALL};
 }
