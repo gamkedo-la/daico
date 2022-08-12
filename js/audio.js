@@ -14,16 +14,13 @@ function setFormat() {
 function BackgroundMusicClass(filenameWithPath) {
 
   var musicSound = null;
-  console.log(filenameWithPath);
 
   //this.loopSong = function(filenameWithPath) {
     setFormat(); // calling this to ensure that audioFormat is set before needed
-    console.log("audio format = " + audioFormat);
     if(musicSound != null) {
       musicSound.pause();
       musicSound = null;
     }
-    console.log(filenameWithPath + audioFormat);
     musicSound = new Audio(filenameWithPath+audioFormat);
     musicSound.loop = true;
     musicSound.play();
@@ -32,11 +29,9 @@ function BackgroundMusicClass(filenameWithPath) {
   this.startOrStopMusic = function() {
     if(musicSound.paused) {
       musicSound.play();
-      console.log("Play Music");
       showCredits = false;
     } else {
       musicSound.pause();
-      console.log("Mute Music");
     }
   }
   return this;

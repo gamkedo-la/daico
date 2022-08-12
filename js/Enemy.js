@@ -107,6 +107,10 @@ function enemyClass() {
   
   this.playerCollide = function() {
     p1.playerHit(this.damage);
+    var diffX = p1.x - this.x;
+    var diffY = p1.y - this.y;
+    p1.x += diffX * 0.5;
+    p1.y += diffY * 0.5;
   }
 
   this.drawWithSprite = function(whichSprite) {

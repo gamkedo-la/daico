@@ -98,8 +98,7 @@ function loadLevel(whichLevel) {
   if (editorMode == false) {
     p1.init(playerPic, "Blue");
     angel.reset();
-    boss.reset();
-    characterDrawOrder = [p1,angel,boss];
+    characterDrawOrder = [p1,angel];
     var foundAnotherEnemy;
     do {
       var e1 = new enemyClass();
@@ -109,6 +108,16 @@ function loadLevel(whichLevel) {
         characterDrawOrder.push(e1);
       }
     } while (foundAnotherEnemy);
+
+    do {
+      var e1 = new bossClass();
+      foundAnotherEnemy = e1.reset();
+      if (foundAnotherEnemy) {
+        enemyList.push(e1);
+        characterDrawOrder.push(e1);
+      }
+    } while (foundAnotherEnemy);
+
   } else {
     characterDrawOrder = [];
   }
