@@ -71,7 +71,9 @@ function warriorClass() {
     var lineBlockedAt = whereIsWallBetweenPoints(this.x, this.y, nextX, nextY);
     var walkIntoTileIndex = getTileIndexAtPixelCoord(lineBlockedAt.x, lineBlockedAt.y);
     var walkIntoTileType = lineBlockedAt.tileKind; // assume wall when tile is missing
-    if(tileTypeBlocksPlayer(walkIntoTileType)) {
+    var intoDoor = (walkIntoTileType == TILE_DOOR && this.keysHeld == 0);
+    var doorIdx = walkIntoTileIndex;
+    if(tileTypeBlocksPlayer(walkIntoTileType) || intoDoor) {
       nextX = lineBlockedAt.x;
       nextY = lineBlockedAt.y;
     }
@@ -79,6 +81,14 @@ function warriorClass() {
     walkIntoTileIndex = getTileIndexAtPixelCoord(nextX,nextY);
     walkIntoTileType = TILE_WALL; // assume wall when tile is missing
     if (walkIntoTileIndex != undefined) { walkIntoTileType = roomGrid[walkIntoTileIndex]; }
+    if(intoDoor){
+      console.log("door dash detected/ may break multiple doors");
+      walkIntoTileType = TILE_DOOR;
+      walkIntoTileIndex = doorIdx;
+      nextX = lineBlockedAt.x;
+      nextY = lineBlockedAt.y;
+      
+    }
     switch( walkIntoTileType ) {
       case TILE_GROUND:
         this.x = nextX;
