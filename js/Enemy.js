@@ -109,8 +109,17 @@ function enemyClass() {
     p1.playerHit(this.damage);
     var diffX = p1.x - this.x;
     var diffY = p1.y - this.y;
-    p1.x += diffX * 0.5;
-    p1.y += diffY * 0.5;
+    var pushToX = p1.x + diffX * 0.5;
+    var pushToY = p1.y + diffY * 0.5;
+
+    var lineBlockedAt = whereIsWallBetweenPoints(p1.x, p1.y, pushToX, pushToY);
+    var walkIntoTileType = lineBlockedAt.tileKind; // assume wall when tile is missing
+    if(tileTypeBlocksPlayer(walkIntoTileType)) {
+      pushToX = lineBlockedAt.x;
+      pushToY = lineBlockedAt.y;
+    }
+    p1.x = pushToX;
+    p1.y = pushToY;
   }
 
   this.drawWithSprite = function(whichSprite) {
