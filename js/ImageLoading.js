@@ -96,9 +96,13 @@ function loadImages() {
     {tileType:TILE_FULL_HEART, theFile:"heartempty.png"}, // TODO: Is this right?
     {tileType:TILE_LIVING_ANGEL, theFile:"living_angel.png"},
     {tileType:TILE_STONED_ANGEL, theFile:"stoned_angel.png"},
-    {tileType:TILE_DIAMOND, theFile:"diamond.png"},
+    {tileType:TILE_DIAMOND, theFile:"Daico_Diamond.png"},
     {tileType:TILE_ROCK, theFile:"rock.png"},
-    {tileType:TILE_POTION, theFile:"potion.png"},
+    {tileType:TILE_RED_GEM, theFile:"Daico_RedGem.png"},
+    {tileType:TILE_BLUE_GEM, theFile:"Daico_blue_gem.png"},
+    {tileType:TILE_GREEN_GEM, theFile:"Daico_green_gem.png"},
+    {tileType:TILE_POTION, theFile:"Daico_green_potion.png"},
+    {tileType:TILE_HEALTH, theFile:"Daico_Potion.png"},
 
     ];
 

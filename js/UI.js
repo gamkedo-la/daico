@@ -38,6 +38,25 @@ function drawHealthUI() {
     }
 }
 
+function drawItemsUI() {
+    var pos = 0;
+    showItemNum;
+    var itemsList = [showRedGemNum, showBlueGemNum, showDiamondNum,
+    showDiamondNum];
+    
+    for (let item = 0; item < itemsList; item++) {
+        const itemsToDraw = Math.max(showItemNum, 99)
+        for (let i = 0; i < itemsToDraw; i++) {
+            if (i < Math.floor(showItemNum)) {
+                canvasContext.drawImage(
+                    TILE_DIAMOND,
+                    pos + i * 26, 0,
+                    heartEmpty.width, heartEmpty.height
+                );
+            } 
+        }
+    }
+}
 function GameOverScreen() {
     this.gameOverBoxWidth = 500;
     this.gameOverBoxHeight = 200;

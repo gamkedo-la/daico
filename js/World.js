@@ -73,7 +73,11 @@ const TILE_CORNER1 = 22;
 const TILE_CORNER2 = 23;
 const TILE_CORNER3 = 24;
 const TILE_CORNER4 = 25;
-const TILE_LAST = TILE_CORNER4;
+const TILE_HEALTH = 26;
+const TILE_RED_GEM = 27;
+const TILE_GREEN_GEM = 28;
+const TILE_BLUE_GEM = 29;
+const TILE_LAST = TILE_BLUE_GEM;
 
 var raycastP1X = 50;
 var raycastP1Y = 50;
