@@ -254,7 +254,8 @@ function whereIsWallBetweenPoints(p1X,p1Y,p2X,p2Y){
     testY = p1Y * (1.0 - perc) + p2Y * perc;
     var tileHere = tileTypeAtPixel(testX,testY);
     if(tileTypeBlocksEnemy(tileHere)) {
-      return {x:lastSafeX, y:lastSafeY, tileKind:tileHere};
+      var indexBlockedAt = getTileIndexAtPixelCoord(testX,testY);
+      return {x:lastSafeX, y:lastSafeY, tileKind:tileHere, idxBlockedAt: indexBlockedAt};
     }
     lastSafeX = testX;
     lastSafeY = testY;
