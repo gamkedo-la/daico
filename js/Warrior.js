@@ -288,6 +288,10 @@ function warriorClass() {
 }
   this.draw = function() {
     //drawBitmapCenteredAtLocationWithRotation( this.myBitmap, this.x, this.y, 0.0 );
+    if (heartLossDelay > 0 && heartLossDelay % 2 == 0) {
+        return;
+    }
+
     if (this.facingLeft) {
       canvasContext.save();
       canvasContext.scale(-1, 1);
