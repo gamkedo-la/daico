@@ -49,6 +49,12 @@ function warriorClass() {
   this.reset = function() {
     this.keysHeld = 0;
     this.itemsHeld = 0;
+    this.diamondsHeld = 0;
+    this.redGemsHeld = 0;
+    this.BlueGemsHeld = 0;
+    this.potionsHeld = 0;
+    this.vialssHeld = 0;
+    this.rocksHeld = 0;
     //if(this.homeX == undefined) {
       for(var i=0; i<roomGrid.length; i++) {
         if( roomGrid[i] == TILE_PLAYER) {
@@ -124,26 +130,49 @@ function warriorClass() {
         key_fx(this.x,this.y);
         break;
       case TILE_POTION:
-        if(this.itemsHeld <= 3) {
-          this.itemsHeld++; // one more item
+        if(this.potionsHeld <= 99) {
+          this.potionsHeld++; // one more item
           removeTileAndUpdateMinimap(walkIntoTileIndex);
           potion_fx(this.x,this.y);
         }
         break;
       case TILE_ROCK:
-        if(this.itemsHeld <= 3) {
-          this.itemsHeld++; // one more item
+        if(this.rocksHeld <= 99) {
+          this.rocksHeld++; // one more item
           removeTileAndUpdateMinimap(walkIntoTileIndex);
           rock_fx(this.x,this.y);
         }
         break;
       case TILE_DIAMOND:
-        if(this.itemsHeld <= 3) {
-          this.itemsHeld++; // one more item
+        if(this.diamondsHeld <= 3) {
+          this.diamondsHeld++; // one more item
           removeTileAndUpdateMinimap(walkIntoTileIndex);
           diamond_fx(this.x,this.y);
         }
         break;
+
+      case TILE_BLUE_GEM:
+        if(this.blueGemsHeld <= 3) {
+          this.blueGemsHeld++; // one more item
+          removeTileAndUpdateMinimap(walkIntoTileIndex);
+          diamond_fx(this.x,this.y);
+        }
+        break;
+      case TILE_RED_GEM:
+        if(this.redGemsHeld <= 3) {
+          this.redGemsHeld++; // one more item
+          removeTileAndUpdateMinimap(walkIntoTileIndex);
+          diamond_fx(this.x,this.y);
+        }
+        break;
+      case TILE_VIAL:
+        if(this.vialsHeld <= 99) {
+          this.vialsHeld++; // one more item
+          removeTileAndUpdateMinimap(walkIntoTileIndex);
+          diamond_fx(this.x,this.y);
+        }
+        break;
+
       case TILE_STONED_ANGEL:
           break;       
       case TILE_WALL:
@@ -154,9 +183,9 @@ function warriorClass() {
     }
   }
   this.angelBump = function() {
-    if(this.itemsHeld >= 3) {
+    if(this.potionsHeld>= 1 ) {
       console.log(this.itemsHeld);
-      this.itemsHeld = 0; // one more item
+      this.potionsHeld--; // one more item
       angel_fx(this.x,this.y);
       return true;
     } 

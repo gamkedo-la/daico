@@ -23,6 +23,13 @@ var greenMist=document.createElement("img");
 var blackMist=document.createElement("img");
 var whiteMist=document.createElement("img");
 var attackFxPic=document.createElement("img");
+var diamond=document.createElement("img");
+var rock=document.createElement("img");
+var redGem=document.createElement("img");
+var blueGem=document.createElement("img");
+var greenGem=document.createElement("img");
+var vial=document.createElement("img");
+var potion=document.createElement("img");
 
 
 
@@ -73,6 +80,15 @@ function loadImages() {
     {varName:blackMist, theFile:"black_mist.png"},
     {varName:whiteMist, theFile:"white_mist.png"},
     {varName:attackFxPic, theFile:"attack_fx.png"},
+    
+    {varName:diamond, theFile:"Daico_Diamond.png"},
+    {varName:rock, theFile:"rock.png"},
+    {varName:redGem, theFile:"Daico_RedGem.png"},
+    {varName:blueGem, theFile:"Daico_blue_gem.png"},
+    {varName:greenGem, theFile:"Daico_green_gem.png"},
+    {varName:potion, theFile:"Daico_green_potion.png"},
+    {varName:vial, theFile:"Daico_Potion.png"},
+
     {tileType:TILE_GROUND, theFile:"dungeon_floor.png"},
     {tileType:TILE_GROUND_2, theFile:"dungeon_floor_2.png"},
     {tileType:TILE_GROUND_3, theFile:"dungeon_floor_3.png"},
@@ -102,7 +118,7 @@ function loadImages() {
     {tileType:TILE_BLUE_GEM, theFile:"Daico_blue_gem.png"},
     {tileType:TILE_GREEN_GEM, theFile:"Daico_green_gem.png"},
     {tileType:TILE_POTION, theFile:"Daico_green_potion.png"},
-    {tileType:TILE_HEALTH, theFile:"Daico_Potion.png"},
+    {tileType:TILE_VIAL, theFile:"Daico_Potion.png"},
 
     ];
 

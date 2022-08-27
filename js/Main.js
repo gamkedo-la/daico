@@ -156,6 +156,7 @@ function drawEverything() {
   }
   endCameraPan();
   drawHealthUI();
+  drawItemsUI();
   if (showMinimap == true) {
     drawMiniMap(minimapX,minimapY);
   }

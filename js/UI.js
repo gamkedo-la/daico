@@ -40,19 +40,21 @@ function drawHealthUI() {
 
 function drawItemsUI() {
     var pos = 0;
-    showItemNum;
+    var showRedGemNum, showBlueGemNum, showDiamondNum,
+    showDiamondNum;
     var itemsList = [showRedGemNum, showBlueGemNum, showDiamondNum,
     showDiamondNum];
-    
+    canvasContext.drawImage(potion, 0,0, potion.width,potion.height);
+    canvasContext.drawImage(vial, 0,0, vial.width,vial.height);
+    canvasContext.drawImage(diamond, 0,0, diamond.width,diamond.height);
+    canvasContext.drawImage(redGem, 0,0, redGem.width,redGem.height);
+    canvasContext.drawImage(blueGem, 50,141, blueGem.width,blueGem.height);
+    canvasContext.drawImage(greenGem, 50,141, greenGem.width,greenGem.height);
+    canvasContext.drawImage(rock, 50,141, greenGem.width,greenGem.height);
     for (let item = 0; item < itemsList; item++) {
-        const itemsToDraw = Math.max(showItemNum, 99)
         for (let i = 0; i < itemsToDraw; i++) {
-            if (i < Math.floor(showItemNum)) {
-                canvasContext.drawImage(
-                    TILE_DIAMOND,
-                    pos + i * 26, 0,
-                    heartEmpty.width, heartEmpty.height
-                );
+            if (i < Math.floor(showRedGemNum)) {
+               
             } 
         }
     }
