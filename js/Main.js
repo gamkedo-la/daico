@@ -32,6 +32,7 @@ let ratManager;
 
 var isGamePaused = false;
 var editorMode = false;
+var isInventoryOn = false;
 window.onload = function() {
   canvas = document.getElementById('gameCanvas');
   canvasContext = canvas.getContext('2d');
@@ -156,7 +157,6 @@ function drawEverything() {
   }
   endCameraPan();
   drawHealthUI();
-  drawItemsUI();
   if (showMinimap == true) {
     drawMiniMap(minimapX,minimapY);
   }
@@ -181,6 +181,9 @@ function drawEverything() {
   }
   if (gameIsOver)
   {gameOverScreen.draw();
+  }
+  if(isInventoryOn) {
+    drawItemsUI();
   }
 }
 

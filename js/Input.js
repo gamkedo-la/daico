@@ -18,6 +18,7 @@ const KEY_TAB = 9;
 const KEY_ENTER = 13;
 const KEY_LEFT_BRACKET = 219;
 const KEY_RIGHT_BRACKET = 221;
+const KEY_LETTER_I = 73;
 const KEY_LETTER_M = 77;
 const KEY_LETTER_P = 80;
 const KEY_LETTER_R = 82;
@@ -126,7 +127,10 @@ function keyPressed(evt) {
       isGamePaused = !isGamePaused;
       console.log("Game is paused");
       break;
-
+    case KEY_LETTER_I:
+      // I for inventory
+      isInventoryOn = !isInventoryOn;
+      break;
     case KEY_LETTER_R:
         if(gameIsOver) {
           gameIsOver = !gameIsOver;
