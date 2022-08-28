@@ -1,6 +1,8 @@
 // tuning constants
 const PLAYER_MOVE_SPEED = 3.0;
 const PLAYER_DODGE_DIST = 150.0;
+const PLAYER_DODGE_AFTERIMAGE_COUNT = 100;
+const PLAYER_DODGE_AFTERIMAGE_EXTENSION_LENGTH = 200;
 const FRAMES_BETWEEN_HEART_LOSS = 30;
 const PLAYER_SPRITE_FRAME_W = 50;
 const PLAYER_SPRITE_FRAME_H = 50;
@@ -17,6 +19,9 @@ function warriorClass() {
   // variables to keep track of position
   this.x = 75;
   this.y = 75;
+  this.previousX = this.x;
+  this.previousY = this.y;
+  this.moveDist = PLAYER_MOVE_SPEED;
  this.animFrame =0;
  this.animDelay = 3;
 
@@ -85,6 +90,8 @@ function warriorClass() {
       nextX = lineBlockedAt.x;
       nextY = lineBlockedAt.y;
     }
+    this.previousX = this.x;
+    this.previousY = this.y;
     
     walkIntoTileIndex = getTileIndexAtPixelCoord(nextX,nextY);
     walkIntoTileType = TILE_WALL; // assume wall when tile is missing
@@ -228,12 +235,12 @@ function warriorClass() {
     // (diagonal movement not getting stuck)
     // we check horiz and vert movement individually
     let isWalking = false;
-    let moveDist = PLAYER_MOVE_SPEED;
+    this.moveDist = PLAYER_MOVE_SPEED;
     if (this.keyHeld_East) {
       if(this.framesSinceKeyReleaseEast >=1 && this.framesSinceKeyReleaseEast < FRAMES_FOR_DODGE){
-        moveDist = PLAYER_DODGE_DIST;
+        this.moveDist = PLAYER_DODGE_DIST;
       }
-      this.testMove(this.x+moveDist,this.y);
+      this.testMove(this.x+this.moveDist,this.y);
       this.facingLeft = false;
       isWalking = true;
       this.framesSinceKeyReleaseEast = 0;
@@ -244,9 +251,9 @@ function warriorClass() {
     
     if (this.keyHeld_West) {
       if(this.framesSinceKeyReleaseWest >=1 && this.framesSinceKeyReleaseWest < FRAMES_FOR_DODGE){
-        moveDist = PLAYER_DODGE_DIST;
+        this.moveDist = PLAYER_DODGE_DIST;
       }
-      this.testMove(this.x-moveDist,this.y);
+      this.testMove(this.x-this.moveDist,this.y);
       this.facingLeft = true;
       isWalking = true;
       this.framesSinceKeyReleaseWest = 0;
@@ -256,9 +263,9 @@ function warriorClass() {
     
     if (this.keyHeld_North) {
       if(this.framesSinceKeyReleaseNorth >=1 && this.framesSinceKeyReleaseNorth < FRAMES_FOR_DODGE){
-        moveDist = PLAYER_DODGE_DIST;
+        this.moveDist = PLAYER_DODGE_DIST;
       }
-      this.testMove(this.x,this.y-moveDist);
+      this.testMove(this.x,this.y-this.moveDist);
       isWalking = true;
       this.framesSinceKeyReleaseNorth = 0;
     }else {
@@ -267,9 +274,9 @@ function warriorClass() {
     
     if (this.keyHeld_South) {
       if(this.framesSinceKeyReleaseSouth >=1 && this.framesSinceKeyReleaseSouth < FRAMES_FOR_DODGE){
-        moveDist = PLAYER_DODGE_DIST;
+        this.moveDist = PLAYER_DODGE_DIST;
       }
-      this.testMove(this.x,this.y+moveDist);
+      this.testMove(this.x,this.y+this.moveDist);
       isWalking = true;
       this.framesSinceKeyReleaseSouth = 0;
     }else {
@@ -345,21 +352,54 @@ function warriorClass() {
         return;
     }
 
-    if (this.facingLeft) {
-      canvasContext.save();
-      canvasContext.scale(-1, 1);
+    if (this.moveDist >= PLAYER_DODGE_DIST) {
+        const diffX = Math.abs(this.x - this.previousX);
+        const diffY = Math.abs(this.y - this.previousY);
+
+        let eachX = (diffX + diffX > 0 ? PLAYER_DODGE_AFTERIMAGE_EXTENSION_LENGTH : 0) / PLAYER_DODGE_AFTERIMAGE_COUNT;
+        let eachY = (diffY + diffY > 0 ? PLAYER_DODGE_AFTERIMAGE_EXTENSION_LENGTH : 0) / PLAYER_DODGE_AFTERIMAGE_COUNT;
+        
+        if (this.keyHeld_West) { 
+            eachX = Math.abs(eachX)
+            eachY = 0;
+        }
+        else if (this.keyHeld_East) {
+            eachX = -Math.abs(eachX);
+            eachY = 0;
+        }
+        else if (this.keyHeld_North) {
+            eachX = 0;
+            eachY = Math.abs(eachY);
+        }
+        else if (this.keyHeld_South) {
+            eachX = 0;
+            eachY = -Math.abs(eachY);
+        }
+
+        for (let i = 1; i <= PLAYER_DODGE_AFTERIMAGE_COUNT; i++) {
+            this.drawWarrior(this.x + eachX * i, this.y + eachY * i, 1 - (i / PLAYER_DODGE_AFTERIMAGE_COUNT));
+        }
+    }
+    this.drawWarrior();
+  }
+
+  this.drawWarrior = (x = this.x, y = this.y, alpha = 1) => {
+    const _drawImage = (_x = x, _y = y, _alpha = alpha, left = this.facingLeft ? -1 : 1) => {
+      canvasContext.globalAlpha = _alpha;
       canvasContext.drawImage(this.myBitmap,
         PLAYER_SPRITE_FRAME_W*this.animFrame,PLAYER_SPRITE_FRAME_H*1, // corner of sprite. multiple sprite frames of W and H will be different frames.
         PLAYER_SPRITE_FRAME_W, PLAYER_SPRITE_FRAME_H,
-        -(this.x - PLAYER_SPRITE_FRAME_W/2),  this.y  - VERTICAL_OFFSET_OF_FEET, // corner of sprite. multiple sprite frames of W and H will be different frames.
-        -PLAYER_SPRITE_FRAME_W, PLAYER_SPRITE_FRAME_H);       
+        left * (_x - PLAYER_SPRITE_FRAME_W/2),  _y  - VERTICAL_OFFSET_OF_FEET, // corner of sprite. multiple sprite frames of W and H will be different frames.
+        left * PLAYER_SPRITE_FRAME_W, PLAYER_SPRITE_FRAME_H);       
+    }
+
+    if (this.facingLeft) {
+      canvasContext.save();
+      canvasContext.scale(-1, 1);
+      _drawImage();
       canvasContext.restore();
     } else {
-      canvasContext.drawImage(this.myBitmap, 
-        PLAYER_SPRITE_FRAME_W*this.animFrame,PLAYER_SPRITE_FRAME_H*1, // corner of sprite. multiple sprite frames of W and H will be different frames.
-        PLAYER_SPRITE_FRAME_W, PLAYER_SPRITE_FRAME_H,
-        (this.x - PLAYER_SPRITE_FRAME_W/2),  this.y - VERTICAL_OFFSET_OF_FEET,
-        PLAYER_SPRITE_FRAME_W, PLAYER_SPRITE_FRAME_H);
+      _drawImage();
     }
   }
 
