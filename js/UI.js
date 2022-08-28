@@ -43,17 +43,19 @@ function drawItemsUI() {
     var showRedGemNum, showBlueGemNum, showDiamondNum,
     showDiamondNum;
     var itemsList = [potion, vial, diamond, redGem, blueGem, greenGem, rock];
-    var inventoryWidth = 90;
-    var inventoryCols = Math.ceil(inventoryWidth/tilePics.length); 
+    var inventoryWidth = 180;
+    var inventoryCols = Math.floor(inventoryWidth/tilePics[0].width); 
     var inventoryRows = Math.ceil(itemsList.length/inventoryCols);
-    var tileCornerStartX = 250;
-    var tileCornerStartY = 250;
+
     var tileSkipX = potion.width+10;
     var tileSkipY = potion.height+10;
     var tileX = 0;
     var tileY = 0;
+    var inventoryHeight =  inventoryRows * tileSkipY;
     selectMargin = 1;
-    colorRect( canvas.width/2 - 250, canvas.height/2 - 100, 500,200, 'grey');
+    var tileCornerStartX = canvas.width/2 - inventoryWidth/2;
+    var tileCornerStartY = canvas.height/2 - inventoryHeight/2;
+    colorRect( tileCornerStartX-10, tileCornerStartY, inventoryWidth+10,inventoryHeight, 'grey');
     mouseOverTileChoice = -1;
     for (var i=0; i<itemsList.length;i++) {
         var column = i%inventoryCols;
