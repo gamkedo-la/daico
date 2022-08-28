@@ -99,6 +99,7 @@ function loadLevel(whichLevel) {
     p1.init(playerPic, "Blue");
     angel.reset();
     characterDrawOrder = [p1,angel];
+    enemyList = [];
     var foundAnotherEnemy;
     do {
       var e1 = new enemyClass();
