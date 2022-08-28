@@ -156,6 +156,7 @@ function tileTypeHasTransparency(checkTileType) {
           checkTileType == TILE_DIAMOND);
 }
 
+
 function tileTypeHasWallCollision(checkTileType) {
 	return (checkTileType == TILE_GOAL ||
     checkTileType == TILE_KEY ||
@@ -253,7 +254,7 @@ function whereIsWallBetweenPoints(p1X,p1Y,p2X,p2Y){
     testX = p1X * (1.0 - perc) + p2X * perc;
     testY = p1Y * (1.0 - perc) + p2Y * perc;
     var tileHere = tileTypeAtPixel(testX,testY);
-    if(tileTypeBlocksEnemy(tileHere)) {
+    if(tileTypeBlocksEnemy(tileHere) || tileTypePickUp(tileHere)) {
       var indexBlockedAt = getTileIndexAtPixelCoord(testX,testY);
       return {x:lastSafeX, y:lastSafeY, tileKind:tileHere, idxBlockedAt: indexBlockedAt};
     }

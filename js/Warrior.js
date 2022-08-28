@@ -78,7 +78,9 @@ function warriorClass() {
     var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX, nextY);
     var walkIntoTileType = lineBlockedAt.tileKind; // assume wall when tile is missing
     var intoDoor = (walkIntoTileType == TILE_DOOR);
+    var intoItem = tileTypePickUp(walkIntoTileType);
     var doorIdx = walkIntoTileIndex;
+    var bumpedType = walkIntoTileType;
     if(tileTypeBlocksPlayer(walkIntoTileType) || intoDoor) {
       nextX = lineBlockedAt.x;
       nextY = lineBlockedAt.y;
@@ -93,6 +95,14 @@ function warriorClass() {
       walkIntoTileIndex = lineBlockedAt.idxBlockedAt;
       nextX = lineBlockedAt.x;
       nextY = lineBlockedAt.y;
+    } else if(intoItem) {
+      console.log("item dash detected");
+      walkIntoTileType = bumpedType;
+      walkIntoTileIndex = lineBlockedAt.idxBlockedAt;
+      nextX = lineBlockedAt.x;
+      nextY = lineBlockedAt.y;
+      this.x = nextX;
+      this.y = nextY;
     }
     switch( walkIntoTileType ) {
       case TILE_GROUND:
