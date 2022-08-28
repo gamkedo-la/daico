@@ -137,6 +137,7 @@ function warriorClass() {
         }
         break;
       case TILE_ROCK:
+        this.rocksHeld++;
         if(this.rocksHeld <= 99) {
           this.rocksHeld++; // one more item
           removeTileAndUpdateMinimap(walkIntoTileIndex);
@@ -144,6 +145,7 @@ function warriorClass() {
         }
         break;
       case TILE_DIAMOND:
+        this.diamondsHeld++;
         if(this.diamondsHeld <= 3) {
           this.diamondsHeld++; // one more item
           removeTileAndUpdateMinimap(walkIntoTileIndex);
@@ -152,6 +154,7 @@ function warriorClass() {
         break;
 
       case TILE_BLUE_GEM:
+        this.blueGemsHeld++;
         if(this.blueGemsHeld <= 3) {
           this.blueGemsHeld++; // one more item
           removeTileAndUpdateMinimap(walkIntoTileIndex);
@@ -159,13 +162,23 @@ function warriorClass() {
         }
         break;
       case TILE_RED_GEM:
+        this.redGemsHeld++;
         if(this.redGemsHeld <= 3) {
           this.redGemsHeld++; // one more item
           removeTileAndUpdateMinimap(walkIntoTileIndex);
           diamond_fx(this.x,this.y);
         }
         break;
+      case TILE_GREEN_GEM:
+        this.greenGemsHeld++;
+        if(this.greenGemsHeld <= 3) {
+          this.greenGemsHeld++; // one more item
+          removeTileAndUpdateMinimap(walkIntoTileIndex);
+          diamond_fx(this.x,this.y);
+        }
+        break;
       case TILE_VIAL:
+        this.vialsHeld++;
         if(this.vialsHeld <= 99) {
           this.vialsHeld++; // one more item
           removeTileAndUpdateMinimap(walkIntoTileIndex);

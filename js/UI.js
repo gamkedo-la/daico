@@ -43,15 +43,26 @@ function drawItemsUI() {
     var showRedGemNum, showBlueGemNum, showDiamondNum,
     showDiamondNum;
     var itemsList = [potion, vial, diamond, redGem, blueGem, greenGem, rock];
-    var editorRows = ROOM_ROWS;
-    var editorCols = Math.ceil(tilePics.length/editorRows); 
-    var tileX = canvas.width - editorCols * TILE_W;
+    var inventoryWidth = 90;
+    var inventoryCols = Math.ceil(inventoryWidth/tilePics.length); 
+    var inventoryRows = Math.ceil(itemsList.length/inventoryCols);
+    var tileCornerStartX = 250;
+    var tileCornerStartY = 250;
+    var tileSkipX = potion.width+10;
+    var tileSkipY = potion.height+10;
+    var tileX = 0;
     var tileY = 0;
     selectMargin = 1;
-    colorRect( canvas.width/2 - this.gameOverBoxWidth/2, canvas.height/2 - this.gameOverBoxHeight/2, this.gameOverBoxWidth,this.gameOverBoxHeight, 'lavender');
+    colorRect( canvas.width/2 - 250, canvas.height/2 - 100, 500,200, 'grey');
     mouseOverTileChoice = -1;
-    for (var i=0; i<=itemsList.length-1;i++) {
-        canvasContext.drawImage(itemsList[i], tileX, tileY); 
+    for (var i=0; i<itemsList.length;i++) {
+        var column = i%inventoryCols;
+        var row = Math.floor(i/inventoryCols);
+        tileX = tileCornerStartX + column * tileSkipX;
+        tileY = tileCornerStartY + row * tileSkipY;
+        //colorText(i,tileX, tileY , 18, "red");
+        canvasContext.drawImage(itemsList[i], tileX, tileY);
+        
     }
 }
 function GameOverScreen() {
