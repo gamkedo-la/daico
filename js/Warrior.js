@@ -215,7 +215,7 @@ function warriorClass() {
   this.angelBump = function() {
     if(this.potionsHeld>= 1 ) {
       console.log(this.itemsHeld);
-      this.potionsHeld--; // one more item
+      //this.potionsHeld--; // one more item
       angel_fx(this.x,this.y);
       return true;
     } 

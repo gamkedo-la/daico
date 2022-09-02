@@ -2,8 +2,9 @@ LittleEnemyClass.prototype = new enemyClass();
 // tuning constants
 const LITTLE_ENEMY_MOVE_SPEED = 3.0;
 const LITTLE_ENEMY_ATTACK_SPREAD = 30;
-
+const LITTLE_ENEMY_STONE_TIME_FRAME = 30;
 function LittleEnemyClass() {
+    this.reStoneTimer = LITTLE_ENEMY_STONE_TIME_FRAME;
   this.reset = function() {
     return this.resetOnTile(TILE_LITTLE_ENEMY);
   } // end of reset
@@ -12,7 +13,19 @@ function LittleEnemyClass() {
     var toAngel = angTo(angel.x - this.x, angel.y - this.y);
     this.xv = Math.cos(toAngel);
     this.yv = Math.sin(toAngel);
-   
+    if (dist(this.x - angel.x, this.y - angel.y) < 20) {
+        this.reStoneTimer--;
+        if(this.reStoneTimer < 0) {
+            angel.isStone = true;
+        }
+        
+    } else {
+        this.reStoneTimer++;
+        if(this.reStoneTimer > LITTLE_ENEMY_STONE_TIME_FRAME) {
+            this.reStoneTimer = LITTLE_ENEMY_STONE_TIME_FRAME;
+        }
+    }
+
   }
 
   this.AISeeingPlayer  = function() {
