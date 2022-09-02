@@ -10,7 +10,7 @@ var roomDungeon =
       21, 0, 0, 0, 0, 0,21, 0, 0, 0,21, 5,21, 5,21,21,
       21, 1, 1, 5, 1, 1,22, 0, 4, 0,21, 0, 0, 0,21,21,
       21, 0, 0, 0, 0, 0, 0, 0, 0, 0,21, 0, 4, 0,21,21,
-      21, 0, 0, 0,20, 0, 0, 0, 0, 0,21, 0, 0, 0,21,21,
+      21, 0, 0, 0,20, 0, 0, 30, 0, 0,21, 0, 0, 0,21,21,
       21, 0,24, 1, 1, 1, 1, 1, 0, 0,21, 0, 4, 0,21,21,
       21, 6,21, 0,21, 0,21, 0, 0, 0,21, 0, 0, 0,21,21,
       21, 0, 5, 0, 5, 0, 5,16,17,18,21, 1, 1, 1,21,21,
@@ -77,7 +77,8 @@ const TILE_VIAL = 26;
 const TILE_RED_GEM = 27;
 const TILE_GREEN_GEM = 28;
 const TILE_BLUE_GEM = 29;
-const TILE_LAST = TILE_BLUE_GEM;
+const TILE_LITTLE_ENEMY = 30;
+const TILE_LAST = TILE_LITTLE_ENEMY;
 
 var raycastP1X = 50;
 var raycastP1Y = 50;
@@ -112,6 +113,15 @@ function loadLevel(whichLevel) {
 
     do {
       var e1 = new bossClass();
+      foundAnotherEnemy = e1.reset();
+      if (foundAnotherEnemy) {
+        enemyList.push(e1);
+        characterDrawOrder.push(e1);
+      }
+    } while (foundAnotherEnemy);
+
+    do {
+      var e1 = new LittleEnemyClass();
       foundAnotherEnemy = e1.reset();
       if (foundAnotherEnemy) {
         enemyList.push(e1);
