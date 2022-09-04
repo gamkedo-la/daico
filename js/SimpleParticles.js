@@ -214,7 +214,7 @@ function attack_fx(x,y,facingLeft) {
         let alpha = 0.5;
         particles.add(x+8*dir,y+8,sparklePic,life,rotspd,ang,velx,vely,alpha); // dust
         let turnAround = Math.PI;
-        particles.add(x+8*dir,y+8,attackFxPic,200,0,facingLeft?turnAround:0,4*dir,0,0.2); //  a woosh )))
+        particles.add(x+8*dir,y-20,attackFxPic,200,0,facingLeft?turnAround:0,4*dir,0,0.2); //  a woosh )))
     }
 }
 
