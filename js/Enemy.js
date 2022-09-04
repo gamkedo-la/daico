@@ -1,5 +1,6 @@
 // tuning constants
 const ENEMY_MOVE_SPEED = 3.0;
+const REVIVE_ENEMY_TIME_FRAME = 30;
 function enemyClass() {
   // variables to keep track of position
   this.x = 75;
@@ -8,7 +9,8 @@ function enemyClass() {
   this.lastSeenPlayerY = 0;
  
   this.damage = 1;
-  
+  this.reviveEnemyTimer = REVIVE_ENEMY_TIME_FRAME;
+
   this.resetOnTile = function(whichTile) {
     if(this.homeX == undefined) {
       for(var i=0; i<roomGrid.length; i++) {
@@ -46,6 +48,27 @@ function enemyClass() {
       newSlash.ang = toPlayer;
       enemyAttackList.push(newSlash);
     }
+
+    /*if () {
+      this.reviveEnemyTimer--;
+      if(this.reviveEnemyTimer < 0) {
+        do {
+          var e1 = new enemyClass();
+          foundAnotherEnemy = e1.reset();
+          if (foundAnotherEnemy) {
+            enemyList.push(e1);
+            characterDrawOrder.push(e1);
+          }
+        } while (foundAnotherEnemy);
+    
+      }
+      
+  } else {
+      this.reviveEnemyTimer++;
+      if(this.reviveEnemyTimer > LITTLE_ENEMY_STONE_TIME_FRAME) {
+          this.reviveEnemyTimer = LITTLE_ENEMY_STONE_TIME_FRAME;
+      }
+    }/*
   }
 
   this.move = function() {
