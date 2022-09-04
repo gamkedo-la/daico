@@ -119,8 +119,6 @@ function warriorClass() {
         if (this.footprintDelay>0) { this.footprintDelay--; } else { footprint_fx(this.x,this.y); this.footprintDelay = FRAMES_PER_FOOTPRINT; }
         break;
       case TILE_GOAL:
-        document.getElementById("debugText").innerHTML = this.myName + " won";
-        this.reset();
         goal_fx(this.x,this.y);
         break;
       case TILE_DOOR:
@@ -148,9 +146,7 @@ function warriorClass() {
         key_fx(this.x,this.y);
         break;
       case TILE_POTION:
-        console.log(this.potionsHeld);
-        if(heartHeld < 5) {
-          console.log(heartHeld);
+        if(heartHeld < 4) {
          heartHeld++;
         } else { this.potionsHeld++;}
         removeTileAndUpdateMinimap(walkIntoTileIndex);
@@ -199,12 +195,11 @@ function warriorClass() {
         break;
       case TILE_VIAL:
         this.vialsHeld++;
-        if(this.vialsHeld <= 99) {
-          this.vialsHeld++; // one more item
-          //heartHalfFull++;
-          removeTileAndUpdateMinimap(walkIntoTileIndex);
-          diamond_fx(this.x,this.y);
-        }
+        if(heartHeld < 4) {
+          heartHeld++;
+         } else { this.potionsHeld++;}
+         removeTileAndUpdateMinimap(walkIntoTileIndex);
+         potion_fx(this.x,this.y);
         break;
 
       case TILE_STONED_ANGEL:
