@@ -59,7 +59,7 @@ function warriorClass() {
     this.redGemsHeld = 0;
     this.blueGemsHeld = 0;
     this.potionsHeld = 0;
-    this.vialssHeld = 0;
+    this.vialsHeld = 0;
     this.rocksHeld = 0;
     //if(this.homeX == undefined) {
       for(var i=0; i<roomGrid.length; i++) {

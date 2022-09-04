@@ -43,6 +43,7 @@ function drawItemsUI() {
     var showRedGemNum, showBlueGemNum, showDiamondNum,
     showDiamondNum;
     var itemsList = [potion, vial, diamond, redGem, blueGem, greenGem, rock];
+    var itemsListNum = [p1.potionsHeld, p1.vialsHeld, p1.diamondsHeld, p1.redGemsHeld, p1.blueGemsHeld, p1.greenGemsHeld, p1.rocksHeld];
     var inventoryWidth = 180;
     var inventoryCols = Math.floor(inventoryWidth/tilePics[0].width); 
     var inventoryRows = Math.ceil(itemsList.length/inventoryCols);
@@ -64,6 +65,7 @@ function drawItemsUI() {
         tileY = tileCornerStartY + row * tileSkipY;
         //colorText(i,tileX, tileY , 18, "red");
         canvasContext.drawImage(itemsList[i], tileX, tileY);
+        colorText(itemsListNum[i], tileX, tileY + itemsList[i].width, 18, "white");
         
     }
 }
