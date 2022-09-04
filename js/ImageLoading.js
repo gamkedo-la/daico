@@ -31,7 +31,7 @@ var blueGem=document.createElement("img");
 var greenGem=document.createElement("img");
 var vial=document.createElement("img");
 var potion=document.createElement("img");
-
+var key=document.createElement("img");
 
 
 var tilePics = [];
@@ -90,6 +90,7 @@ function loadImages() {
     {varName:greenGem, theFile:"Daico_green_gem.png"},
     {varName:potion, theFile:"Daico_green_potion.png"},
     {varName:vial, theFile:"Daico_Potion.png"},
+    {varName:key, theFile:"world_key.png"},
 
     {tileType:TILE_GROUND, theFile:"dungeon_floor.png"},
     {tileType:TILE_GROUND_2, theFile:"dungeon_floor_2.png"},
