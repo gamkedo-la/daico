@@ -68,7 +68,7 @@ function enemyClass() {
       if(this.reviveEnemyTimer > LITTLE_ENEMY_STONE_TIME_FRAME) {
           this.reviveEnemyTimer = LITTLE_ENEMY_STONE_TIME_FRAME;
       }
-    }/*
+    }*/
   }
 
   this.move = function() {
