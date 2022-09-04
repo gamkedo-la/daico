@@ -55,8 +55,9 @@ function warriorClass() {
     this.keysHeld = 0;
     this.itemsHeld = 0;
     this.diamondsHeld = 0;
+    this.greenGemsHeld = 0;
     this.redGemsHeld = 0;
-    this.BlueGemsHeld = 0;
+    this.blueGemsHeld = 0;
     this.potionsHeld = 0;
     this.vialssHeld = 0;
     this.rocksHeld = 0;
@@ -147,11 +148,13 @@ function warriorClass() {
         key_fx(this.x,this.y);
         break;
       case TILE_POTION:
-        if(this.potionsHeld <= 99) {
-          this.potionsHeld++; // one more item
-          removeTileAndUpdateMinimap(walkIntoTileIndex);
-          potion_fx(this.x,this.y);
-        }
+        console.log(this.potionsHeld);
+        if(heartHeld < 5) {
+          console.log(heartHeld);
+         heartHeld++;
+        } else { this.potionsHeld++;}
+        removeTileAndUpdateMinimap(walkIntoTileIndex);
+        potion_fx(this.x,this.y);
         break;
       case TILE_ROCK:
         this.rocksHeld++;
@@ -198,6 +201,7 @@ function warriorClass() {
         this.vialsHeld++;
         if(this.vialsHeld <= 99) {
           this.vialsHeld++; // one more item
+          //heartHalfFull++;
           removeTileAndUpdateMinimap(walkIntoTileIndex);
           diamond_fx(this.x,this.y);
         }
@@ -213,9 +217,7 @@ function warriorClass() {
     }
   }
   this.angelBump = function() {
-    if(this.potionsHeld>= 1 ) {
-      console.log(this.itemsHeld);
-      //this.potionsHeld--; // one more item
+    if(this.greenGemsHeld>= 1 && this.blueGemsHeld>=1 && this.redGemsHeld>=1 ) {
       angel_fx(this.x,this.y);
       return true;
     } 
