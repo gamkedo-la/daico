@@ -78,7 +78,8 @@ const TILE_RED_GEM = 27;
 const TILE_GREEN_GEM = 28;
 const TILE_BLUE_GEM = 29;
 const TILE_LITTLE_ENEMY = 30;
-const TILE_LAST = TILE_LITTLE_ENEMY;
+const TILE_SMALL_POTION = 31;
+const TILE_LAST = TILE_SMALL_POTION;
 
 var raycastP1X = 50;
 var raycastP1Y = 50;
