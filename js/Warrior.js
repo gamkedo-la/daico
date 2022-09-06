@@ -59,6 +59,7 @@ function warriorClass() {
     this.redGemsHeld = 0;
     this.blueGemsHeld = 0;
     this.potionsHeld = 0;
+    this.smallPotionsHeld = 0;
     this.vialsHeld = 0;
     this.rocksHeld = 0;
     //if(this.homeX == undefined) {
@@ -145,13 +146,20 @@ function warriorClass() {
         removeTileAndUpdateMinimap(walkIntoTileIndex);
         key_fx(this.x,this.y);
         break;
-      case TILE_POTION:
-        if(heartHeld < 4) {
-         heartHeld++;
-        } else { this.potionsHeld++;}
-        removeTileAndUpdateMinimap(walkIntoTileIndex);
-        potion_fx(this.x,this.y);
-        break;
+        case TILE_POTION:
+          if(heartHeld < 4) {
+           heartHeld++;
+          } else { this.potionsHeld++;}
+          removeTileAndUpdateMinimap(walkIntoTileIndex);
+          potion_fx(this.x,this.y);
+          break;
+        case TILE_SMALL_POTION:
+          if(heartHeld < 4) {
+            heartHeld += 0.5;
+          } else { this.smallPotionsHeld++;}
+          removeTileAndUpdateMinimap(walkIntoTileIndex);
+          potion_fx(this.x,this.y);
+          break;
       case TILE_ROCK:
         this.rocksHeld++;
         if(this.rocksHeld <= 99) {

@@ -31,6 +31,7 @@ var blueGem=document.createElement("img");
 var greenGem=document.createElement("img");
 var vial=document.createElement("img");
 var potion=document.createElement("img");
+var smallPotion=document.createElement("img");
 var key=document.createElement("img");
 
 
@@ -89,6 +90,7 @@ function loadImages() {
     {varName:blueGem, theFile:"Daico_blue_gem.png"},
     {varName:greenGem, theFile:"Daico_green_gem.png"},
     {varName:potion, theFile:"Daico_green_potion.png"},
+    {varName:smallPotion, theFile:"Daico_green_potion_small.png"},
     {varName:vial, theFile:"Daico_Potion.png"},
     {varName:key, theFile:"world_key.png"},
 
@@ -122,6 +124,7 @@ function loadImages() {
     {tileType:TILE_BLUE_GEM, theFile:"Daico_blue_gem.png"},
     {tileType:TILE_GREEN_GEM, theFile:"Daico_green_gem.png"},
     {tileType:TILE_POTION, theFile:"Daico_green_potion.png"},
+    {tileType:TILE_SMALL_POTION, theFile:"Daico_green_potion_small.png"},
     {tileType:TILE_VIAL, theFile:"Daico_Potion.png"},
 
     ];

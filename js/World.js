@@ -12,7 +12,7 @@ var roomDungeon =
       21, 0, 0, 0, 0, 0, 0, 0, 0, 0,21, 0, 4, 0,21,21,
       21, 0, 0, 0, 0, 0, 0,30, 0, 0,21, 0, 0, 0,21,21,
       21, 0,24, 1, 1, 1, 1, 1, 0, 0,21, 0, 4, 0,21,21,
-      21, 6,21, 0,21,27,18, 0,26, 0,21, 0, 0, 0,21,21,
+      21, 6,21, 0,21,27,18,31,26, 0,21, 0, 0, 0,21,21,
       21, 0, 5, 0, 5,28, 5,16,17,18,21, 1, 1, 1,21,21,
       21, 6,21, 0,21,29,21, 0, 0, 0,21, 1, 1, 1,21,21,
       25, 1, 1, 1, 1, 1, 1, 1, 1,10, 1, 1, 1, 1, 1,22];
@@ -164,6 +164,7 @@ function tileTypeHasTransparency(checkTileType) {
           checkTileType == TILE_KEY ||
           checkTileType == TILE_DOOR ||
           checkTileType == TILE_POTION ||
+          checkTileType == TILE_SMALL_POTION ||
           checkTileType == TILE_VIAL ||
           checkTileType == TILE_ROCK ||
           checkTileType == TILE_RED_GEM ||
@@ -178,6 +179,7 @@ function tileTypeHasWallCollision(checkTileType) {
     checkTileType == TILE_KEY ||
     checkTileType == TILE_DOOR ||
     checkTileType == TILE_POTION ||
+    checkTileType == TILE_SMALL_POTION ||
     checkTileType == TILE_VIAL ||
     checkTileType == TILE_ROCK ||
     checkTileType == TILE_DIAMOND ||
@@ -226,14 +228,16 @@ function drawRoom() {
 
 function tileTypePickUp(type){
   if(type == TILE_KEY || type == TILE_DOOR || type == TILE_LIVING_ANGEL || type == TILE_STONED_ANGEL ||
-    type == TILE_DIAMOND || type == TILE_ROCK || type == TILE_POTION || type == TILE_VIAL || type == TILE_BLUE_GEM || type == TILE_GREEN_GEM || type == TILE_RED_GEM || type == TILE_DIAMOND){
+    type == TILE_DIAMOND || type == TILE_ROCK || type == TILE_POTION || type == TILE_SMALL_POTION || type == TILE_VIAL || 
+    type == TILE_BLUE_GEM || type == TILE_GREEN_GEM || type == TILE_RED_GEM || type == TILE_DIAMOND){
     return true;
   }
   return false;
 }
 function tileTypeBlocksEnemy(type) {
   if(type == TILE_GROUND || type == TILE_KEY || type == TILE_LIVING_ANGEL || type == TILE_STONED_ANGEL ||
-    type == TILE_DIAMOND || type == TILE_ROCK || type == TILE_POTION || type == TILE_VIAL || type == TILE_BLUE_GEM || type == TILE_GREEN_GEM || type == TILE_RED_GEM || type == TILE_DIAMOND){
+    type == TILE_DIAMOND || type == TILE_ROCK || type == TILE_POTION || type == TILE_SMALL_POTION  || type == TILE_VIAL || 
+    type == TILE_BLUE_GEM || type == TILE_GREEN_GEM || type == TILE_RED_GEM || type == TILE_DIAMOND){
     return false;
   }
   return true;
