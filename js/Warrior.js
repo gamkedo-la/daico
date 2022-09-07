@@ -3,12 +3,16 @@ const PLAYER_MOVE_SPEED = 3.0;
 const PLAYER_DODGE_DIST = 150.0;
 const PLAYER_DODGE_AFTERIMAGE_COUNT = 100;
 const PLAYER_DODGE_AFTERIMAGE_EXTENSION_LENGTH = 200;
+const PLAYER_DODGE_AFTERIMAGE_FADE_OUT_FRAMES = 12; // how long trails persist after a dodge
+const PLAYER_DODGE_MAX_ALPHA = 0.5; // start less than opaque
+const PLAYER_DODGE_STEPSIZE = PLAYER_DODGE_AFTERIMAGE_EXTENSION_LENGTH / PLAYER_DODGE_AFTERIMAGE_COUNT;
 const FRAMES_BETWEEN_HEART_LOSS = 30;
 const PLAYER_SPRITE_FRAME_W = 50;
 const PLAYER_SPRITE_FRAME_H = 50;
 const FRAMES_PER_FOOTPRINT = 8;
 const FRAMES_FOR_DODGE = 10;
-heartLossDelay = 0;
+
+var heartLossDelay = 0;
 var heartHeld = 5;
 var playerWidth = 30;
 var playerHeight = 30;
@@ -22,9 +26,12 @@ function warriorClass() {
   this.previousX = this.x;
   this.previousY = this.y;
   this.moveDist = PLAYER_MOVE_SPEED;
- this.animFrame =0;
- this.animDelay = 3;
-
+  this.animFrame =0;
+  this.animDelay = 3;
+  this.afterimageFramesRemaining = 0;
+  this.dodge_eachX = 0;
+  this.dodge_eachY = 0;
+  
   // keyboard hold state variables, to use keys more like buttons
   this.keyHeld_North = false;
   this.keyHeld_East = false;
@@ -244,6 +251,9 @@ function warriorClass() {
     if (this.keyHeld_East) {
       if(this.framesSinceKeyReleaseEast >=1 && this.framesSinceKeyReleaseEast < FRAMES_FOR_DODGE){
         this.moveDist = PLAYER_DODGE_DIST;
+        this.afterimageFramesRemaining = PLAYER_DODGE_AFTERIMAGE_FADE_OUT_FRAMES;
+        this.dodge_eachX = -PLAYER_DODGE_STEPSIZE; 
+        this.dodge_eachY = 0
       }
       this.testMove(this.x+this.moveDist,this.y);
       this.facingLeft = false;
@@ -257,6 +267,9 @@ function warriorClass() {
     if (this.keyHeld_West) {
       if(this.framesSinceKeyReleaseWest >=1 && this.framesSinceKeyReleaseWest < FRAMES_FOR_DODGE){
         this.moveDist = PLAYER_DODGE_DIST;
+        this.afterimageFramesRemaining = PLAYER_DODGE_AFTERIMAGE_FADE_OUT_FRAMES;
+        this.dodge_eachX = PLAYER_DODGE_STEPSIZE; 
+        this.dodge_eachY = 0
       }
       this.testMove(this.x-this.moveDist,this.y);
       this.facingLeft = true;
@@ -269,6 +282,9 @@ function warriorClass() {
     if (this.keyHeld_North) {
       if(this.framesSinceKeyReleaseNorth >=1 && this.framesSinceKeyReleaseNorth < FRAMES_FOR_DODGE){
         this.moveDist = PLAYER_DODGE_DIST;
+        this.afterimageFramesRemaining = PLAYER_DODGE_AFTERIMAGE_FADE_OUT_FRAMES;
+        this.dodge_eachX = 0; 
+        this.dodge_eachY = PLAYER_DODGE_STEPSIZE;
       }
       this.testMove(this.x,this.y-this.moveDist);
       isWalking = true;
@@ -280,6 +296,9 @@ function warriorClass() {
     if (this.keyHeld_South) {
       if(this.framesSinceKeyReleaseSouth >=1 && this.framesSinceKeyReleaseSouth < FRAMES_FOR_DODGE){
         this.moveDist = PLAYER_DODGE_DIST;
+        this.afterimageFramesRemaining = PLAYER_DODGE_AFTERIMAGE_FADE_OUT_FRAMES;
+        this.dodge_eachX = 0; 
+        this.dodge_eachY = -PLAYER_DODGE_STEPSIZE;
       }
       this.testMove(this.x,this.y+this.moveDist);
       isWalking = true;
@@ -357,34 +376,16 @@ function warriorClass() {
         return;
     }
 
-    if (this.moveDist >= PLAYER_DODGE_DIST) {
-        const diffX = Math.abs(this.x - this.previousX);
-        const diffY = Math.abs(this.y - this.previousY);
-
-        let eachX = (diffX + diffX > 0 ? PLAYER_DODGE_AFTERIMAGE_EXTENSION_LENGTH : 0) / PLAYER_DODGE_AFTERIMAGE_COUNT;
-        let eachY = (diffY + diffY > 0 ? PLAYER_DODGE_AFTERIMAGE_EXTENSION_LENGTH : 0) / PLAYER_DODGE_AFTERIMAGE_COUNT;
-        
-        if (this.keyHeld_West) { 
-            eachX = Math.abs(eachX)
-            eachY = 0;
-        }
-        else if (this.keyHeld_East) {
-            eachX = -Math.abs(eachX);
-            eachY = 0;
-        }
-        else if (this.keyHeld_North) {
-            eachX = 0;
-            eachY = Math.abs(eachY);
-        }
-        else if (this.keyHeld_South) {
-            eachX = 0;
-            eachY = -Math.abs(eachY);
-        }
-
+    // fade out afterimages for a while after we are done dodging
+    if (this.afterimageFramesRemaining > 0) {
+        let alphaMax = PLAYER_DODGE_MAX_ALPHA * this.afterimageFramesRemaining/PLAYER_DODGE_AFTERIMAGE_FADE_OUT_FRAMES;
         for (let i = 1; i <= PLAYER_DODGE_AFTERIMAGE_COUNT; i++) {
-            this.drawWarrior(this.x + eachX * i, this.y + eachY * i, 1 - (i / PLAYER_DODGE_AFTERIMAGE_COUNT));
+            let alpha = alphaMax * (1-(i/PLAYER_DODGE_AFTERIMAGE_COUNT)); 
+            this.drawWarrior(this.x+this.dodge_eachX*i, this.y+this.dodge_eachY*i, alpha);
         }
+        this.afterimageFramesRemaining--;
     }
+
     this.drawWarrior();
   }
 

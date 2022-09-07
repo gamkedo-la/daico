@@ -100,7 +100,7 @@ function footprint_fx(x,y) {
     let velx = 0;
     let vely = 0;
     let alpha = 0.15;
-    particles.add(x,y+18,footprintPic,life,rotspd,ang,velx,vely,alpha);
+    particles.add(x,y+4,footprintPic,life,rotspd,ang,velx,vely,alpha);
 }
 
 // for when the player gets hit
