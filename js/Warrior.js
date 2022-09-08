@@ -12,6 +12,17 @@ const PLAYER_SPRITE_FRAME_H = 50;
 const FRAMES_PER_FOOTPRINT = 8;
 const FRAMES_FOR_DODGE = 10;
 
+var keysHeld = 0;
+var itemsHeld = 0;
+var diamondsHeld = 0;
+var greenGemsHeld = 0;
+var redGemsHeld = 0;
+var blueGemsHeld = 0;
+var potionsHeld = 0;
+var smallPotionsHeld = 0;
+var vialsHeld = 0;
+var rocksHeld = 0;
+
 var heartLossDelay = 0;
 var heartHeld = 5;
 var playerWidth = 30;
@@ -59,16 +70,6 @@ function warriorClass() {
   }
   
   this.reset = function() {
-    this.keysHeld = 0;
-    this.itemsHeld = 0;
-    this.diamondsHeld = 0;
-    this.greenGemsHeld = 0;
-    this.redGemsHeld = 0;
-    this.blueGemsHeld = 0;
-    this.potionsHeld = 0;
-    this.smallPotionsHeld = 0;
-    this.vialsHeld = 0;
-    this.rocksHeld = 0;
     //if(this.homeX == undefined) {
       for(var i=0; i<roomGrid.length; i++) {
         if( roomGrid[i] == TILE_PLAYER) {
@@ -156,29 +157,27 @@ function warriorClass() {
         case TILE_POTION:
           if(heartHeld < 4) {
            heartHeld++;
-          } else { this.potionsHeld++;}
+          } else { potionsHeld++;}
           removeTileAndUpdateMinimap(walkIntoTileIndex);
           potion_fx(this.x,this.y);
           break;
         case TILE_SMALL_POTION:
           if(heartHeld < 4) {
             heartHeld += 0.5;
-          } else { this.smallPotionsHeld++;}
+          } else { smallPotionsHeld++;}
           removeTileAndUpdateMinimap(walkIntoTileIndex);
           potion_fx(this.x,this.y);
           break;
       case TILE_ROCK:
-        this.rocksHeld++;
-        if(this.rocksHeld <= 99) {
-          this.rocksHeld++; // one more item
+        if(rocksHeld <= 99) {
+          rocksHeld++; // one more item
           removeTileAndUpdateMinimap(walkIntoTileIndex);
           rock_fx(this.x,this.y);
         }
         break;
       case TILE_DIAMOND:
-        this.diamondsHeld++;
-        if(this.diamondsHeld <= 3) {
-          this.diamondsHeld++; // one more item
+        if(diamondsHeld <= 3) {
+          diamondsHeld++; // one more item
           removeTileAndUpdateMinimap(walkIntoTileIndex);
           diamond_fx(this.x,this.y);
         }
@@ -186,24 +185,24 @@ function warriorClass() {
 
       case TILE_BLUE_GEM:
         this.blueGemsHeld++;
-        if(this.blueGemsHeld <= 3) {
-          this.blueGemsHeld++; // one more item
+        if(blueGemsHeld <= 3) {
+          blueGemsHeld++; // one more item
           removeTileAndUpdateMinimap(walkIntoTileIndex);
           diamond_fx(this.x,this.y);
         }
         break;
       case TILE_RED_GEM:
         this.redGemsHeld++;
-        if(this.redGemsHeld <= 3) {
-          this.redGemsHeld++; // one more item
+        if(redGemsHeld <= 3) {
+          redGemsHeld++; // one more item
           removeTileAndUpdateMinimap(walkIntoTileIndex);
           diamond_fx(this.x,this.y);
         }
         break;
       case TILE_GREEN_GEM:
         this.greenGemsHeld++;
-        if(this.greenGemsHeld <= 3) {
-          this.greenGemsHeld++; // one more item
+        if(greenGemsHeld <= 3) {
+          greenGemsHeld++; // one more item
           removeTileAndUpdateMinimap(walkIntoTileIndex);
           diamond_fx(this.x,this.y);
         }
@@ -212,7 +211,7 @@ function warriorClass() {
         this.vialsHeld++;
         if(heartHeld < 4) {
           heartHeld++;
-         } else { this.potionsHeld++;}
+         } else { potionsHeld++;}
          removeTileAndUpdateMinimap(walkIntoTileIndex);
          potion_fx(this.x,this.y);
         break;
@@ -227,7 +226,7 @@ function warriorClass() {
     }
   }
   this.angelBump = function() {
-    if(this.greenGemsHeld>= 1 && this.blueGemsHeld>=1 && this.redGemsHeld>=1 ) {
+    if(greenGemsHeld>= 1 && blueGemsHeld>=1 && redGemsHeld>=1 ) {
       angel_fx(this.x,this.y);
       return true;
     } 
