@@ -100,6 +100,10 @@ function loadLevel(whichLevel) {
   if (editorMode == false) {
     p1.init(playerPic, "Blue");
     angel.reset();
+    if(!angel.isStone){
+      angel.x = p1.x + 1;
+      angel.y = p1.y + 1;
+    }
     characterDrawOrder = [p1,angel];
     enemyList = [];
     var foundAnotherEnemy;
