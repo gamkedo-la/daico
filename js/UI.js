@@ -65,8 +65,35 @@ function drawItemsUI() {
         tileY = tileCornerStartY + row * tileSkipY;
         //colorText(i,tileX, tileY , 18, "red");
         canvasContext.drawImage(itemsList[i], tileX, tileY);
-        colorText(itemsListNum[i], tileX, tileY + itemsList[i].width, 18, "white");
+        colorText(i+1, tileX, tileY + itemsList[i].width, 18, "white");
         
+    }
+}
+
+function drawHelp() {
+    var pos = 0;
+    var showRedGemNum, showBlueGemNum, showDiamondNum,
+    showDiamondNum;
+    var helpList = ["Press C to recover", "Push directional keys twice to dodge", "Space to attack",];
+    var helpWidth = 180;
+    var helpHeight = 80;
+    var helpCols = Math.floor(helpWidth/helpList.length); 
+    var helpRows = Math.ceil(helpList.length*helpHeight);
+
+    var lineSkip = 25;
+    lineX = tileCornerStartX + column * lineSkip;
+    lineY = tileCornerStartY + row * lineSkip;
+    var indent = 50;
+    var helpHeight =  helpRows * lineSkip;
+    selectMargin = 1;
+    var tileCornerStartX = canvas.width/2 - helpWidth/2;
+    var tileCornerStartY = canvas.height/2 - helpHeight/2;
+    colorRect( tileCornerStartX-10, tileCornerStartY, helpWidth+10,helpHeight, 'grey');
+    mouseOverTileChoice = -1;
+    for (var i=0; i<helpList.length;i++) {
+        var column = i%helpCols;
+        var row = Math.floor(i/helpCols);
+        colorText(helpList[i],lineX+ indent * (i==3 || i==5 ? 1 : 0), lineY+=lineSkip, 18, "white");
     }
 }
 function GameOverScreen() {
@@ -88,4 +115,5 @@ function GameOverScreen() {
          }
    
   }
+  
 

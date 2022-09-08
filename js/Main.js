@@ -33,6 +33,7 @@ let ratManager;
 var isGamePaused = false;
 var editorMode = false;
 var isInventoryOn = false;
+var isHelpOn = false;
 window.onload = function() {
   canvas = document.getElementById('gameCanvas');
   canvasContext = canvas.getContext('2d');
@@ -184,6 +185,9 @@ function drawEverything() {
   }
   if(isInventoryOn) {
     drawItemsUI();
+  }
+  if(isHelpOn) {
+    drawHelp();
   }
 }
 
