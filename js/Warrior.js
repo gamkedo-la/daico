@@ -184,7 +184,7 @@ function warriorClass() {
         break;
 
       case TILE_BLUE_GEM:
-        this.blueGemsHeld++;
+        blueGemsHeld++;
         if(blueGemsHeld <= 3) {
           blueGemsHeld++; // one more item
           removeTileAndUpdateMinimap(walkIntoTileIndex);
@@ -192,7 +192,7 @@ function warriorClass() {
         }
         break;
       case TILE_RED_GEM:
-        this.redGemsHeld++;
+        redGemsHeld++;
         if(redGemsHeld <= 3) {
           redGemsHeld++; // one more item
           removeTileAndUpdateMinimap(walkIntoTileIndex);
@@ -200,7 +200,7 @@ function warriorClass() {
         }
         break;
       case TILE_GREEN_GEM:
-        this.greenGemsHeld++;
+        greenGemsHeld++;
         if(greenGemsHeld <= 3) {
           greenGemsHeld++; // one more item
           removeTileAndUpdateMinimap(walkIntoTileIndex);
@@ -208,10 +208,7 @@ function warriorClass() {
         }
         break;
       case TILE_VIAL:
-        this.vialsHeld++;
-        if(heartHeld < 4) {
-          heartHeld++;
-         } else { potionsHeld++;}
+        vialsHeld++
          removeTileAndUpdateMinimap(walkIntoTileIndex);
          potion_fx(this.x,this.y);
         break;

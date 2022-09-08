@@ -18,6 +18,7 @@ const KEY_TAB = 9;
 const KEY_ENTER = 13;
 const KEY_LEFT_BRACKET = 219;
 const KEY_RIGHT_BRACKET = 221;
+const KEY_LETTER_H = 72;
 const KEY_LETTER_I = 73;
 const KEY_LETTER_M = 77;
 const KEY_LETTER_P = 80;
@@ -127,6 +128,17 @@ function keyPressed(evt) {
       isGamePaused = !isGamePaused;
       console.log("Game is paused");
       break;
+    case KEY_LETTER_H:
+      // H for recovery
+      if(heartHeld < 4 && hasHalfHeart == true && smallPotionsHeld!=0) {
+        heartHeld++;
+        smallPotionsHeld--;
+      }
+      if(heartHeld < 4 && hasHalfHeart == false && potionsHeld!=0) {
+        heartHeld++;
+        potionsHeld--;
+      };
+      break;
     case KEY_LETTER_I:
       // I for inventory
       isInventoryOn = !isInventoryOn;
@@ -137,8 +149,7 @@ function keyPressed(evt) {
           p1.reset();
           for (var i=0;i<enemyList.length; i++) {
             enemyList[i].reset();
-          }
-          
+          }      
           angel.reset();
           heartHeld = 4;
         }

@@ -1,7 +1,7 @@
+var hasHalfHeart = false;
 function drawHealthUI() {
     var pos = 0;
     var showHeartNum;
-    var hasHalfHeart = false;
     if(heartHeld < 4) {
         showHeartNum = heartHeld;
     } else {
