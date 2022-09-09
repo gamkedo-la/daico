@@ -28,6 +28,14 @@ function bossClass() {
         }
       }
     }
+    this.superMove = this.move;
+    this.move = function() {
+      this.superMove();
+      if(this.isGhost) {
+        this.superMove();//boss revives faster
+        
+      } 
+    }
   
   this.draw = function() {
     this.drawWithSprite(bossPic);
