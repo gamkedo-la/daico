@@ -43,8 +43,8 @@ function enemyClass() {
     var attackChance = Math.random();
     if (attackChance < ATTACK_ODDS) {
       var newSlash = new clawClass();
-      newSlash.x = this.x + this.xv * ATTACK_RANGE;
-      newSlash.y = this.y + this.yv * ATTACK_RANGE;
+      newSlash.x = this.x + this.xv * ATTACK_START_DISTANCE;
+      newSlash.y = this.y + this.yv * ATTACK_START_DISTANCE;
       newSlash.ang = toPlayer;
       enemyAttackList.push(newSlash);
     }

@@ -1,6 +1,7 @@
 const ATTACK_ODDS = 0.04; //lower is less frequent (percentage out of 1)
-const ATTACK_RANGE = 80;
-const ATTACK_DURATION = 10;
+const ATTACK_START_DISTANCE = 20;
+const ATTACK_DURATION = 30;
+const ATTACK_SPEED = 4;
 const ATTACK_BOSS_SPEED = 6;
 const ATTACK_BOSS_DURATION = 40;
 function clawClass(){
@@ -10,7 +11,7 @@ function clawClass(){
     this.framesLeft = ATTACK_DURATION;
     this.damage = 0.5;
     this.isBossAttack = false;
-    this.clawSpeed = 2;
+    this.clawSpeed = ATTACK_SPEED;
     this.makeBossAttack = function() {
         this.isBossAttack =true;
         this.framesLeft = ATTACK_BOSS_DURATION;
