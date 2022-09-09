@@ -50,6 +50,7 @@ function enemyClass() {
       newSlash.y = this.y + this.yv * ATTACK_START_DISTANCE;
       newSlash.ang = toPlayer;
       enemyAttackList.push(newSlash);
+      attackSound.play();
     }
   }
 

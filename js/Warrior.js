@@ -113,7 +113,7 @@ function warriorClass() {
       nextX = lineBlockedAt.x;
       nextY = lineBlockedAt.y;
     } else if(intoItem) {
-      console.log("item dash detected");
+      //console.log("item dash detected");
       walkIntoTileType = bumpedType;
       walkIntoTileIndex = lineBlockedAt.idxBlockedAt;
       nextX = lineBlockedAt.x;
@@ -131,6 +131,7 @@ function warriorClass() {
         goal_fx(this.x,this.y);
         break;
       case TILE_DOOR:
+        doorSound.play();
         if(this.keysHeld > 0) {
           this.keysHeld--; // one less key
           document.getElementById("debugText").innerHTML = "Keys: "+this.keysHeld;
@@ -141,20 +142,24 @@ function warriorClass() {
         this.y = nextY;
         break;
       case TILE_MAGIC_DOOR:
+        doorSound.play();
         roomIndex = 1;
        loadLevel(roomList[roomIndex]);
           break;
       case TILE_MAGIC_DOOR2:
+        doorSound.play();
         roomIndex = 2;
        loadLevel(roomList[roomIndex]);
           break;
       case TILE_KEY:
+        pickItemSound.play();
         this.keysHeld++; // gain key
         document.getElementById("debugText").innerHTML = "Keys: "+this.keysHeld;
         removeTileAndUpdateMinimap(walkIntoTileIndex);
         key_fx(this.x,this.y);
         break;
         case TILE_POTION:
+          pickItemSound.play();
           if(heartHeld < 4) {
            heartHeld++;
           } else { potionsHeld++;}
@@ -162,6 +167,7 @@ function warriorClass() {
           potion_fx(this.x,this.y);
           break;
         case TILE_SMALL_POTION:
+          pickItemSound.play();
           if(heartHeld < 4) {
             heartHeld += 0.5;
           } else { smallPotionsHeld++;}
@@ -169,6 +175,7 @@ function warriorClass() {
           potion_fx(this.x,this.y);
           break;
       case TILE_ROCK:
+        pickItemSound.play();
         if(rocksHeld <= 99) {
           rocksHeld++; // one more item
           removeTileAndUpdateMinimap(walkIntoTileIndex);
@@ -176,6 +183,7 @@ function warriorClass() {
         }
         break;
       case TILE_DIAMOND:
+        pickItemSound.play();
         if(diamondsHeld <= 3) {
           diamondsHeld++; // one more item
           removeTileAndUpdateMinimap(walkIntoTileIndex);
@@ -184,6 +192,7 @@ function warriorClass() {
         break;
 
       case TILE_BLUE_GEM:
+        pickItemSound.play();
         blueGemsHeld++;
         if(blueGemsHeld <= 3) {
           blueGemsHeld++; // one more item
@@ -192,6 +201,7 @@ function warriorClass() {
         }
         break;
       case TILE_RED_GEM:
+        pickItemSound.play();
         redGemsHeld++;
         if(redGemsHeld <= 3) {
           redGemsHeld++; // one more item
@@ -200,6 +210,7 @@ function warriorClass() {
         }
         break;
       case TILE_GREEN_GEM:
+        pickItemSound.play();
         greenGemsHeld++;
         if(greenGemsHeld <= 3) {
           greenGemsHeld++; // one more item
@@ -208,6 +219,7 @@ function warriorClass() {
         }
         break;
       case TILE_VIAL:
+        pickItemSound.play();
         vialsHeld++
          removeTileAndUpdateMinimap(walkIntoTileIndex);
          potion_fx(this.x,this.y);
@@ -315,6 +327,7 @@ function warriorClass() {
   
   this.attack = function () {
     attack_fx(this.x,this.y,this.facingLeft);
+    enemyHitSound.play();
     for (var i=enemyList.length-1;i>=0; i--) { // backward since we splice from it
       var disX = Math.abs(enemyList[i].x - this.x);
       var disY = Math.abs(enemyList[i].y - this.y);
@@ -325,6 +338,7 @@ function warriorClass() {
             enemy_hit_fx(enemyList[i].x,enemyList[i].y);
           }
         }
+        enemyDeadSound.play();
         enemyList[i].turnGhost();
         //enemyList.splice(i,1);
       }
@@ -353,16 +367,15 @@ function warriorClass() {
         }
 
         if (heartHeld >= 0) {
-            //hitSound.play();
+            hurtSound.play();
             damage ? heartHeld -= damage : heartHeld--;
         }
         if (heartHeld == 1){
-            //alarmSound.play();
+            alarmSound.play();
         }
 
     if (heartHeld < 0){
-      //deathSound.play();
-      //gameState = STATE_GAME_OVER;
+      gameOverSound.play();
       gameIsOver = true;
     }
   //}

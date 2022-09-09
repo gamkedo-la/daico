@@ -87,6 +87,7 @@ var raycastP2X = 150;
 var raycastP2Y = 150;
 
 function loadLevel(whichLevel) {
+  startSound.play();
   if (editorMode) {
     canvas.width = 1000;
   } else {

@@ -141,10 +141,12 @@ function keyPressed(evt) {
       };
       break;
     case KEY_LETTER_H:
+      menuSound.play();
     // H for Help
     isHelpOn = !isHelpOn;
       break;
     case KEY_LETTER_I:
+      menuSound.play();
       // I for inventory
       isInventoryOn = !isInventoryOn;
       break;
