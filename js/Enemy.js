@@ -1,13 +1,14 @@
 // tuning constants
 const ENEMY_MOVE_SPEED = 3.0;
 const REVIVE_ENEMY_TIME_FRAME = 30;
+const ENEMY_GHOST_MULTIPLIER = 0.4;
 function enemyClass() {
   // variables to keep track of position
   this.x = 75;
   this.y = 75;
   this.lastSeenPlayerX = 0;
   this.lastSeenPlayerY = 0;
- 
+  this.isGhost = false;
   this.damage = 1;
   this.reviveEnemyTimer = REVIVE_ENEMY_TIME_FRAME;
 
@@ -48,30 +49,20 @@ function enemyClass() {
       newSlash.ang = toPlayer;
       enemyAttackList.push(newSlash);
     }
-
-    /*if () {
-      this.reviveEnemyTimer--;
-      if(this.reviveEnemyTimer < 0) {
-        do {
-          var e1 = new enemyClass();
-          foundAnotherEnemy = e1.reset();
-          if (foundAnotherEnemy) {
-            enemyList.push(e1);
-            characterDrawOrder.push(e1);
-          }
-        } while (foundAnotherEnemy);
-    
-      }
-      
-  } else {
-      this.reviveEnemyTimer++;
-      if(this.reviveEnemyTimer > LITTLE_ENEMY_STONE_TIME_FRAME) {
-          this.reviveEnemyTimer = LITTLE_ENEMY_STONE_TIME_FRAME;
-      }
-    }*/
   }
 
   this.move = function() {
+    if (this.isGhost) {
+      var toHome = angTo(this.homeX - this.x, this.homeY - this.y);
+      this.xv = Math.cos(toHome) * ENEMY_GHOST_MULTIPLIER;
+      this.yv = Math.sin(toHome) * ENEMY_GHOST_MULTIPLIER;
+      this.x += this.xv;
+      this.y += this.yv;
+      if (dist(this.x - this.homeX, this.y - this.homeY) < 0.2*TILE_W) {
+        this.isGhost = false;
+      }
+      return;
+    }
     if (dist(this.x - p1.x, this.y - p1.y) < 3*TILE_W) {
       var lineBlocked = isWallBetweenPoints(this.x, this.y, p1.x, p1.y);
       if(lineBlocked) {
@@ -129,6 +120,9 @@ function enemyClass() {
   }
   
   this.playerCollide = function() {
+    if (this.isGhost) {
+      return
+    }
     p1.playerHit(this.damage);
     var diffX = p1.x - this.x;
     var diffY = p1.y - this.y;
@@ -147,7 +141,11 @@ function enemyClass() {
 
   this.drawWithSprite = function(whichSprite) {
     var feetOffsetFromCenter = VERTICAL_OFFSET_OF_FEET - whichSprite.height/2;
-    drawBitmapCenteredAtLocationWithRotation(whichSprite, this.x, this.y - feetOffsetFromCenter, 0.0 );
+    var alpha = 1.0;
+    if(this.isGhost) {
+      alpha = 0.2;
+    }
+    drawBitmapCenteredAtLocationWithRotation(whichSprite, this.x, this.y - feetOffsetFromCenter, 0.0, alpha );
   }
 
   this.draw = function() {

@@ -321,11 +321,12 @@ function warriorClass() {
       if (disX + disY < 50) {
         for (var ii=characterDrawOrder.length;ii>=0; ii--) {
           if (characterDrawOrder[ii] == enemyList[i]) {
-            characterDrawOrder.splice(ii,1);
+            //characterDrawOrder.splice(ii,1);
             enemy_hit_fx(enemyList[i].x,enemyList[i].y);
           }
         }
-        enemyList.splice(i,1);
+        enemyList[i].isGhost = true;
+        //enemyList.splice(i,1);
       }
     }
   }
