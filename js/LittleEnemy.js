@@ -33,6 +33,9 @@ function LittleEnemyClass() {
   this.superMove = this.move;
   this.move = function() {
       this.superMove();
+      if(this.isGhost) {
+        return;
+      }
       if (dist(this.x - angel.x, this.y - angel.y) < 3*TILE_W) {
         var lineBlocked = isWallBetweenPoints(this.x, this.y, angel.x, angel.y);
         if(lineBlocked) {

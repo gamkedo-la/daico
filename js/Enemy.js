@@ -1,7 +1,8 @@
 // tuning constants
 const ENEMY_MOVE_SPEED = 3.0;
 const REVIVE_ENEMY_TIME_FRAME = 30;
-const ENEMY_GHOST_MULTIPLIER = 0.4;
+const ENEMY_GHOST_MULTIPLIER = 0.6;
+const ENEMY_GHOST_WAIT_FRAMES = 120;
 function enemyClass() {
   // variables to keep track of position
   this.x = 75;
@@ -9,6 +10,7 @@ function enemyClass() {
   this.lastSeenPlayerX = 0;
   this.lastSeenPlayerY = 0;
   this.isGhost = false;
+  this.ghostWait = ENEMY_GHOST_WAIT_FRAMES;
   this.damage = 1;
   this.reviveEnemyTimer = REVIVE_ENEMY_TIME_FRAME;
 
@@ -51,15 +53,25 @@ function enemyClass() {
     }
   }
 
+  this.turnGhost = function() {
+    if (this.isGhost == false) {
+      this.isGhost = true;
+      this.ghostWait = ENEMY_GHOST_WAIT_FRAMES;
+    }
+  }
   this.move = function() {
     if (this.isGhost) {
-      var toHome = angTo(this.homeX - this.x, this.homeY - this.y);
-      this.xv = Math.cos(toHome) * ENEMY_GHOST_MULTIPLIER;
-      this.yv = Math.sin(toHome) * ENEMY_GHOST_MULTIPLIER;
-      this.x += this.xv;
-      this.y += this.yv;
-      if (dist(this.x - this.homeX, this.y - this.homeY) < 0.2*TILE_W) {
-        this.isGhost = false;
+      if (dist(this.x - this.homeX, this.y - this.homeY) < 10) {
+        this.ghostWait--;
+        if (this.ghostWait < 0) {
+          this.isGhost = false;
+        }
+      } else {
+        var toHome = angTo(this.homeX - this.x, this.homeY - this.y);
+        this.xv = Math.cos(toHome) * ENEMY_GHOST_MULTIPLIER;
+        this.yv = Math.sin(toHome) * ENEMY_GHOST_MULTIPLIER;
+        this.x += this.xv;
+        this.y += this.yv;
       }
       return;
     }
@@ -143,7 +155,7 @@ function enemyClass() {
     var feetOffsetFromCenter = VERTICAL_OFFSET_OF_FEET - whichSprite.height/2;
     var alpha = 1.0;
     if(this.isGhost) {
-      alpha = 0.2;
+      alpha = 0.35;
     }
     drawBitmapCenteredAtLocationWithRotation(whichSprite, this.x, this.y - feetOffsetFromCenter, 0.0, alpha );
   }

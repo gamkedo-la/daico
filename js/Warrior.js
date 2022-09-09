@@ -318,14 +318,14 @@ function warriorClass() {
     for (var i=enemyList.length-1;i>=0; i--) { // backward since we splice from it
       var disX = Math.abs(enemyList[i].x - this.x);
       var disY = Math.abs(enemyList[i].y - this.y);
-      if (disX + disY < 50) {
+      if (disX + disY < 50 && enemyList[i].isGhost == false) {
         for (var ii=characterDrawOrder.length;ii>=0; ii--) {
           if (characterDrawOrder[ii] == enemyList[i]) {
             //characterDrawOrder.splice(ii,1);
             enemy_hit_fx(enemyList[i].x,enemyList[i].y);
           }
         }
-        enemyList[i].isGhost = true;
+        enemyList[i].turnGhost();
         //enemyList.splice(i,1);
       }
     }
