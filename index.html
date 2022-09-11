@@ -4,9 +4,53 @@
 <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
 <meta content="utf-8" http-equiv="encoding">
 <style>
-  #container{
-    text-align: center;
-  }
+    body {
+        background:black;
+        margin:0;
+        padding:0;
+        overflow:hidden;
+        color: white;
+        text-align: center;
+    }
+    #gameCanvas {                
+        /* width:100vw; */
+        height:90vh;
+        padding:0;
+        outline:0;
+        image-rendering: pixelated;
+        -ms-interpolation-mode: nearest-neighbor;
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: -webkit-crisp-edges;
+        image-rendering: -moz-crisp-edges;
+        image-rendering: -o-crisp-edges;
+        margin: 0 auto;
+        display: block;
+        overflow: hidden;
+    }
+    @media only screen and (orientation:portrait){
+        body {
+            height: 100vw;
+            transform: rotate(90deg);
+            background:black;
+            margin:0;
+            padding:0;
+            overflow:hidden;
+        }
+        #gameCanvas {                    
+            height:100vh;
+            padding:0;
+            outline:0;
+            image-rendering: pixelated;
+            -ms-interpolation-mode: nearest-neighbor;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: -webkit-crisp-edges;
+            image-rendering: -moz-crisp-edges;
+            image-rendering: -o-crisp-edges;
+            margin: 0 auto;
+            display: none;
+            overflow: hidden;
+        }
+    }
 </style>
 </head>
 <body style ="background-color:#111111;">
