@@ -8,6 +8,7 @@ var heartFull=document.createElement("img");
 var heartHalfFull=document.createElement("img");
 var heartEmpty=document.createElement("img");
 var mainMenuBackgroundImage=document.createElement("img");
+var mainMenuBackgroundImage_with_logo=document.createElement("img");
 var batOpenImage=document.createElement("img");
 var batClosedImage=document.createElement("img");
 var ratPlaceholderImage=document.createElement("img");
@@ -69,6 +70,7 @@ function loadImages() {
     {varName:heartHalfFull, theFile:"heart_half_full.png"},
     {varName:heartEmpty, theFile:"heartempty.png"},
     {varName:mainMenuBackgroundImage, theFile:"mainMenuBackgroundImage.png"},
+    {varName:mainMenuBackgroundImage_with_logo, theFile:"mainMenuBackgroundImage_with_logo.png"},
     {varName:batOpenImage, theFile:"bat_open.png"},
     {varName:batClosedImage, theFile:"bat_closed.png"},
     {varName:smokePic, theFile:"smoke.png"},
