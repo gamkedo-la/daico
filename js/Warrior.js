@@ -144,6 +144,8 @@ function warriorClass() {
         doorSound.play();
         roomIndex = 1;
        loadLevel(roomList[roomIndex]);
+       gameplayMusic.startOrStopMusic();
+      gameplayMusic = BackgroundMusicClass("audio/DAICO_MUSIC");
        this.x = TILE_W * 4 +25;
        this.y = TILE_H * 1 + 25;
           break;
@@ -151,6 +153,8 @@ function warriorClass() {
         doorSound.play();
         roomIndex = 2;
        loadLevel(roomList[roomIndex]);
+       gameplayMusic.startOrStopMusic();
+       gameplayMusic = BackgroundMusicClass("audio/boss-fight-v2");
        this.x = TILE_W * 4 + 25;
        this.y = TILE_H * 1 + 25;
           break;
