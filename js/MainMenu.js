@@ -25,15 +25,15 @@ function MainMenu()
   {
     canvasContext.textAlign="center";
     canvasContext.fillStyle = 'white';
-    canvasContext.font = '30px Helvetica';
+    canvasContext.font = '30px DaicoFont';  // '30px Helvetica';
     canvasContext.fillText(this.instructionText, canvas.width/2,canvas.height/2 + this.instruction_vertical_offset);
-    canvasContext.font = '20px Helvetica';
-    canvasContext.fillText("Press C to view credits in The Main Menu", canvas.width/2,canvas.height-80);
+    canvasContext.font = '25px DaicoFont';  // '20px Helvetica';
+    canvasContext.fillText("Press C to view credits in The Main Menu", canvas.width/2,canvas.height-70);
     canvasContext.textAlign="left";
-    colorText("C to use unused potion",canvas.width/2-180,canvas.height-110 , 20, "orange");
-    colorText("Space to attack",canvas.width/2-180,canvas.height-140 , 20, "orange");
-    colorText("WASD or directional keys to move",canvas.width/2-180,canvas.height-200 , 20, "yelow");
-    colorText("Press former keys twice to dodge",canvas.width/2-180,canvas.height-170 , 20, "orange");
+    colorText("C to use unused potion",canvas.width/2-180,canvas.height-110 , 30, "orange");
+    colorText("Space to attack",canvas.width/2-180,canvas.height-140 , 30, "orange");
+    colorText("WASD or directional keys to move",canvas.width/2-180,canvas.height-200 , 30, "yelow");
+    colorText("Press former keys twice to dodge",canvas.width/2-180,canvas.height-170 , 30, "orange");
   }
 
   this.Draw = function()

@@ -48,6 +48,9 @@ var pickItemSound = new SoundOverlapsClass("audio/pickitem");
 var gameOverSound = new SoundOverlapsClass("audio/gameover");
 var startSound = new SoundOverlapsClass("audio/Start");
 var alarmSound = new SoundOverlapsClass("audio/alarm");
+
+var daicoFont = new FontFace("daicoFont", 'url(fonts/Deutsch.ttf)');
+
 window.onload = function() {
   canvas = document.getElementById('gameCanvas');
   canvasContext = canvas.getContext('2d');
@@ -63,6 +66,14 @@ window.onload = function() {
   gameWinScreen = new GameWinScreen();
   //for deltaTime
   previousNow = performance.now();
+
+  daicoFont.load().then(function(font){
+    // with canvas, if this is ommited won't work
+    document.fonts.add(font);  
+    document.body.style.fontFamily = 'daicoFont, Arial';    
+  }).catch(function(error) {
+      // error occurred
+  });  
 
   loadImages();
 }

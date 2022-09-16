@@ -10,8 +10,8 @@ function Splash()
   this.DrawTitle = function()
   {
     canvasContext.fillStyle = 'white';
-    canvasContext.font = '30px Helvetica';
-    canvasContext.fillText(this.titleText, canvas.width/2 - this.titleTextWidth.width,canvas.height * 0.2);
+    canvasContext.font = '50px DaicoFont';  // '30px Helvetica';
+    canvasContext.fillText(this.titleText, canvas.width/2 - 2*this.titleTextWidth.width,canvas.height * 0.2);
   }
 
 

@@ -10,6 +10,7 @@ function PauseScreen()
   this.pauseTextY = 100;
   this.pauseTextFontSize = 50;
   this.pauseTextColor = "red";
+  this.font = "daicoFont";
 
   this.draw = function() {
     this.drawTransparentBackGround();
@@ -18,7 +19,7 @@ function PauseScreen()
 
   this.writePauseText = function() {
     colorText(this.pauseText, this.pauseTextX, this.pauseTextY, 
-              this.pauseTextFontSize, this.pauseTextColor);
+              this.pauseTextFontSize, this.pauseTextColor, this.font);
   }
   
   this.drawTransparentBackGround = function() {

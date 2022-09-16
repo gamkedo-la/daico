@@ -18,11 +18,11 @@ function colorCircle(centerX, centerY, radius, fillColor) {
   canvasContext.fill();
 }
   
-function colorText(showWords, textX, textY, fontSize, fillColor) {
-	canvasContext.font = font = fontSize + "px Arial";
-	  canvasContext.fillStyle = fillColor;
-	  canvasContext.fillText(showWords, textX, textY);
-  }
+function colorText(showWords, textX, textY, fontSize, fillColor, fontType="daicoFont") {
+	canvasContext.font = font = fontSize + "px " + fontType;
+  canvasContext.fillStyle = fillColor;
+  canvasContext.fillText(showWords, textX, textY);
+}
 function drawBitmapCenteredAtLocationWithRotation(graphic,atX,atY,withAngle,alpha) {
   if (!graphic) return;
   canvasContext.save(); // allows us to undo translate movement and rotate spin
