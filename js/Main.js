@@ -1,3 +1,12 @@
+var introCountdown = 400; // frames until the intro is turned off
+var intro = 
+    ["Defying the manor's landlord, you're willing to ",
+    "leave your dark realm of comfort to rescue the angel. ",
+    "One that has been kept in the lowest cells and",
+    "locked by a key that can be only combined from",
+    "three items in different hazardous places."];
+
+
 const VERTICAL_OFFSET_OF_FEET = PLAYER_SPRITE_FRAME_H * 0.8;
 // save the canvas for dimensions, and its 2d context for drawing to it
 const minimapX = 40;
@@ -214,6 +223,21 @@ function drawEverything() {
   if(isHelpOn) {
     drawHelp();
   }
+  if(introCountdown > 0) {
+    introCountdown--;
+    drawIntro();
+  }
+}
+
+function drawIntro() {
+    var introX = 200;
+    var introY = 400 + introCountdown/2;
+    var introH = 30;
+    for (let i=0; i<intro.length; i++) {
+        colorText(intro[i],introX,introY,20,"black");
+        colorText(intro[i],introX-1,introY-1,20,"white");
+        introY += introH;
+    }
 }
 
 function sortDrawY(a,b) {
