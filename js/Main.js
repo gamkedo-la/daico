@@ -180,7 +180,7 @@ function drawEverything() {
     editorDraw();
     colorText("In EDITOR MODE, press Tab to toggle. CTRL to export the edited level in console", 0, canvas.height, 20, 'red');
   } else {
-    colorText("Press Tab to activate editor", 0, canvas.height, 20, 'red');
+    //colorText("Press Tab to activate editor", 0, canvas.height, 20, 'red');
   }
   /*var raycastColor;
   var lineBlocked = isWallBetweenPoints(raycastP1X, raycastP1Y, raycastP2X, raycastP2Y);

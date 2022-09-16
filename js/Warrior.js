@@ -77,14 +77,13 @@ function warriorClass() {
           var tileCol = i%ROOM_COLS;
           this.homeX = tileCol * TILE_W + 0.5*TILE_W;
           this.homeY = tileRow * TILE_H + 0.5*TILE_H;
+          this.x = this.homeX;
+          this.y = this.homeY;
           roomGrid[i] = TILE_GROUND;
           break; // found it, so no need to keep searching 
         } // end of if
       } // end of for
     //} // end of if position not saved yet
-    
-    this.x = this.homeX;
-    this.y = this.homeY;
     heartLossDelay = 2 * FRAMES_BETWEEN_HEART_LOSS;
   } // end of reset
   
