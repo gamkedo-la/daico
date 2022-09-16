@@ -25,6 +25,7 @@ const KEY_LETTER_M = 77;
 const KEY_LETTER_P = 80;
 const KEY_LETTER_R = 82;
 var mainMenuMusic;
+var gameplayMusic;
 
 function initInput() {
   document.addEventListener("keydown", keyPressed);
@@ -105,14 +106,19 @@ function keyPressed(evt) {
   {
     splashMenuActive = false;
     mainMenuActive = true;
-    mainMenuMusic = BackgroundMusicClass("audio/menudir");
+    mainMenuMusic = BackgroundMusicClass("audio/boss-fight-v2");
   } else if (mainMenuActive)
   {
-    if (evt.keyCode == KEY_ENTER)
+    if (mainMenu.showingCredits)
+    {
+      mainMenu.showingCredits = false;
+    } else if(evt.keyCode == KEY_LETTER_C) {
+      mainMenu.showingCredits = true;
+    } else if (evt.keyCode == KEY_ENTER)
     {
       mainMenuActive = false;
       mainMenuMusic.startOrStopMusic();
-      BackgroundMusicClass("audio/DAICO_MUSIC");
+      gameplayMusic = BackgroundMusicClass("audio/DAICO_MUSIC");
     }
     return;
   }
