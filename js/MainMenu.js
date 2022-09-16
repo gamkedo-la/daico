@@ -37,10 +37,14 @@ function MainMenu()
   {
     this.DrawBackgroundImage();
     if(this.showingCredits) {
+      canvasContext.fillStyle = 'black';
+      canvasContext.globalAlpha = 0.7;
+      canvasContext.fillRect(0,0,canvas.width,canvas.height);
+      canvasContext.globalAlpha = 1.0;
       canvasContext.fillStyle = 'white';
-      canvasContext.font = '10px Helvetica';
+      canvasContext.font = '17px Helvetica';
       for(var i=0;i<creditsList.length;i++) {
-        canvasContext.fillText(creditsList[i], 80,80+15*i);
+        canvasContext.fillText(creditsList[i], 80,80+20*i);
       }
     } else {
       //this.DrawTitle(); // the logo is now part of MainmenuBackgroundImage_with_logo
@@ -62,5 +66,54 @@ var creditsList = [
 "Ian Cherabier: Small potion with art, pause toggle",
 "Gabriel Cornish: Lava floor tile, enemy hit sound",
 "Winchy: Canvas centered on screen, tile rotation fix",
-"Chris DeLeon: Dashing bug fix"
+"Chris DeLeon: Dashing bug fix",
+" ",
+"Press any key to return..."
 ];
+
+function lineWrapCredits() { // note: gets calling immediately after definition!
+  const newCut = [];
+  var maxLineChar = 82;
+  var findEnd;
+
+  for(let i = 0; i < creditsList.length; i++) {
+    const currentLine = creditsList[i];
+    for(let j = 0; j < currentLine.length; j++) {
+      /*const aChar = currentLine[j];
+      if(aChar === ":") {
+        if(i !== 0) {
+          newCut.push("\n");
+        }
+        newCut.push(currentLine.substring(0, j + 1));
+        newCut.push(currentLine.substring(j + 2, currentLine.length));
+        break;
+      } else*/ if(j === currentLine.length - 1) {
+        if((i === 0) || (i >= creditsList.length - 2)) {
+          newCut.push(currentLine);
+        } else {
+          newCut.push(currentLine.substring(0, currentLine.length));
+        }
+      }
+    }
+  }
+
+  const newerCut = [];
+  for(var i=0;i<newCut.length;i++) {
+    while(newCut[i].length > 0) {
+      findEnd = maxLineChar;
+      if(newCut[i].length > maxLineChar) {
+        for(var ii=findEnd;ii>0;ii--) {
+          if(newCut[i].charAt(ii) == " ") {
+            findEnd=ii;
+            break;
+          }
+        }
+      }
+      newerCut.push(newCut[i].substring(0, findEnd));
+      newCut[i] = newCut[i].substring(findEnd, newCut[i].length);
+    }
+  }
+
+  creditsList = newerCut;
+}
+lineWrapCredits(); // note: calling immediately as part of init, outside the function
