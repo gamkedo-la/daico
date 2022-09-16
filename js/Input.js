@@ -146,9 +146,9 @@ function keyPressed(evt) {
     isHelpOn = !isHelpOn;
       break;
     case KEY_LETTER_I:
-      menuSound.play();
+      //menuSound.play();
       // I for inventory
-      isInventoryOn = !isInventoryOn;
+      //isInventoryOn = !isInventoryOn;
       break;
     case KEY_LETTER_R:
         if(gameIsOver) {
