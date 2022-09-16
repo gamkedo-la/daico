@@ -51,6 +51,13 @@ function MainMenu()
       }
     } else {
       //this.DrawTitle(); // the logo is now part of MainmenuBackgroundImage_with_logo
+
+      if (particles) {
+        particles.add(240+Math.random()*310,330,sparklePic,2000,Math.random()*6,null,Math.random()*2-1,Math.random()*2-1,1);
+        particles.update();
+        particles.draw();
+    }
+
       this.DrawStartInstruction();
     }
   }
