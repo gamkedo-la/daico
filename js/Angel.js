@@ -7,6 +7,7 @@ function angelClass() {
   // variables to keep track of position
   this.x = 150;
   this.y = 150;
+  this.inRoom = 0;
 
   // keyboard hold state variables, to use keys more like buttons
   this.keyHeld_North = false;
@@ -46,6 +47,9 @@ function angelClass() {
   } // end of reset
   
   this.move = function() {
+    if (this.inRoom != roomIndex) {
+      return;
+    }
     //raycastP1X = this.x;
     //raycastP1Y = this.y;
     var lineBlocked = isWallBetweenPoints(this.x, this.y, p1.x, p1.y);
@@ -100,6 +104,9 @@ function angelClass() {
   }
   
   this.draw = function() {
+    if (this.inRoom != roomIndex) {
+      return;
+    }
     var footOffset = 22;//feet at the same postion as the player and the enemy is. 
     var usePic;
     if (this.isStone) {

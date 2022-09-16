@@ -102,6 +102,7 @@ function loadLevel(whichLevel) {
     p1.init(playerPic, "Blue");
     angel.reset();
     if(!angel.isStone){
+      angel.inRoom = roomIndex;
       angel.x = p1.x + 1;
       angel.y = p1.y + 1;
     }
