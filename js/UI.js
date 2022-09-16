@@ -111,7 +111,25 @@ function GameOverScreen() {
         colorText("LETS TRY AGAIN",canvas.width/2, canvas.height/2 , 18, "red");
         colorText("PRESS R TO CONTIUE",canvas.width/2, canvas.height/2 + 40, 34, "cyan");
          }
-   
+  }
+
+  function GameWinScreen() {
+    this.gameOverBoxWidth = 500;
+    this.gameOverBoxHeight = 200;
+    this.draw = function() {
+        canvasContext.globalAlpha = 0.3;
+        colorRect(  canvas.width/2 - this.gameOverBoxWidth/2, 
+            canvas.height/2 - this.gameOverBoxHeight/2, 
+            this.gameOverBoxWidth,
+            this.gameOverBoxHeight, 
+            'lavender');
+        canvasContext.globalAlpha = 1.0;
+        canvasContext.textAlign = "center";
+        canvasContext.font = "30px Verdana";
+        canvasContext.fillStyle = 'orange';
+        colorText("YOU ESCAPED!",canvas.width/2, canvas.height/2 , 25, "blue");
+        colorText("BOTH ANGEL AND YOU ARE FREE ",canvas.width/2, canvas.height/2 + 40, 25, "aqua");
+         }
   }
   
 

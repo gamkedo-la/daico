@@ -60,7 +60,7 @@ window.onload = function() {
   splashMenu = new Splash();
   pauseScreen = new PauseScreen();
   gameOverScreen = new GameOverScreen();
-
+  gameWinScreen = new GameWinScreen();
   //for deltaTime
   previousNow = performance.now();
 

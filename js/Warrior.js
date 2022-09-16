@@ -140,7 +140,7 @@ function warriorClass() {
         break;
       case TILE_MAGIC_DOOR:
         doorSound.play();
-        roomIndex = 1;
+        roomIndex = 0;
        loadLevel(roomList[roomIndex]);
        gameplayMusic.startOrStopMusic();
       gameplayMusic = BackgroundMusicClass("audio/DAICO_MUSIC");
@@ -150,7 +150,7 @@ function warriorClass() {
           break;
       case TILE_MAGIC_DOOR2:
         doorSound.play();
-        roomIndex = 2;
+        roomIndex = 1;
        loadLevel(roomList[roomIndex]);
        gameplayMusic.startOrStopMusic();
        gameplayMusic = BackgroundMusicClass("audio/boss-fight-v2");
@@ -158,16 +158,23 @@ function warriorClass() {
        this.y = TILE_H * 1 + 25;
        moveAngelToPlayer();
           break;
-      case TILE_MAGIC_DOOR3: 
+      case TILE_MAGIC_DOOR3:
+        if(diamondsHeld >= 1 && !angel.isStone) {
           doorSound.play();
-          roomIndex = 3;
+          roomIndex = 2;
          loadLevel(roomList[roomIndex]);
          gameplayMusic.startOrStopMusic();
          gameplayMusic = BackgroundMusicClass("audio/DAICO_MUSIC");
          this.x = TILE_W * 4 + 25;
          this.y = TILE_H * 1 + 25;
+        } 
+       
           break;
       case TILE_GATE:
+        if(isBoss == false) {
+          console.log("Hello");
+          GameWinScreen.draw();
+        }
         goal_fx(this.x,this.y);
         break;  
       case TILE_KEY:
