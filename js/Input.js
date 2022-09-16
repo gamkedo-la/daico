@@ -108,7 +108,12 @@ function keyPressed(evt) {
     mainMenuMusic = BackgroundMusicClass("audio/menudir");
   } else if (mainMenuActive)
   {
-    if (evt.keyCode == KEY_ENTER)
+    if (mainMenu.showingCredits)
+    {
+      mainMenu.showingCredits = false;
+    } else if(evt.keyCode == KEY_LETTER_C) {
+      mainMenu.showingCredits = true;
+    } else if (evt.keyCode == KEY_ENTER)
     {
       mainMenuActive = false;
       mainMenuMusic.startOrStopMusic();
