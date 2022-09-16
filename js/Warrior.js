@@ -144,11 +144,15 @@ function warriorClass() {
         doorSound.play();
         roomIndex = 1;
        loadLevel(roomList[roomIndex]);
+       this.x = TILE_W * 4 +25;
+       this.y = TILE_H * 1 + 25;
           break;
       case TILE_MAGIC_DOOR2:
         doorSound.play();
         roomIndex = 2;
        loadLevel(roomList[roomIndex]);
+       this.x = TILE_W * 4 + 25;
+       this.y = TILE_H * 1 + 25;
           break;
       case TILE_KEY:
         pickItemSound.play();
