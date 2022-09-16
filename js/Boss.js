@@ -4,6 +4,7 @@ const BOSS_MOVE_SPEED = 3.0;
 const BOSS_ATTACK_SPREAD = 30;
 
 function bossClass() {
+  this.isBoss = true;
   this.reset = function() {
     return this.resetOnTile(TILE_BOSS);
   } // end of reset

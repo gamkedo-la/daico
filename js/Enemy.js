@@ -13,7 +13,7 @@ function enemyClass() {
   this.ghostWait = ENEMY_GHOST_WAIT_FRAMES;
   this.damage = 1;
   this.reviveEnemyTimer = REVIVE_ENEMY_TIME_FRAME;
-
+  this.isBoss = false;
   this.resetOnTile = function(whichTile) {
     if(this.homeX == undefined) {
       for(var i=0; i<roomGrid.length; i++) {

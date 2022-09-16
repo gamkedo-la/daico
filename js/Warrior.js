@@ -332,15 +332,18 @@ function warriorClass() {
       var disX = Math.abs(enemyList[i].x - this.x);
       var disY = Math.abs(enemyList[i].y - this.y);
       if (disX + disY < 50 && enemyList[i].isGhost == false) {
-        for (var ii=characterDrawOrder.length;ii>=0; ii--) {
-          if (characterDrawOrder[ii] == enemyList[i]) {
-            //characterDrawOrder.splice(ii,1);
-            enemy_hit_fx(enemyList[i].x,enemyList[i].y);
-          }
-        }
         enemyDeadSound.play();
-        enemyList[i].turnGhost();
-        //enemyList.splice(i,1);
+        enemy_hit_fx(enemyList[i].x,enemyList[i].y);
+        if (enemyList[i].isBoss) {
+          for (var ii=characterDrawOrder.length;ii>=0; ii--) {
+            if (characterDrawOrder[ii] == enemyList[i]) {
+              characterDrawOrder.splice(ii,1);
+            }
+          }
+          enemyList.splice(i,1);
+        } else {
+          enemyList[i].turnGhost();
+        }
       }
     }
   }
