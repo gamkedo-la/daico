@@ -29,7 +29,6 @@ function BackgroundMusicClass(filenameWithPath) {
   this.startOrStopMusic = function() {
     if(musicSound.paused) {
       musicSound.play();
-      showCredits = false;
     } else {
       musicSound.pause();
     }

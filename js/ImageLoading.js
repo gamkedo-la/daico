@@ -112,11 +112,11 @@ function loadImages() {
     {tileType:TILE_ENEMY, theFile:"enemy.png"},
     {tileType:TILE_LITTLE_ENEMY, theFile:"little_enemy.png"},
     {tileType:TILE_BOSS, theFile:"boss.png"},
-    {tileType:TILE_GOAL, theFile:"world_goal.png"},
     {tileType:TILE_KEY, theFile:"world_key.png"},
     {tileType:TILE_DOOR, theFile:"world_door.png"},
     {tileType:TILE_MAGIC_DOOR, theFile:"magic_door.png"},
     {tileType:TILE_MAGIC_DOOR2, theFile:"magic_door2.png"},
+    {tileType:TILE_MAGIC_DOOR3, theFile:"magic_door3.png"},
     {tileType:TILE_FULL_HEART, theFile:"heartempty.png"}, // TODO: Is this right?
     {tileType:TILE_LIVING_ANGEL, theFile:"living_angel.png"},
     {tileType:TILE_STONED_ANGEL, theFile:"stoned_angel.png"},
@@ -128,7 +128,14 @@ function loadImages() {
     {tileType:TILE_POTION, theFile:"Daico_green_potion.png"},
     {tileType:TILE_SMALL_POTION, theFile:"Daico_green_potion_small.png"},
     {tileType:TILE_VIAL, theFile:"Daico_Potion.png"},
-
+    {tileType:TILE_LAVA_FLOOR, theFile:"Daico_LavaFloor1.png"},
+    {tileType:TILE_LAVA_WALL, theFile:"Daico_LavaWall1.png"},
+    {tileType:TILE_LAVA_WALL2, theFile:"Daico_LavaWall2.png"},
+    {tileType:TILE_DUNGEON_DOOR, theFile:"dungeon_door.png"},
+    {tileType:TILE_SURFACE_FLOOR, theFile:"surface_floor.png"},
+    {tileType:TILE_SURFACE_FLOOR2, theFile:"surface_floor_2.png"},
+    {tileType:TILE_SURFACE_WALL, theFile:"surface_wall.png"},
+    {tileType:TILE_GATE, theFile:"gate.png"},
     ];
 
   picsToLoad = imageList.length;

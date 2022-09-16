@@ -120,7 +120,7 @@ function damage_fx(x, y) {
 
 // for when an enemy gets hit
 function enemy_hit_fx(x, y) {
-    console.log("enemy_hit_fx");
+    //console.log("enemy_hit_fx");
     var num = 8;
     for (var i = 0; i < num; i++) {
         let life = randomInt(333,777);
@@ -275,7 +275,7 @@ function tile_particles(tileTypeHere,tileLeftEdgeX,tileTopEdgeY) {
     let alpha = 0.3;
 
     switch(tileTypeHere) {
-        case TILE_GOAL: 
+        case TILE_DUNGEON_DOOR: 
             particles.add(x,y,sparklePic,life,rotspd,ang,velx,vely,alpha);
             break;
         case TILE_KEY: 

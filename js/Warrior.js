@@ -107,7 +107,7 @@ function warriorClass() {
     walkIntoTileType = TILE_WALL; // assume wall when tile is missing
     if (walkIntoTileIndex != undefined) { walkIntoTileType = roomGrid[walkIntoTileIndex]; }
     if(intoDoor){
-      console.log("door dash detected");
+      //console.log("door dash detected");
       walkIntoTileType = TILE_DOOR;
       walkIntoTileIndex = lineBlockedAt.idxBlockedAt;
       nextX = lineBlockedAt.x;
@@ -127,7 +127,8 @@ function warriorClass() {
         this.y = nextY;
         if (this.footprintDelay>0) { this.footprintDelay--; } else { footprint_fx(this.x,this.y); this.footprintDelay = FRAMES_PER_FOOTPRINT; }
         break;
-      case TILE_GOAL:
+      case TILE_GATE:
+      case TILE_MAGIC_DOOR3: 
         goal_fx(this.x,this.y);
         break;
       case TILE_DOOR:

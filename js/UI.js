@@ -72,8 +72,6 @@ function drawItemsUI() {
 
 function drawHelp() {
     var pos = 0;
-    var showRedGemNum, showBlueGemNum, showDiamondNum,
-    showDiamondNum;
     var helpList = ["Press C to recover", "Push directional keys twice to dodge", "Space to attack",];
     var helpWidth = 180;
     var helpHeight = 80;

@@ -50,7 +50,7 @@ const TILE_H = 50;
 const TILE_GROUND = 0;
 const TILE_WALL = 1;
 const TILE_PLAYER = 2;
-const TILE_GOAL = 3;
+const TILE_MAGIC_DOOR3 = 3;
 const TILE_KEY = 4;
 const TILE_DOOR = 5;
 const TILE_ENEMY = 6;
@@ -79,7 +79,15 @@ const TILE_GREEN_GEM = 28;
 const TILE_BLUE_GEM = 29;
 const TILE_LITTLE_ENEMY = 30;
 const TILE_SMALL_POTION = 31;
-const TILE_LAST = TILE_SMALL_POTION;
+const TILE_LAVA_FLOOR = 32;
+const TILE_LAVA_WALL = 33;
+const TILE_LAVA_WALL2 = 34;
+const TILE_DUNGEON_DOOR = 35;
+const TILE_SURFACE_FLOOR = 36;
+const TILE_SURFACE_FLOOR2 = 37;
+const TILE_SURFACE_WALL = 38;
+const TILE_GATE = 39
+const TILE_LAST = TILE_DUNGEON_DOOR;
 
 var raycastP1X = 50;
 var raycastP1Y = 50;
@@ -170,8 +178,7 @@ function getTileIndexAtPixelCoord(pixelX,pixelY) {
 }
 
 function tileTypeHasTransparency(checkTileType) {
-  return (checkTileType == TILE_GOAL ||
-          checkTileType == TILE_KEY ||
+  return (checkTileType == TILE_KEY ||
           checkTileType == TILE_DOOR ||
           checkTileType == TILE_POTION ||
           checkTileType == TILE_SMALL_POTION ||
@@ -255,7 +262,7 @@ function tileTypeBlocksEnemy(type) {
 
 
 function tileTypeBlocksPlayer(type) {
-  if (type == TILE_DOOR || type == TILE_MAGIC_DOOR || type == TILE_MAGIC_DOOR2){
+  if (type == TILE_DOOR || type == TILE_MAGIC_DOOR || type == TILE_MAGIC_DOOR2 || type == TILE_MAGIC_DOOR3){
     return false;
   }
 
