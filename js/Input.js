@@ -147,9 +147,9 @@ function keyPressed(evt) {
       };
       break;
     case KEY_LETTER_H:
-      menuSound.play();
+      //menuSound.play();
     // H for Help
-    isHelpOn = !isHelpOn;
+    //isHelpOn = !isHelpOn;
       break;
     case KEY_LETTER_I:
       //menuSound.play();

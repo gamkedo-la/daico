@@ -127,10 +127,6 @@ function warriorClass() {
         this.y = nextY;
         if (this.footprintDelay>0) { this.footprintDelay--; } else { footprint_fx(this.x,this.y); this.footprintDelay = FRAMES_PER_FOOTPRINT; }
         break;
-      case TILE_GATE:
-      case TILE_MAGIC_DOOR3: 
-        goal_fx(this.x,this.y);
-        break;
       case TILE_DOOR:
         doorSound.play();
         if(this.keysHeld > 0) {
@@ -162,6 +158,18 @@ function warriorClass() {
        this.y = TILE_H * 1 + 25;
        moveAngelToPlayer();
           break;
+      case TILE_MAGIC_DOOR3: 
+          doorSound.play();
+          roomIndex = 3;
+         loadLevel(roomList[roomIndex]);
+         gameplayMusic.startOrStopMusic();
+         gameplayMusic = BackgroundMusicClass("audio/DAICO_MUSIC");
+         this.x = TILE_W * 4 + 25;
+         this.y = TILE_H * 1 + 25;
+          break;
+      case TILE_GATE:
+        goal_fx(this.x,this.y);
+        break;  
       case TILE_KEY:
         pickItemSound.play();
         this.keysHeld++; // gain key

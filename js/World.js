@@ -21,7 +21,7 @@ var roomLava =
       1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 5, 0, 1, 1, 1, 1,
       1, 0, 4, 0, 4, 0, 1, 6, 2, 0, 1, 0, 1, 4, 4, 1,
       1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, 5, 1, 1,
-      1, 1, 1, 5, 1, 1, 1, 0, 4, 0, 1, 0, 0, 0, 1, 19,
+      1, 1, 1, 5, 1, 1, 1, 0, 4, 0, 1, 0, 0, 0, 1, 1,
       1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 4, 0, 1, 1,
       1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1,
       1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 4, 0, 1, 1,
@@ -87,7 +87,7 @@ const TILE_SURFACE_FLOOR = 36;
 const TILE_SURFACE_FLOOR2 = 37;
 const TILE_SURFACE_WALL = 38;
 const TILE_GATE = 39
-const TILE_LAST = TILE_DUNGEON_DOOR;
+const TILE_LAST = TILE_GATE;
 
 var raycastP1X = 50;
 var raycastP1Y = 50;
