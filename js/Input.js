@@ -158,6 +158,8 @@ function keyPressed(evt) {
             enemyList[i].reset();
           }      
           angel.reset();
+          moveAngelToPlayer();
+          //angel.inRoom = 0;
           heartHeld = 4;
         }
         break;

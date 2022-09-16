@@ -77,14 +77,15 @@ function warriorClass() {
           var tileCol = i%ROOM_COLS;
           this.homeX = tileCol * TILE_W + 0.5*TILE_W;
           this.homeY = tileRow * TILE_H + 0.5*TILE_H;
-          this.x = this.homeX;
-          this.y = this.homeY;
+
           roomGrid[i] = TILE_GROUND;
           break; // found it, so no need to keep searching 
         } // end of if
       } // end of for
     //} // end of if position not saved yet
     heartLossDelay = 2 * FRAMES_BETWEEN_HEART_LOSS;
+    this.x = this.homeX;
+    this.y = this.homeY;
   } // end of reset
   
   this.testMove = function(nextX,nextY) {
@@ -146,6 +147,7 @@ function warriorClass() {
        loadLevel(roomList[roomIndex]);
        this.x = TILE_W * 4 +25;
        this.y = TILE_H * 1 + 25;
+       moveAngelToPlayer();
           break;
       case TILE_MAGIC_DOOR2:
         doorSound.play();
@@ -153,6 +155,7 @@ function warriorClass() {
        loadLevel(roomList[roomIndex]);
        this.x = TILE_W * 4 + 25;
        this.y = TILE_H * 1 + 25;
+       moveAngelToPlayer();
           break;
       case TILE_KEY:
         pickItemSound.play();

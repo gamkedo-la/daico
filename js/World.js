@@ -101,11 +101,7 @@ function loadLevel(whichLevel) {
   if (editorMode == false) {
     p1.init(playerPic, "Blue");
     angel.reset();
-    if(!angel.isStone){
-      angel.inRoom = roomIndex;
-      angel.x = p1.x + 1;
-      angel.y = p1.y + 1;
-    }
+    
     characterDrawOrder = [p1,angel];
     enemyList = [];
     var foundAnotherEnemy;
@@ -140,7 +136,15 @@ function loadLevel(whichLevel) {
     characterDrawOrder = [];
   }
   updateMiniMap();
+  moveAngelToPlayer();
+}
 
+function moveAngelToPlayer() {
+  if(!angel.isStone){
+    angel.inRoom = roomIndex;
+    angel.x = p1.x + 1;
+    angel.y = p1.y + 1;
+  }
 }
 function roomTileToIndex(tileCol, tileRow) {
   return (tileCol + ROOM_COLS*tileRow);

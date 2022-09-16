@@ -111,7 +111,7 @@ function GameOverScreen() {
         canvasContext.font = "30px Verdana";
         canvasContext.fillStyle = 'orange';
         colorText("LETS TRY AGAIN",canvas.width/2, canvas.height/2 , 18, "red");
-        colorText("PRESS R TO RESPAWN",canvas.width/2, canvas.height/2 + 40, 34, "cyan");
+        colorText("PRESS R TO CONTIUE",canvas.width/2, canvas.height/2 + 40, 34, "cyan");
          }
    
   }
