@@ -288,7 +288,7 @@ function tile_particles(tileTypeHere,tileLeftEdgeX,tileTopEdgeY) {
             particles.add(x,y,glowPic,life,rotspd,ang,velx,vely,alpha);
             break;
         case TILE_DIAMOND:
-            particles.add(x,y,blueMist,life,rotspd,ang,velx,vely,alpha);
+            particles.add(x,y,sparklePic,life,rotspd,ang,velx,vely,alpha);
             break;
         case TILE_POTION:
             particles.add(x,y,bubblePic,life,rotspd,ang,velx,vely,alpha);
@@ -299,5 +299,8 @@ function tile_particles(tileTypeHere,tileLeftEdgeX,tileTopEdgeY) {
         case TILE_MAGIC_DOOR2:
             particles.add(x,y,glowPic,life,rotspd,ang,velx,vely,alpha);
             break;
+        case TILE_GATE:
+            particles.add(x,y,blueMist,life,rotspd,ang,velx,vely,alpha);
+            break;       
     }
 }

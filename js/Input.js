@@ -133,7 +133,7 @@ function keyPressed(evt) {
     case KEY_LETTER_P:
       // P key to pause game
       isGamePaused = !isGamePaused;
-      console.log("Game is paused");
+      //console.log("Game is paused");
       break;
     case KEY_LETTER_C:
       // H for recovery
