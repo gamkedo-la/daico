@@ -123,6 +123,15 @@ function warriorClass() {
     }
     switch( walkIntoTileType ) {
       case TILE_GROUND:
+        case TILE_GROUND:
+          case TILE_GROUND_2: 
+          case TILE_GROUND_3:
+          case TILE_GROUND_4:
+          case TILE_GROUND_5:
+          case TILE_GROUND_6:
+          case TILE_LAVA_FLOOR:  
+          case TILE_SURFACE_FLOOR: 
+          case TILE_SURFACE_FLOOR2:        
         this.x = nextX;
         this.y = nextY;
         if (this.footprintDelay>0) { this.footprintDelay--; } else { footprint_fx(this.x,this.y); this.footprintDelay = FRAMES_PER_FOOTPRINT; }
@@ -144,7 +153,7 @@ function warriorClass() {
        loadLevel(roomList[roomIndex]);
        gameplayMusic.startOrStopMusic();
       gameplayMusic = BackgroundMusicClass("audio/DAICO_MUSIC");
-       this.x = TILE_W * 4 +25;
+       this.x = TILE_W * 8 +25;
        this.y = TILE_H * 1 + 25;
        moveAngelToPlayer();
           break;
@@ -155,7 +164,7 @@ function warriorClass() {
        gameplayMusic.startOrStopMusic();
        gameplayMusic = BackgroundMusicClass("audio/boss-fight-v2");
        this.x = TILE_W * 4 + 25;
-       this.y = TILE_H * 1 + 25;
+       this.y = TILE_H * 24 + 25;
        moveAngelToPlayer();
           break;
       case TILE_MAGIC_DOOR3:
@@ -165,14 +174,13 @@ function warriorClass() {
          loadLevel(roomList[roomIndex]);
          gameplayMusic.startOrStopMusic();
          gameplayMusic = BackgroundMusicClass("audio/DAICO_MUSIC");
-         this.x = TILE_W * 4 + 25;
-         this.y = TILE_H * 1 + 25;
+         this.x = TILE_W * 8 + 25;
+         this.y = TILE_H * 20 + 25;
         } 
        
           break;
       case TILE_GATE:
         if(isBoss == false) {
-          console.log("Hello");
           GameWinScreen.draw();
         }
         goal_fx(this.x,this.y);
@@ -367,6 +375,7 @@ function warriorClass() {
             }
           }
           enemyList.splice(i,1);
+          GameWinScreen.draw();
         } else {
           enemyList[i].turnGhost();
         }

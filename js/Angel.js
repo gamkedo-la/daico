@@ -92,6 +92,14 @@ function angelClass() {
     switch( walkIntoTileType ) {
       case TILE_KEY:
       case TILE_GROUND:
+      case TILE_GROUND_2: 
+      case TILE_GROUND_3:
+      case TILE_GROUND_4:
+      case TILE_GROUND_5:
+      case TILE_GROUND_6:
+      case TILE_LAVA_FLOOR:  
+      case TILE_SURFACE_FLOOR: 
+      case TILE_SURFACE_FLOOR2: 
         this.x = nextX;
         this.y = nextY;
         break;
