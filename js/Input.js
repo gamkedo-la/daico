@@ -124,6 +124,11 @@ function keyPressed(evt) {
   }
 
   switch (evt.keyCode) {
+    case KEY_LETTER_SPACE:
+      introSpeedUp = true;
+
+      break;
+
     case KEY_LETTER_M:
       // M key to mute music
       startOrStopMusic();
@@ -191,6 +196,10 @@ function keyReleased(evt) {
         loadLevel(roomList[roomIndex]);
         //player should also be removed
       }
+      break;
+    case KEY_LETTER_SPACE:
+      introSpeedUp = false;
+
       break;
   }
   setKeyHoldState(evt.keyCode, p1, false);

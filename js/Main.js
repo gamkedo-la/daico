@@ -6,6 +6,7 @@ var intro =
     "locked by a key that can be only combined from",
     "three items in different hazardous places."];
 
+var introSpeedUp = false;
 
 const VERTICAL_OFFSET_OF_FEET = PLAYER_SPRITE_FRAME_H * 0.8;
 // save the canvas for dimensions, and its 2d context for drawing to it
@@ -224,7 +225,7 @@ function drawEverything() {
     drawHelp();
   }
   if(introCountdown > 0) {
-    introCountdown--;
+    introCountdown -= introSpeedUp ? 20 : 1;
     drawIntro();
   }
 }
