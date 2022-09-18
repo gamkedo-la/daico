@@ -30,6 +30,7 @@ var splashMenu;
 var splashMenuActive = true;
 var pauseScreen;
 var gameIsOver;
+var gameIsWon;
 
 //for deltaTime
 let now;
@@ -217,6 +218,9 @@ function drawEverything() {
   }
   if (gameIsOver)
   {gameOverScreen.draw();
+  }
+  if (gameIsWon)
+  {gameWinScreen.draw();
   }
   if(isInventoryOn) {
     drawItemsUI();

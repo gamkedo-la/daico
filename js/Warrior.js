@@ -180,7 +180,8 @@ function warriorClass() {
        
           break;
       case TILE_GATE:
-          gameWinScreen.draw();
+        if(angel.isStone == false && e1.isBoss == false)
+          gameIsWon = true;
         goal_fx(this.x,this.y);
         break;  
       case TILE_KEY:
