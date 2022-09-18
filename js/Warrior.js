@@ -14,7 +14,7 @@ const FRAMES_FOR_DODGE = 10;
 
 var keysHeld = 0;
 var itemsHeld = 0;
-var diamondsHeld = 0;
+var diamondsHeld = 1;
 var greenGemsHeld = 0;
 var redGemsHeld = 0;
 var blueGemsHeld = 0;
