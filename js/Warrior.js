@@ -163,8 +163,8 @@ function warriorClass() {
        loadLevel(roomList[roomIndex]);
        gameplayMusic.startOrStopMusic();
        gameplayMusic = BackgroundMusicClass("audio/boss-fight-v2");
-       this.x = TILE_W * 4 + 25;
-       this.y = TILE_H * 24 + 25;
+       this.x = TILE_W * 8 + 25;
+       this.y = TILE_H * 20 + 25;
        moveAngelToPlayer();
           break;
       case TILE_MAGIC_DOOR3:
