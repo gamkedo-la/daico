@@ -181,9 +181,10 @@ function warriorClass() {
        
           break;
       case TILE_GATE:
-        if(angel.isStone == false && e1.isBoss == false)
+        if(angel.isStone == false && bossDefeatedYet) {
           gameIsWon = true;
-        goal_fx(this.x,this.y);
+          goal_fx(this.x,this.y);
+        }
         break;  
       case TILE_KEY:
         pickItemSound.play();
