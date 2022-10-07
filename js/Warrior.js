@@ -12,7 +12,6 @@ const PLAYER_SPRITE_FRAME_H = 50;
 const FRAMES_PER_FOOTPRINT = 8;
 const FRAMES_FOR_DODGE = 10;
 
-var keysHeld = 0;
 var itemsHeld = 0;
 var diamondsHeld = 0;
 var greenGemsHeld = 0;
@@ -34,6 +33,7 @@ function warriorClass() {
   // variables to keep track of position
   this.x = 75;
   this.y = 75;
+  this.keysHeld = 0;
   this.previousX = this.x;
   this.previousY = this.y;
   this.moveDist = PLAYER_MOVE_SPEED;
@@ -107,7 +107,7 @@ function warriorClass() {
     walkIntoTileType = TILE_WALL; // assume wall when tile is missing
     if (walkIntoTileIndex != undefined) { walkIntoTileType = roomGrid[walkIntoTileIndex]; }
     if(intoDoor){
-      //console.log("door dash detected");
+      // console.log("door dash detected");
       walkIntoTileType = TILE_DOOR;
       walkIntoTileIndex = lineBlockedAt.idxBlockedAt;
       nextX = lineBlockedAt.x;
@@ -137,6 +137,7 @@ function warriorClass() {
         if (this.footprintDelay>0) { this.footprintDelay--; } else { footprint_fx(this.x,this.y); this.footprintDelay = FRAMES_PER_FOOTPRINT; }
         break;
       case TILE_DOOR:
+        // console.log(walkIntoTileIndex);
         doorSound.play();
         if(this.keysHeld > 0) {
           this.keysHeld--; // one less key
