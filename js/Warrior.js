@@ -369,6 +369,7 @@ function warriorClass() {
         enemyDeadSound.play();
         enemy_hit_fx(enemyList[i].x,enemyList[i].y);
         if (enemyList[i].isBoss) {
+          bossDefeatedYet = true;
           for (var ii=characterDrawOrder.length;ii>=0; ii--) {
             if (characterDrawOrder[ii] == enemyList[i]) {
               characterDrawOrder.splice(ii,1);

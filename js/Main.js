@@ -22,6 +22,7 @@ var enemyList = [];
 var enemyAttackList = [];
 var p1 = new warriorClass();
 var angel = new angelClass();
+var bossDefeatedYet = false; // note: not yet safely reloading on game reset
 
 var mainMenu;
 var mainMenuActive = false;
